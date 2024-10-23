@@ -13,7 +13,7 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-          server: t20ufh.ftp.infomaniak.com
+          server: raincheck.ch
           username: webFTPuser
           password: ${{ secrets.ftp_password }}
-          server-dir: /sites/raincheck.ch/
+          server-dir: /sites/
