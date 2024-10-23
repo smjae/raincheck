@@ -13,7 +13,7 @@ try {
     $pdo = new PDO($dsn, $db_user, $db_pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    $query = "SELECT unixtime, temperature, tagesniederschlag_sum, tagesniederschlag_max FROM t20ufh_Wettervorhersage";
+    $query = "SELECT unixtime, temperature, tagesniederschlag_sum, tagesniederschlag_max FROM Wettervorhersage";
     $stmt = $pdo->prepare($query);
     $stmt->execute();
     
