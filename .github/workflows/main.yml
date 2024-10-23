@@ -16,4 +16,4 @@ jobs:
           server: t20ufh.ftp.infomaniak.com
           username: webFTPuser
           password: ${{ secrets.ftp_password }}
-          server-dir: raincheck.ch/
+          server-dir: /sites/raincheck.ch/
