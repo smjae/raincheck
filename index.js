@@ -1,6 +1,8 @@
 console.log("Hello World!");
 // URL is the URL of the server
 // THIS FILE IS ONLY FOR DEVELOPMENT AND TESTING PURPOSES
+const heading = document.createElement('h1');
+heading.innerHTML = 'Hello World!';
 const button = document.createElement('button');
 button.textContent = 'Fetch Data';
 button.addEventListener('click', async () => {
