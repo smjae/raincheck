@@ -16,4 +16,4 @@ jobs:
           server: raincheck.ch
           username: webFTPuser
           password: ${{ secrets.ftp_password }}
-          server-dir: /sites/
+          server-dir: sites/
