@@ -5,7 +5,7 @@ require_once 'config.php';
 header('Content-Type: application/json');
 
 try {
-    $currentTime = []; // current time as Unix timestamp
+    $currentTime = []; // time in DDMMYYYY HH:MM format
     $currentTemperature = []; // current temperature in °C
     $daily_precipitation_sum = []; // daily precipitation sum in mm
     $daily_precipitation_probability_max = []; // daily precipitation probability max in %
@@ -20,7 +20,8 @@ try {
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
     foreach ($result as $row) {
-        $currentTime[] = (int)$row['unixtime']; // Keep as Unix timestamp
+        // Convert Unix timestamp to DDMMYYYY HH:MM format
+        $currentTime[] = date('dmY H:i', (int)$row['unixtime']);
         $currentTemperature[] = $row['temperature'];
         $daily_precipitation_sum[] = $row['tagesniederschlag_sum'];
         $daily_precipitation_probability_max[] = $row['tagesniederschlag_max'];
