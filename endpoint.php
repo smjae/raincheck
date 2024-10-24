@@ -3,7 +3,7 @@
 require_once 'config.php';
 
 header('Content-Type: application/json');
-header("Access-Control-Allow-Origin: https://raincheck.ch");
+
 
 try {
     $currentTime = []; // time in DDMMYYYY HH:MM format
@@ -13,16 +13,16 @@ try {
 
     $pdo = new PDO($dsn, $db_user, $db_pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    $query = "SELECT unixtime, temperature, tagesniederschlag_sum, tagesniederschlag_max FROM Wettervorhersage";
+
+    $query = "SELECT unixtime, temperature, tagesniederschlag_sum, tagesniederschlag_max FROM Wettervorhersage ORDER BY unixtime DESC LIMIT 1";
     $stmt = $pdo->prepare($query);
     $stmt->execute();
-    
+
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
+
     foreach ($result as $row) {
         // Convert Unix timestamp to DDMMYYYY HH:MM format
-        $currentTime[] = date('dmY H:i', (int)$row['unixtime']);
+        $currentTime[] = date('dmY H:i', (int) $row['unixtime']);
         $currentTemperature[] = $row['temperature'];
         $daily_precipitation_sum[] = $row['tagesniederschlag_sum'];
         $daily_precipitation_probability_max[] = $row['tagesniederschlag_max'];

@@ -1,5 +1,7 @@
 <?php
 
+header("Access-Control-Allow-Origin: https://raincheck.ch");
+
 // requiere once config.php!
 require_once 'config.php';
 
