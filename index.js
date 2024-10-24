@@ -17,7 +17,7 @@ document.body.appendChild(response);
 
 async function fetchData() {
     try {
-        const response = await fetch ('https://raincheck.ch/endpoint.php');
+        const response = await fetch('https://raincheck.ch/endpoint.php', { mode: 'no-cors' });
         const data = await response.json();
         //console.log(data);
         response.innerHTML = JSON.stringify(data);
