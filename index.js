@@ -7,7 +7,6 @@ const button = document.createElement('button');
 button.textContent = 'Fetch Data';
 button.addEventListener('click', async () => {
     const data = await fetchData();
-    console.log(data);
 });
 let response = document.createElement('p');
 response.addClassName = 'response';
@@ -20,7 +19,6 @@ async function fetchData() {
         const response = await fetch('https://raincheck.ch/endpoint.php');
         const data = await response.json();
         console.log(data);
-        response.innerHTML = JSON.stringify(data);
         processData(data);
     } catch (error) {
         console.error(error);
@@ -30,5 +28,5 @@ async function fetchData() {
   
   // Process the retrieved data
   async function processData(data) {
-    response.innerHTML = `Current Temperature: ${data.temperature}°C, Precipitation Probability: ${data.tagesniederschlag_max}%`;
+    response.innerHTML = `Current Temperature: ${data.currentTemperature}°C, Precipitation Probability: ${data.daily_precipitation_probability_max}%, Measured at: ${data.currentTime}`;
   }
