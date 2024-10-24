@@ -9,7 +9,7 @@ button.addEventListener('click', async () => {
     const data = await fetchData();
     console.log(data);
 });
-const response = document.createElement('p');
+let response = document.createElement('p');
 response.addClassName = 'response';
 
 document.body.appendChild(button);
@@ -17,9 +17,9 @@ document.body.appendChild(response);
 
 async function fetchData() {
     try {
-        const response = await fetch('https://raincheck.ch/endpoint.php', { mode: 'no-cors' });
+        const response = await fetch('https://raincheck.ch/endpoint.php');
         const data = await response.json();
-        //console.log(data);
+        console.log(data);
         response.innerHTML = JSON.stringify(data);
         processData(data);
     } catch (error) {
