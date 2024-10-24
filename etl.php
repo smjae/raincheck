@@ -68,9 +68,11 @@ try {
             ]);
         } 
         echo "Daten erfolgreich eingefügt.";
+        
     } else {
         echo "Daten sind bereits in der Tabelle.";
     }
 } catch (PDOException $e) {
     die("Verbindung zur Datenbank konnte nicht hergestellt werden: " . $e->getMessage());
 }
+
