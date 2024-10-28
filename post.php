@@ -12,6 +12,7 @@ try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Retrieve and decode the JSON data from the POST request
         $inputData = json_decode(file_get_contents("php://input"), true);
+        
 
         // Ensure we have the required fields
         if (isset($inputData['temperature'], $inputData['precipitation_sum'], $inputData['precipitation_probability'])) {
