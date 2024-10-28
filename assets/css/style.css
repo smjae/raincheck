@@ -1,0 +1,41 @@
+/* Basic Page Layout */
+@import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Kirang+Haerang&display=swap');
+
+body {
+    margin: 0;
+    font-family: Kirang Haerang, sans-serif;
+    background-color: #1c2945;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border: 2px solid #fff;
+    text-decoration: none;
+    margin: 1rem;
+    border-radius: 15px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background: none;
+    color: white;
+    width: 200px;
+    
+}
+
+
+h1, h2, h3, p, a {
+    color: white;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    font-family: Barriecito, cursive;
+}
+
