@@ -20,6 +20,14 @@ async function fetchData() {
     const data = await response.json();
     console.log(data);
     processData(data);
+    //save request to table "Anfragen"
+    const response2 = await fetch("https://raincheck.ch/endpoint.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
   } catch (error) {
     console.error(error);
   }
