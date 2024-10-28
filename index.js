@@ -21,7 +21,7 @@ async function fetchData() {
     console.log(data);
     processData(data);
     //save request to table "Anfragen"
-    const response2 = await fetch("https://raincheck.ch/endpoint.php", {
+    const response2 = await fetch("https://raincheck.ch/post.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
