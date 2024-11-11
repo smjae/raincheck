@@ -66,7 +66,7 @@ try {
         echo "<br>";
     
         // SQL-Query mit Platzhaltern für das Einfügen von Daten
-        $sql = "INSERT INTO Wettervorhersage (unixtime, temperatur, tagesniederschlag_sum, schneefall_sum, windgeschwindigkeit_max) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO Wettervorhersage (unixtime, temperatur, tagesniederschlag_sum, schneefall_sum, windgeschwindigkeit_max) VALUES (?, ?, ?, ?, ?)";
 
 
         // Bereitet die SQL-Anweisung vor
