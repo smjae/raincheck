@@ -5,7 +5,7 @@
 header("Access-Control-Allow-Origin: https://raincheck.ch");
 
 // require once config.php!
-require_once '../config.php';
+require_once __DIR__ . '/../config.php';
 
 try {
     // save data from sensor into database: time

@@ -1,20 +1,32 @@
 <?php
+require_once __DIR__ . '/../config.php';
 
-//work in progress
-
-header("Access-Control-Allow-Origin: https://raincheck.ch");
-
-// require once config.php!
-require_once '../config.php';
+header('Content-Type: application/json');
 
 try {
-    // save data from sensor into database: time
-    $sql = "GET * FROM Wettervorhersage ORDER BY datum DESC LIMIT 20";
-    $pdo->exec($sql);
+    $pdo = new PDO($dsn, $db_user, $db_pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    $query = "SELECT datum, temperatur, tagesniederschlag_sum, schneefall_sum, windgeschwindigkeit_max FROM Wettervorhersage ORDER BY datum DESC LIMIT 20";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($result) {
+        echo json_encode(['data' => $result], JSON_THROW_ON_ERROR);
+    } else {
+        echo json_encode(['data' => null], JSON_THROW_ON_ERROR);
+    }
 } catch (PDOException $e) {
     http_response_code(500);
     echo json_encode(['error' => 'Database error: ' . $e->getMessage()], JSON_THROW_ON_ERROR);
+} catch (JsonException $e) {
+    http_response_code(500);
+    echo json_encode(['error' => 'JSON encoding error: ' . $e->getMessage()], JSON_THROW_ON_ERROR);
+} catch (Exception $e) {
+    http_response_code(500);
+    echo json_encode(['error' => 'Unexpected error: ' . $e->getMessage()], JSON_THROW_ON_ERROR);
 }
 
 

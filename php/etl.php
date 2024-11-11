@@ -3,7 +3,7 @@
 header("Access-Control-Allow-Origin: https://raincheck.ch");
 
 // require once config.php!
-require_once '../config.php';
+require_once __DIR__ . '/../config.php';
 
 // Extract and transform data
 $url = "https://api.open-meteo.com/v1/forecast?latitude=46.8499&longitude=9.5329&daily=temperature_2m_max,precipitation_sum,snowfall_sum,wind_speed_10m_max&timezone=Europe%2FBerlin&forecast_days=1";
