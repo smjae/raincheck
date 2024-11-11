@@ -12,6 +12,7 @@ $output = curl_exec(curl_init($url));
 $data = json_decode($output, true);
 
 //transform datum
+echo $data['daily']['time'];
 $datum = date('Y-m-d', strtotime($data['daily']['time']));
 
 
