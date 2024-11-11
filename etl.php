@@ -24,6 +24,7 @@ $weather_data = [];
 
 // Process data
 // $dailyTime = isset($data['daily']['time']) ? strtotime($data['daily']['time']) : NULL;
+$dailyTime = isset($data['daily']['time']) ? $data['daily']['time'] : NULL;
 $dailyTemperature = isset($data['daily']['temperature_2m_max']) ? $data['daily']['temperature_2m_max'] : NULL;
 $daily_precipitation_sum = isset($data['daily']['precipitation_sum'][0]) ? $data['daily']['precipitation_sum'][0] : NULL;
 // $daily_precipitation_probability_max = isset($data['daily']['precipitation_probability_max'][0]) ? $data['daily']['precipitation_probability_max'][0] : NULL;
