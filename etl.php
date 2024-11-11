@@ -45,27 +45,26 @@ try {
     // Erstellt eine neue PDO-Instanz mit der Konfiguration aus config.php
     $pdo = new PDO($dsn, $db_user, $db_pass, $options);
 
-    //insert data into table
-    // get data from table, check if datum is already in the table, if not insert data
+    // Get the latest entry from the table
     $sql = "SELECT * FROM Wettervorhersage ORDER BY datum DESC LIMIT 1";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
-    $last_weather_data = $stmt->fetch();
+    $last_weather_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (
-        !isset($last_weather_data['datum']) ||
+    // Check if the data is different or if the date is not present
+    $is_data_new = !$last_weather_data ||
         $last_weather_data['datum'] != $weather_data[0]['datum'] ||
         $last_weather_data['temperatur'] != $weather_data[0]['temperatur'] ||
         $last_weather_data['tagesniederschlag_sum'] != $weather_data[0]['tagesniederschlag_sum'] ||
         $last_weather_data['schneefall_sum'] != $weather_data[0]['schneefall_sum'] ||
-        $last_weather_data['windgeschwindigkeit_max'] != $weather_data[0]['windgeschwindigkeit_max']
-    ) {
+        $last_weather_data['windgeschwindigkeit_max'] != $weather_data[0]['windgeschwindigkeit_max'];
+
+    if ($is_data_new) {
         echo "Daten sind noch nicht in der Tabelle.";
         echo "<br>";
     
         // SQL-Query mit Platzhaltern für das Einfügen von Daten
         $sql = "INSERT INTO Wettervorhersage (datum, temperatur, tagesniederschlag_sum, schneefall_sum, windgeschwindigkeit_max) VALUES (?, ?, ?, ?, ?)";
-
 
         // Bereitet die SQL-Anweisung vor
         $stmt = $pdo->prepare($sql);
