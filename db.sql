@@ -1,17 +1,16 @@
-CREATE TABLE IF NOT EXISTS
-    `Wettervorhersage`  (
-        `unixtime` int (11) NOT NULL,
-        `temperature` decimal(5, 2) NOT NULL,
-        `tagesniederschlag_sum` decimal(6, 2) NOT NULL,
-        `tagesniederschlag_max` decimal(6, 2) NOT NULL,
-        `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
-    );
+-- Drop the Wettervorhersage table if it exists and create it
+DROP TABLE IF EXISTS `Wettervorhersage`;
+CREATE TABLE IF NOT EXISTS `Wettervorhersage` (
+    `unixtime` INT NOT NULL,
+    `temperatur` FLOAT,
+    `tagesniederschlag_sum` FLOAT,
+    `schneefall_sum` FLOAT,
+    `windgeschwindigkeit_max` FLOAT,
+    `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 
-CREATE TABLE IF NOT EXISTS
-    `Anfragen`  (
-        `unixtime` int (11) NOT NULL,
-        `temperature` decimal(5, 2) NOT NULL,
-        `tagesniederschlag_sum` decimal(6, 2) NOT NULL,
-        `tagesniederschlag_max` decimal(6, 2) NOT NULL,
-        `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
-    );
+-- Drop the Anfragen table if it exists and create it
+DROP TABLE IF EXISTS `Anfragen`;
+CREATE TABLE IF NOT EXISTS `Anfragen` (
+    `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

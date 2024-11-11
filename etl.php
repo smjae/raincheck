@@ -6,7 +6,7 @@ header("Access-Control-Allow-Origin: https://raincheck.ch");
 require_once 'config.php';
 
 // Extract and transform data
-$url = "https://api.open-meteo.com/v1/forecast?latitude=46.85327613490756&longitude=9.528191447119516&current=temperature_2m&daily=precipitation_sum,precipitation_probability_max&timezone=Europe%2FBerlin&forecast_days=1";
+$url = "https://api.open-meteo.com/v1/forecast?latitude=46.8499&longitude=9.5329&daily=temperature_2m_max,precipitation_sum,snowfall_sum,wind_speed_10m_max&timezone=Europe%2FBerlin&forecast_days=3";
 
 // curl
 $ch = curl_init($url);
@@ -23,16 +23,19 @@ $data = json_decode($output, true); // decode the JSON feed
 $weather_data = [];
 
 // Process data
-$currentTime = isset($data['current']['time']) ? strtotime($data['current']['time']) : NULL;
-$currentTemperature = isset($data['current']['temperature_2m']) ? $data['current']['temperature_2m'] : NULL;
+// $dailyTime = isset($data['daily']['time']) ? strtotime($data['daily']['time']) : NULL;
+$dailyTemperature = isset($data['daily']['temperature_2m_max']) ? $data['daily']['temperature_2m_max'] : NULL;
 $daily_precipitation_sum = isset($data['daily']['precipitation_sum'][0]) ? $data['daily']['precipitation_sum'][0] : NULL;
-$daily_precipitation_probability_max = isset($data['daily']['precipitation_probability_max'][0]) ? $data['daily']['precipitation_probability_max'][0] : NULL;
+// $daily_precipitation_probability_max = isset($data['daily']['precipitation_probability_max'][0]) ? $data['daily']['precipitation_probability_max'][0] : NULL;
+$daily_snowfall_sum = isset($data['daily']['snowfall_sum'][0]) ? $data['daily']['snowfall_sum'][0] : NULL;
+$daily_wind_speed_max = isset($data['daily']['wind_speed_10m_max'][0]) ? $data['daily']['wind_speed_10m_max'][0] : NULL;
 
 $weather_data[] = [
-    'unixtime' => $currentTime,
-    'temperature' => $currentTemperature,
+    'unixtime' => $dailyTime,
+    'temperatur' => $dailyTemperature,
     'tagesniederschlag_sum' => $daily_precipitation_sum,
-    'tagesniederschlag_max' => $daily_precipitation_probability_max
+    'schneefall_sum' => $daily_snowfall_sum,
+    'windgeschwindigkeit_max' => $daily_wind_speed_max
 ];
 
 echo "Extraktion erfolgreich.";
@@ -50,12 +53,20 @@ try {
     $stmt->execute();
     $last_weather_data = $stmt->fetch();
 
-    if (!isset($last_weather_data['unixtime']) || $last_weather_data['unixtime'] != $weather_data[0]['unixtime']) {
+    if (
+        !isset($last_weather_data['unixtime']) ||
+        $last_weather_data['unixtime'] != $weather_data[0]['unixtime'] ||
+        $last_weather_data['temperatur'] != $weather_data[0]['temperatur'] ||
+        $last_weather_data['tagesniederschlag_sum'] != $weather_data[0]['tagesniederschlag_sum'] ||
+        $last_weather_data['schneefall_sum'] != $weather_data[0]['schneefall_sum'] ||
+        $last_weather_data['windgeschwindigkeit_max'] != $weather_data[0]['windgeschwindigkeit_max']
+    ) {
         echo "Daten sind noch nicht in der Tabelle.";
         echo "<br>";
     
         // SQL-Query mit Platzhaltern für das Einfügen von Daten
-        $sql = "INSERT INTO Wettervorhersage (unixtime, temperature, tagesniederschlag_sum, tagesniederschlag_max) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO Wettervorhersage (unixtime, temperatur, tagesniederschlag_sum, schneefall_sum, windgeschwindigkeit_max) VALUES (?, ?, ?, ?)";
+
 
         // Bereitet die SQL-Anweisung vor
         $stmt = $pdo->prepare($sql);
@@ -64,9 +75,10 @@ try {
         foreach ($weather_data as $item) {
             $stmt->execute([
                 $item['unixtime'],
-                $item['temperature'],
+                $item['temperatur'],
                 $item['tagesniederschlag_sum'],
-                $item['tagesniederschlag_max']
+                $item['schneefall_sum'],
+                $item['windgeschwindigkeit_max']
             ]);
         } 
         echo "Daten erfolgreich eingefügt.";
