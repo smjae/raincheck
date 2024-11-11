@@ -7,9 +7,10 @@ subheading.innerHTML = "Wie wird das Wetter heute in Chur?";
 
 // const button = document.createElement("button");
 // button.textContent = "Fetch Data";
-// button.addEventListener("click", async () => {
-//   const data = await fetchData();
-// });
+document.addEventListener("DOMContentLoaded", async () => {
+  const data = await fetchData();
+});
+
 // let response = document.createElement("p");
 // response.addClassName = "response";
 
