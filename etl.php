@@ -11,8 +11,15 @@ $data = json_decode($output, true);
 // Return the type of daily['time']
 echo "Type of daily['time']: " . gettype($data['daily']['time']) . "\n";
 
+// Get the first string from daily['time']
+if (isset($data['daily']['time']) && is_array($data['daily']['time']) && !empty($data['daily']['time'])) {
+    $first_time = $data['daily']['time'][0];
+    echo "First time string: " . $first_time . "\n";
+} else {
+    echo "Invalid data format or empty array.\n";
+}
 
-if (isset($data['daily']['time'])) {
+if (isset($data['daily']['time']) && is_array($data['daily']['time'])) {
     foreach ($data['daily']['time'] as $index => $time) {
         $datum = date('Y-m-d', strtotime($time));
 
