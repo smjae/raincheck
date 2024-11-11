@@ -11,7 +11,7 @@ $output = curl_exec(curl_init($url));
 $data = json_decode($output, true);
 $weather_data = [
     [
-        'unixtime' => $data['daily']['time'] ?? NULL,
+        'datum' => $data['daily']['time'] ?? NULL,
         'temperatur' => $data['daily']['temperature_2m_max'] ?? NULL,
         'tagesniederschlag_sum' => $data['daily']['precipitation_sum'][0] ?? NULL,
         'schneefall_sum' => $data['daily']['snowfall_sum'][0] ?? NULL,
@@ -23,14 +23,14 @@ $weather_data = [
 try {
     $pdo = new PDO($dsn, $db_user, $db_pass, $options);
 
-    $stmt = $pdo->query("SELECT * FROM Wettervorhersage ORDER BY unixtime DESC LIMIT 1");
+    $stmt = $pdo->query("SELECT * FROM Wettervorhersage ORDER BY datum DESC LIMIT 1");
     $last_data = $stmt->fetch();
 
     $new_data = $weather_data[0];
     $is_data_new = !$last_data || array_diff_assoc($new_data, $last_data);
 
     if ($is_data_new) {
-        $stmt = $pdo->prepare("INSERT INTO Wettervorhersage (unixtime, temperatur, tagesniederschlag_sum, schneefall_sum, windgeschwindigkeit_max) VALUES (?, ?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO Wettervorhersage (datum, temperatur, tagesniederschlag_sum, schneefall_sum, windgeschwindigkeit_max) VALUES (?, ?, ?, ?, ?)");
         $stmt->execute(array_values($new_data));
         echo "Daten erfolgreich eingefügt.";
     } else {
