@@ -35,6 +35,7 @@ async function fetchData() {
   }
 }
 
+
 // Process the retrieved data
 async function processData(data) {
   // show data in charts: https://www.chartjs.org/docs/latest/
