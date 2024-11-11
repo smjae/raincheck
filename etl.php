@@ -7,49 +7,42 @@ $output = curl_exec(curl_init($url));
 
 // Decode JSON and create a weather data array with essential info
 $data = json_decode($output, true);
+echo json_encode($data, JSON_THROW_ON_ERROR);
 
-// Return the type of daily['time']
-echo "Type of daily['time']: " . gettype($data['daily']['time']) . "\n";
+// make new array with needed information
+$weather_data = [];
 
-// Get the first string from daily['time']
-if (isset($data['daily']['time']) && is_array($data['daily']['time']) && !empty($data['daily']['time'])) {
-    $first_time = $data['daily']['time'][0];
-    echo "First time string: " . $first_time . "\n";
-} else {
-    echo "Invalid data format or empty array.\n";
-}
+$datum = strtotime($data['daily']['time'][0]);
 
-if (isset($data['daily']['time']) && is_array($data['daily']['time'])) {
-    foreach ($data['daily']['time'] as $index => $time) {
-        $datum = date('Y-m-d', strtotime($time));
+// save data into string variable
+$weather_data[] = [
+    'datum' => $datum,
+    'currentTemperature' => $data['daily']['temperature_2m_max'],
+    'daily_precipitation_sum' => $data['daily']['precipitation_sum'],
+    'daily_snowfall_sum' => $data['daily']['snowfall_sum'],
+    'daily_wind_speed_max' => $data['daily']['wind_speed_10m_max']
+];
 
-        $weather_data = [
-            'datum' => $datum,
-            'temperatur' => $data['daily']['temperature_2m_max'][$index] ?? NULL,
-            'tagesniederschlag_sum' => $data['daily']['precipitation_sum'][$index] ?? NULL,
-            'schneefall_sum' => $data['daily']['snowfall_sum'][$index] ?? NULL,
-            'windgeschwindigkeit_max' => $data['daily']['wind_speed_10m_max'][$index] ?? NULL
-        ];
-
-        // Insert data if it’s not already in the database
-        try {
-            $pdo = new PDO($dsn, $db_user, $db_pass, $options);
-
-            $stmt = $pdo->query("SELECT * FROM Wettervorhersage ORDER BY datum DESC LIMIT 1");
-            $last_data = $stmt->fetch();
-
-            $is_data_new = !$last_data || array_diff_assoc($weather_data, $last_data);
-
-            if ($is_data_new) {
-                $stmt = $pdo->prepare("INSERT INTO Wettervorhersage (datum, temperatur, tagesniederschlag_sum, schneefall_sum, windgeschwindigkeit_max) VALUES (?, ?, ?, ?, ?)");
-                $stmt->execute(array_values($weather_data));
-            } else {
-                echo "Daten sind bereits in der Tabelle.";
-            }
-        } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-        }
+// Insert weather data into database
+try {
+    $pdo = new PDO($dsn, $db_user, $db_pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $sql = "SELECT * FROM Wettervorhersage ORDER BY datum DESC LIMIT 1";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $last_weather_data = $stmt->fetch();
+    if ($last_weather_data['datum'] != $weather_data[0]['datum']) {
+        echo "Daten sind noch nicht in der Tabelle";
+        $sql = "INSERT INTO Wettervorhersage (datum, temperatur, tagesniederschlag_sum, schneefall_sum, windgeschwindigkeit_max) VALUES (:datum, :currentTemperature, :daily_precipitation_sum, :daily_snowfall_sum, :daily_wind_speed_max)";
+        // Bereitet die SQL-Anweisung vor
+        $stmt = $pdo->prepare($sql);
+        // Fügt jedes Element im Array in die Datenbank ein
+        foreach ($weather_data as $row) {
+            $stmt->execute($row);
+        }   
+    } else {
+        echo "Daten sind schon in der Tabelle";
     }
-} else {
-    echo "Invalid data format.";
+} catch (PDOException $e) {
+    echo "Fehler beim Einfügen der Daten";
 }
