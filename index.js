@@ -37,7 +37,7 @@ div.classList.add(index);
 
 async function fetchData() {
   try {
-    const response = await fetch("https://raincheck.ch/unload.php");
+    const response = await fetch("https://raincheck.ch/php/unload.php");
     const data = await response.json();
     console.log(data);
     processData(data);
