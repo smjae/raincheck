@@ -1,7 +1,7 @@
 -- Drop the Wettervorhersage table if it exists and create it
 DROP TABLE IF EXISTS `Wettervorhersage`;
 CREATE TABLE IF NOT EXISTS `Wettervorhersage` (
-    `unixtime` INT NOT NULL,
+    `datum` DATE NOT NULL,
     `temperatur` FLOAT,
     `tagesniederschlag_sum` FLOAT,
     `schneefall_sum` FLOAT,

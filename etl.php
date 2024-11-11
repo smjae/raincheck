@@ -7,11 +7,15 @@ require_once 'config.php';
 $url = "https://api.open-meteo.com/v1/forecast?latitude=46.8499&longitude=9.5329&daily=temperature_2m_max,precipitation_sum,snowfall_sum,wind_speed_10m_max&timezone=Europe%2FBerlin&forecast_days=3";
 $output = curl_exec(curl_init($url));
 
+//transform datum
+$datum = date('Y-m-d', strtotime($data['daily']['time']));
+
+
 // Decode JSON and create a weather data array with essential info
 $data = json_decode($output, true);
 $weather_data = [
     [
-        'datum' => $data['daily']['time'] ?? NULL,
+        'datum' => $datum,
         'temperatur' => $data['daily']['temperature_2m_max'] ?? NULL,
         'tagesniederschlag_sum' => $data['daily']['precipitation_sum'][0] ?? NULL,
         'schneefall_sum' => $data['daily']['snowfall_sum'][0] ?? NULL,
