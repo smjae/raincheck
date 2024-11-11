@@ -23,7 +23,7 @@ $data = json_decode($output, true); // decode the JSON feed
 $weather_data = [];
 
 // Process data
-$dailyTime = isset($data['daily']['time'][0]) ? strtotime($data['daily']['time'][0]) : NULL;
+$dailyTime = isset($data['daily']['time'][0]) ? (new DateTime($data['daily']['time'][0]))->format('Y-m-d') : NULL;
 $dailyTemperature = isset($data['daily']['temperature_2m_max'][0]) ? $data['daily']['temperature_2m_max'][0] : NULL;
 $daily_precipitation_sum = isset($data['daily']['precipitation_sum'][0]) ? $data['daily']['precipitation_sum'][0] : NULL;
 $daily_snowfall_sum = isset($data['daily']['snowfall_sum'][0]) ? $data['daily']['snowfall_sum'][0] : NULL;
@@ -39,7 +39,6 @@ $weather_data[] = [
 
 echo "Extraktion erfolgreich.";
 echo "<br>";
-echo $weather_data[0]['datum'];
 
 // Load data into database
 try {
