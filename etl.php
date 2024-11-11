@@ -39,6 +39,7 @@ $weather_data[] = [
 
 echo "Extraktion erfolgreich.";
 echo "<br>";
+echo $weather_data[0]['datum'];
 
 // Load data into database
 try {
