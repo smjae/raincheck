@@ -5,18 +5,18 @@ heading.innerHTML = "Raincheck";
 const subheading = document.createElement("h2");
 subheading.innerHTML = "Wie wird das Wetter heute in Chur?";
 
-const button = document.createElement("button");
-button.textContent = "Fetch Data";
-button.addEventListener("click", async () => {
-  const data = await fetchData();
-});
-let response = document.createElement("p");
-response.addClassName = "response";
+// const button = document.createElement("button");
+// button.textContent = "Fetch Data";
+// button.addEventListener("click", async () => {
+//   const data = await fetchData();
+// });
+// let response = document.createElement("p");
+// response.addClassName = "response";
 
-document.body.appendChild(heading);
-document.body.appendChild(subheading);
-document.body.appendChild(button);
-document.body.appendChild(response);
+// document.body.appendChild(heading);
+// document.body.appendChild(subheading);
+// document.body.appendChild(button);
+// document.body.appendChild(response);
 
 const tables = document.querySelectorAll("table");
 
@@ -36,7 +36,7 @@ div.classList.add(index);
 
 async function fetchData() {
   try {
-    const response = await fetch("https://raincheck.ch/endpoint.php");
+    const response = await fetch("https://raincheck.ch/unload.php");
     const data = await response.json();
     console.log(data);
     processData(data);
@@ -47,15 +47,16 @@ async function fetchData() {
 
 // Process the retrieved data
 async function processData(data) {
-  response.innerHTML = `Current Temperature: ${data.data.currentTemperature[0]}°C, 
-    Precipitation Probability: ${data.data.daily_precipitation_probability_max[0]}%, 
-    Measured at: ${data.data.currentTime[0]}`;
-    await fetch("https://raincheck.ch/post.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    console.log("Data sent to server", data);
+  // response.innerHTML = `Current Temperature: ${data.data.currentTemperature[0]}°C, 
+  //   Precipitation Probability: ${data.data.daily_precipitation_probability_max[0]}%, 
+  //   Measured at: ${data.data.currentTime[0]}`;
+  //   await fetch("https://raincheck.ch/post.php", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(data),
+  //   });
+  //   console.log("Data sent to server", data);
+  console.log(data);
 }
