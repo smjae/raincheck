@@ -8,7 +8,7 @@ $output = curl_exec(curl_init($url));
 // Decode JSON and create a weather data array with essential info
 $data = json_decode($output, true);
 
-if (isset($data['daily']['time']) && (is_string($data['daily']['time']))) {
+if (isset($data['daily']['time']) && (is_int($data['daily']['time']))) {
     foreach ($data['daily']['time'] as $index => $time) {
         $datum = date('Y-m-d', strtotime($time));
 
