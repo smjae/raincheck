@@ -12,15 +12,19 @@ echo json_encode($data, JSON_THROW_ON_ERROR);
 // make new array with needed information
 $weather_data = [];
 
-$datum = strtotime($data['daily']['time'][0]);
+if (isset($data['daily']['time'][0])) {
+    $datum = strtotime($data['daily']['time'][0]);
+} else {
+    $datum = null;
+}
 
 // save data into string variable
 $weather_data[] = [
     'datum' => $datum,
-    'currentTemperature' => $data['daily']['temperature_2m_max'],
-    'daily_precipitation_sum' => $data['daily']['precipitation_sum'],
-    'daily_snowfall_sum' => $data['daily']['snowfall_sum'],
-    'daily_wind_speed_max' => $data['daily']['wind_speed_10m_max']
+    'currentTemperature' => $data['daily']['temperature_2m_max'][0] ?? null,
+    'daily_precipitation_sum' => $data['daily']['precipitation_sum'][0] ?? null,
+    'daily_snowfall_sum' => $data['daily']['snowfall_sum'][0] ?? null,
+    'daily_wind_speed_max' => $data['daily']['wind_speed_10m_max'][0] ?? null
 ];
 
 // Insert weather data into database
@@ -44,5 +48,5 @@ try {
         echo "Daten sind schon in der Tabelle";
     }
 } catch (PDOException $e) {
-    echo "Fehler beim Einfügen der Daten";
+    echo "Error: " . $e->getMessage();
 }
