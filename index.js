@@ -44,13 +44,12 @@ async function fetchData() {
 // Calculate and display latest weather data
 function displayData(data) {
   const datenContainer = document.querySelector(".infoBox");
-  const infos = `
-    <h3>Das heutige Wetter:</h3>
+  const infos = document.createElement("div");
+  infos.innerHTML = `<h3>Das heutige Wetter:</h3>
     <p>Höchsttemperatur: ${data[0].temperatur} °C</p>
     <p>Regenfallmenge: ${data[0].tagesniederschlag_sum} mm</p>
     <p>Schneemenge: ${data[0].schneefall_sum} cm</p>
-    <p>Maximale Windstärke: ${data[0].windgeschwindigkeit_max} km/h</p>
-  `;
+    <p>Maximale Windstärke: ${data[0].windgeschwindigkeit_max} km/h</p>`;
   datenContainer.append(infos);
 }
 
