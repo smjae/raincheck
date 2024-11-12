@@ -49,3 +49,7 @@ header {
     margin: 20px auto;
     z-index: 100;
 }
+
+.lampe {
+    height: 50%;
+}
