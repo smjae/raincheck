@@ -44,7 +44,7 @@ async function fetchData() {
 // Calculate and display latest weather data
 function displayData(data) {
 console.log(data);
-console.log(data.othertable[0].temperatur);
+console.log(data[0].temperatur);
   const datenContainer = document.createElement("div");
   // averagesContainer.innerHTML = `
   //   <h3>Das heutige Wetter:</h3>
