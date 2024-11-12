@@ -7,7 +7,7 @@ try {
     $pdo = new PDO($dsn, $db_user, $db_pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $query = "SELECT datum, temperatur, tagesniederschlag_sum, schneefall_sum, windgeschwindigkeit_max FROM Wettervorhersage ORDER BY datum DESC LIMIT 1";
+    $query = "SELECT datum, temperatur, tagesniederschlag_sum, schneefall_sum, windgeschwindigkeit_max, timestamp FROM Wettervorhersage ORDER BY timestamp DESC LIMIT 1";
     $stmt = $pdo->prepare($query);
     $stmt->execute();
 
