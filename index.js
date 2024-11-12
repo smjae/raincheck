@@ -76,7 +76,33 @@ let i = 1;
 if (i == 1) {
   kontrollLED.id = "led-red-on";
 }
+
+//check regenfallmenge and turn on regenLED
+if (rain > 1) {
+  regenLED.id = "led-blue-on";
 }
+
+//check schneefallmenge and turn on schneeLED
+if (snow > 0) {
+  schneeLED.id = "led-white-on";
+}
+
+//check temperature and turn on tempLED
+if (temp < 12) {
+  tempLED.id = "led-yellow-on";
+}
+
+//check windgeschwindigkeit and turn on windLED
+if (wind > 20) {
+  windLED.id = "led-purple-on";
+}
+
+//check if regenschutz is needed and turn on regenschutzLED
+if (rain > 1 && wind > 30) {
+  regenschutzLED.id = "led-green-on";
+}
+}
+
 // Display movement chart
 function displayMovement(data) {
 console.log("yay");
