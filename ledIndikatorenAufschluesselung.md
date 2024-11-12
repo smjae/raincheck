@@ -12,9 +12,6 @@ LED 3: Schneewahrscheinlichkeit
 LED 4: Temperaturanzeige
 	•	Leuchtet durchgehend, wenn die Temperatur niedrig ist (unter 12°C).
 
-LED 4: Schnee
-	•	Leuchtet durchgehend, wenn Schneefall erwartet wird.
-
 LED 5: Sturm
 	•	Leuchtet durchgehend bei stürmischem Wetter oder starkem Wind ab über 20km/h.
 
