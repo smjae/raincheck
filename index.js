@@ -70,12 +70,12 @@ function displayAverages(data) {
 }
 
 function displayMovement(data) {
-  document.body.createElement("canvas");
-  const canvas = document.querySelector("canvas");
+  const canvas = document.createElement("canvas");
+  document.body.appendChild(canvas);
   const ctx = canvas.getContext("2d");
   //create chart from Anfragen-table
   const labels = data.map((entry) => entry.timestamp);
-  const data = {
+  const yay = {
     labels: generateLabels(),
     datasets: [
       {
@@ -87,6 +87,30 @@ function displayMovement(data) {
       },
     ],
   };
+
+  new Chart(ctx, {
+    type: 'line',
+    data: yay,
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          display: true,
+          title: {
+            display: true,
+            text: 'Time'
+          }
+        },
+        y: {
+          display: true,
+          title: {
+            display: true,
+            text: 'Value'
+          }
+        }
+      }
+    }
+  });
 }
 
 function generateLabels() {
