@@ -18,7 +18,7 @@ Kurze Beschreibung des Projekts.
 ## Challenges
 
 ## Technik
-![Datenstruktur](assets/img/data.png)
+![Datenstruktur](assets/img/datenstruktur.png)
 
 ## Funfacts
 

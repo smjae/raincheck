@@ -16,7 +16,7 @@ LED 5: Sturm
 	•	Leuchtet durchgehend bei stürmischem Wetter oder starkem Wind ab über 20km/h.
 
 LED 6: Regenschirmverbot
-	•	Leuchtet durchgehend, wenn Regen erwartet (>1mm), aber die Windstärke über 30km/h liegt.
+	•	Blinkt, wenn Regen erwartet wird (>1mm), aber die Windstärke über 30km/h liegt.
 
 alle LEDs blinken:
 	•	Bei einem Fehler im System blinken alle LEDs gleichzeitig.
