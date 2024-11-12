@@ -43,15 +43,15 @@ async function fetchData() {
 
 // Calculate and display latest weather data
 function displayData(data) {
-
   const datenContainer = document.querySelector(".infoBox");
-  datenContainer.append = `
+  const infos = `
     <h3>Das heutige Wetter:</h3>
     <p>Höchsttemperatur: ${data[0].temperatur} °C</p>
     <p>Regenfallmenge: ${data[0].tagesniederschlag_sum} mm</p>
     <p>Schneemenge: ${data[0].schneefall_sum} cm</p>
     <p>Maximale Windstärke: ${data[0].windgeschwindigkeit_max} km/h</p>
   `;
+  datenContainer.append(infos);
 }
 
 // Display movement chart
@@ -60,19 +60,19 @@ function displayMovement(data) {
   document.body.appendChild(canvas);
   const ctx = canvas.getContext("2d");
 
-  const labels = data.map(entry => entry.datum);
-  const dataset = data.map(entry => entry.timestamp);
+  const labels = data.map((entry) => entry.datum);
+  const dataset = data.map((entry) => entry.timestamp);
 
   new Chart(ctx, {
-    type: 'line',
+    type: "line",
     data: {
       labels: labels,
       datasets: [
         {
           label: "Bewegungssensordaten",
           data: dataset,
-          borderColor: 'rgba(255, 99, 132, 1)',
-          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          borderColor: "rgba(255, 99, 132, 1)",
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
           fill: false,
         },
       ],
@@ -84,17 +84,17 @@ function displayMovement(data) {
           display: true,
           title: {
             display: true,
-            text: 'Time'
-          }
+            text: "Time",
+          },
         },
         y: {
           display: true,
           title: {
             display: true,
-            text: 'Value'
-          }
-        }
-      }
-    }
+            text: "Value",
+          },
+        },
+      },
+    },
   });
 }
