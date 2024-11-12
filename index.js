@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (Array.isArray(data)) {
     displayData(data);
     displayMovement(data);
+    displayLEDs(data);
   } else {
     console.error("Fetched data is not an array:", data);
   }
@@ -53,47 +54,53 @@ function displayData(data) {
   datenContainer.append(infos);
 }
 
+function displayLEDs(data) {
+  console.log("yay");
+  document.querySelector(".led-red").toggleAttribute("active");
+}
+
 // Display movement chart
 function displayMovement(data) {
-  const canvas = document.createElement("canvas");
-  document.body.appendChild(canvas);
-  const ctx = canvas.getContext("2d");
+console.log("yay");
+  // const canvas = document.createElement("canvas");
+  // document.body.appendChild(canvas);
+  // const ctx = canvas.getContext("2d");
 
-  const labels = data.map((entry) => entry.datum);
-  const dataset = data.map((entry) => entry.timestamp);
+  // const labels = data.map((entry) => entry.datum);
+  // const dataset = data.map((entry) => entry.timestamp);
 
-  new Chart(ctx, {
-    type: "line",
-    data: {
-      labels: labels,
-      datasets: [
-        {
-          label: "Bewegungssensordaten",
-          data: dataset,
-          borderColor: "rgba(255, 99, 132, 1)",
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          fill: false,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      scales: {
-        x: {
-          display: true,
-          title: {
-            display: true,
-            text: "Time",
-          },
-        },
-        y: {
-          display: true,
-          title: {
-            display: true,
-            text: "Value",
-          },
-        },
-      },
-    },
-  });
+  // new Chart(ctx, {
+  //   type: "line",
+  //   data: {
+  //     labels: labels,
+  //     datasets: [
+  //       {
+  //         label: "Bewegungssensordaten",
+  //         data: dataset,
+  //         borderColor: "rgba(255, 99, 132, 1)",
+  //         backgroundColor: "rgba(255, 99, 132, 0.2)",
+  //         fill: false,
+  //       },
+  //     ],
+  //   },
+  //   options: {
+  //     responsive: true,
+  //     scales: {
+  //       x: {
+  //         display: true,
+  //         title: {
+  //           display: true,
+  //           text: "Time",
+  //         },
+  //       },
+  //       y: {
+  //         display: true,
+  //         title: {
+  //           display: true,
+  //           text: "Value",
+  //         },
+  //       },
+  //     },
+  //   },
+  // });
 }
