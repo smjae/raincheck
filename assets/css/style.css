@@ -1,55 +1,66 @@
 /* Basic Page Layout */
-@import url('https://fonts.googleapis.com/css2?family=Barriecito&family=Kirang+Haerang&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Barriecito&family=Kirang+Haerang&display=swap");
 
 body {
-    margin: 0;
-    font-family: Kirang Haerang, sans-serif;
-    background-color: #1c2945;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  margin: 0;
+  font-family: Kirang Haerang, sans-serif;
+  background-color: #1c2945;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-
-
 
 button {
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    border: 2px solid #fff;
-    text-decoration: none;
-    margin: 1rem;
-    border-radius: 15px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    background: none;
-    color: white;
-    width: 200px;
-    
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 2px solid #fff;
+  text-decoration: none;
+  margin: 1rem;
+  border-radius: 15px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  background: none;
+  color: white;
+  width: 200px;
 }
 
-
-h1, h2, h3, p, a {
-    color: white;
-    text-align: center;
+h1,
+h2,
+h3,
+p,
+a {
+  color: white;
+  text-align: center;
 }
 
 h1 {
-    font-size: 3rem;
-    font-family: Barriecito, cursive;
+  font-size: 3rem;
+  font-family: Barriecito, cursive;
 }
 
 header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    width: 80%;
-    margin: 20px auto;
-    z-index: 100;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  width: 80%;
+  margin: 20px auto;
+  z-index: 100;
 }
 
+/*LEDs*/
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 80%;
+  gap: 20px;
+}
 
 .led-box {
   height: 30px;
@@ -64,15 +75,23 @@ header {
   margin: 1em;
 }
 
-.led-red {
+.led {
   margin: 0 auto;
   width: 24px;
   height: 24px;
-  background-color: #F00;
   border-radius: 50%;
-  /* box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px; */
+}
+
+#led-red-off {
+  background-color: rgb(127, 0, 0);
   box-shadow: none;
   /* animation: blinkRed 0.5s infinite; */
+}
+
+#led-red-on {
+  background-color: #f00;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px,
+    rgba(255, 0, 0, 0.5) 0 2px 12px;
 }
 /* @keyframes blinkRed {
     from { background-color: #F00; }
@@ -80,40 +99,71 @@ header {
     to { background-color: #F00; }
 } */
 
-.led-red:active {
-    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
+#led-yellow-off {
+  background-color: rgb(176, 176, 0);
+  box-shadow: none;
 }
 
-.led-yellow {
-  margin: 0 auto;
-  width: 24px;
-  height: 24px;
-  background-color: #FF0;
-  border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #FF0 0 2px 12px;
-  animation: blinkYellow 1s infinite;
+#led-yellow-on {
+  background-color: #ff0;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px,
+    #ff0 0 2px 12px;
 }
 
 @keyframes blinkYellow {
-    from { background-color: #FF0; }
-    50% { background-color: #AA0; box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px, #FF0 0 2px 0; }
-    to { background-color: #FF0; }
+  from {
+    background-color: #ff0;
+  }
+  50% {
+    background-color: #aa0;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #808002 0 -1px 9px,
+      #ff0 0 2px 0;
+  }
+  to {
+    background-color: #ff0;
+  }
 }
 
-.led-green {
-  margin: 0 auto;
-  width: 24px;
-  height: 24px;
-  background-color: #ABFF00;
-  border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89FF00 0 2px 12px;
+#led-green-off {
+  background-color: rgb(0, 127, 0);
+  box-shadow: none;
 }
 
-.led-blue {
-  margin: 0 auto;
-  width: 24px;
-  height: 24px;
-  background-color: #24E0FF;
-  border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #006 0 -1px 9px, #3F8CFF 0 2px 14px;
+#led-green-on {
+  background-color: #abff00;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px,
+    #89ff00 0 2px 12px;
 }
+
+#led-blue-off {
+  background-color: rgb(0, 0, 127);
+  box-shadow: none;
+}
+
+#led-blue-on {
+  background-color: #24e0ff;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #006 0 -1px 9px,
+    #3f8cff 0 2px 14px;
+}
+
+#led-purple-off {
+  background-color: rgb(66, 0, 127);
+  box-shadow: none;
+}
+
+#led-purple-on {
+  background-color: rgb(132, 0, 255);
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset rgb(58, 0, 102) 0 -1px 9px,
+    #653fff 0 2px 14px;
+}
+
+#led-white-off {
+    background-color: rgb(146, 146, 146);
+    box-shadow: none;
+  }
+  
+  #led-white-on {
+    background-color: rgb(219, 219, 219);
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset rgb(68, 68, 68) 0 -1px 9px,
+      #9e9e9e 0 2px 14px;
+  }

@@ -55,9 +55,26 @@ function displayData(data) {
 }
 
 function displayLEDs(data) {
-  console.log("yay");
-  const ledRed = document.querySelector(".led-red");
-  ledRed.style.boxShadow = "none";
+console.log(data);
+//get data and put into variables to control LEDs on the website
+let temp = data[0].temperatur;
+let rain = data[0].tagesniederschlag_sum;
+let snow = data[0].schneefall_sum;
+let wind = data[0].windgeschwindigkeit_max;
+
+//get the LED elements
+let kontrollLED = document.getElementById("led-red-off");
+let regenLED = document.getElementById("led-blue-off");
+let schneeLED = document.getElementById("led-white-off");
+let tempLED = document.getElementById("led-yellow-off");
+let windLED = document.getElementById("led-purple-off");
+let regenschutzLED = document.getElementById("led-green-off");
+
+//check if let i = 1, if so, turn on kontrollLED
+let i = 1;
+
+if (i == 1) {
+  kontrollLED.id = "led-red-on";
 }
 
 // Display movement chart
