@@ -43,17 +43,15 @@ async function fetchData() {
 
 // Calculate and display latest weather data
 function displayData(data) {
-console.log(data);
-console.log(data[0].temperatur);
+
   const datenContainer = document.createElement("div");
-  // averagesContainer.innerHTML = `
-  //   <h3>Das heutige Wetter:</h3>
-  //   <p>Höchsttemperatur: ${data.othertable[0].temperatur} °C</p>
-  //   <p>Regenfallmenge: ${averageRainSum} mm</p>
-  //   <p>Schneemenge: ${averageSnowfallSum} cm</p>
-  //   <p>Maximale Windstärke: ${averageWindSpeed} km/h</p>
-  // `;
-  datenContainer.innerHTML = `<h1>Test</h1>`;
+  averagesContainer.innerHTML = `
+    <h3>Das heutige Wetter:</h3>
+    <p>Höchsttemperatur: ${data[0].temperatur} °C</p>
+    <p>Regenfallmenge: ${data[0].tagesniederschlag_sum} mm</p>
+    <p>Schneemenge: ${data[0].schneefall_sum} cm</p>
+    <p>Maximale Windstärke: ${data[0].windgeschwindigkeit_max} km/h</p>
+  `;
   document.body.appendChild(datenContainer);
 }
 
@@ -64,7 +62,7 @@ function displayMovement(data) {
   const ctx = canvas.getContext("2d");
 
   const labels = data.map(entry => entry.datum);
-  const dataset = data.map(entry => entry.windgeschwindigkeit_max);
+  const dataset = data.map(entry => entry.timestamp);
 
   new Chart(ctx, {
     type: 'line',
@@ -72,7 +70,7 @@ function displayMovement(data) {
       labels: labels,
       datasets: [
         {
-          label: "Wind Speed",
+          label: "Bewegungssensordaten",
           data: dataset,
           borderColor: 'rgba(255, 99, 132, 1)',
           backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -100,20 +98,4 @@ function displayMovement(data) {
       }
     }
   });
-}
-
-function generateLabels() {
-  const labels = [];
-  for (let i = 0; i < 24; i++) {
-    labels.push(i);
-  }
-  return labels;
-}
-
-function generateData() {
-  const data = [];
-  for (let i = 0; i < 24; i++) {
-    data.push(Math.random() * 100);
-  }
-  return data;
 }
