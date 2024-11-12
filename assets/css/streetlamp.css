@@ -96,6 +96,17 @@ body:before {
 	z-index: 1;
 }
 
+.schild {
+	position: absolute;
+	width: 45%;
+	height: 10%;
+	background: #3a392f;
+	bottom: 32%;
+	left: 35%;
+	clip-path: polygon(17% 0, 60% 0, 95% 99%, 0% 99%);
+	z-index: 2;
+}
+
 .poletop {
 	width: 20%;
 	height: 1.5%;

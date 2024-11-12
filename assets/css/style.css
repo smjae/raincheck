@@ -43,4 +43,8 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    position: fixed;
+    width: 80%;
+    margin: 20px auto;
+    z-index: 100;
 }
