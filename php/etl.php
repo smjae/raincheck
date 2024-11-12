@@ -46,7 +46,7 @@ try {
     $pdo = new PDO($dsn, $db_user, $db_pass, $options);
 
     // Get the latest entry from the table
-    $sql = "SELECT * FROM Wettervorhersage ORDER BY datum DESC LIMIT 1";
+    $sql = "SELECT * FROM Wettervorhersage ORDER BY timestamp DESC LIMIT 1";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $last_weather_data = $stmt->fetch(PDO::FETCH_ASSOC);
