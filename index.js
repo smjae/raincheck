@@ -45,7 +45,7 @@ async function fetchData() {
 function displayData(data) {
 
   const datenContainer = document.createElement("div");
-  averagesContainer.innerHTML = `
+  datenContainer.innerHTML = `
     <h3>Das heutige Wetter:</h3>
     <p>Höchsttemperatur: ${data[0].temperatur} °C</p>
     <p>Regenfallmenge: ${data[0].tagesniederschlag_sum} mm</p>
