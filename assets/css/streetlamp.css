@@ -159,7 +159,9 @@ body:before {
 .light {
 	background: linear-gradient(180deg, #dac47080, #dac47020 90%, #fff0 100%);
 	width: 650px;
-	height: 64vh;
+	/* height: 64vh; */
+    height: inherit;
+    top: 10px;
 	position: absolute;
 	left: -274px;
 	bottom: 1.5%;

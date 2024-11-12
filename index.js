@@ -44,7 +44,7 @@ async function fetchData() {
 // Calculate and display latest weather data
 function displayData(data) {
 
-  const datenContainer = document.createElement("div");
+  const datenContainer = document.querySelector(".infoBox");
   datenContainer.innerHTML = `
     <h3>Das heutige Wetter:</h3>
     <p>Höchsttemperatur: ${data[0].temperatur} °C</p>
