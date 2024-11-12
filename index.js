@@ -69,28 +69,29 @@ function displayAverages(data) {
   document.body.appendChild(averagesContainer);
 }
 
+// Display movement chart
 function displayMovement(data) {
   const canvas = document.createElement("canvas");
   document.body.appendChild(canvas);
   const ctx = canvas.getContext("2d");
-  //create chart from Anfragen-table
-  const labels = data.map((entry) => entry.timestamp);
-  const yay = {
-    labels: generateLabels(),
-    datasets: [
-      {
-        label: "Dataset",
-        data: generateData(),
-        borderColor: Utils.CHART_COLORS.red,
-        backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red),
-        fill: false,
-      },
-    ],
-  };
+
+  const labels = data.map(entry => entry.datum);
+  const dataset = data.map(entry => entry.windgeschwindigkeit_max);
 
   new Chart(ctx, {
     type: 'line',
-    data: yay,
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "Wind Speed",
+          data: dataset,
+          borderColor: 'rgba(255, 99, 132, 1)',
+          backgroundColor: 'rgba(255, 99, 132, 0.2)',
+          fill: false,
+        },
+      ],
+    },
     options: {
       responsive: true,
       scales: {
