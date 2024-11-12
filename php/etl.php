@@ -51,6 +51,11 @@ try {
     $stmt->execute();
     $last_weather_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    // Debugging information
+    echo "Last weather data: ";
+    print_r($last_weather_data);
+    echo "<br>";
+
     // Check if the data is different or if the date is not present
     $is_data_new = !$last_weather_data ||
         $last_weather_data['datum'] != $weather_data[0]['datum'] ||
@@ -70,15 +75,15 @@ try {
         $stmt = $pdo->prepare($sql);
 
         // Fügt jedes Element im Array in die Datenbank ein
-        foreach ($weather_data as $item) {
-            $stmt->execute([
-                $item['datum'],
-                $item['temperatur'],
-                $item['tagesniederschlag_sum'],
-                $item['schneefall_sum'],
-                $item['windgeschwindigkeit_max']
-            ]);
-        } 
+        // foreach ($weather_data as $item) {
+        //     $stmt->execute([
+        //         $item['datum'],
+        //         $item['temperatur'],
+        //         $item['tagesniederschlag_sum'],
+        //         $item['schneefall_sum'],
+        //         $item['windgeschwindigkeit_max']
+        //     ]);
+        // } 
         echo "Daten erfolgreich eingefügt.";
         
     } else {
