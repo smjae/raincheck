@@ -56,7 +56,8 @@ function displayData(data) {
 
 function displayLEDs(data) {
   console.log("yay");
-  document.querySelector(".led-red").toggleAttribute("active");
+  const ledRed = document.querySelector(".led-red");
+  ledRed.style.boxShadow = "none";
 }
 
 // Display movement chart
