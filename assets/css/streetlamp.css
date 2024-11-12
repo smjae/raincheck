@@ -161,7 +161,7 @@ body:before {
 	width: 650px;
 	/* height: 64vh; */
     height: inherit;
-    top: 10px;
+    top: 5vh;
 	position: absolute;
 	left: -274px;
 	bottom: 1.5%;
