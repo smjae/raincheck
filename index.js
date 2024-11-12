@@ -8,7 +8,7 @@ subheading.innerHTML = "Wie wird das Wetter heute in Chur?";
 document.addEventListener("DOMContentLoaded", async () => {
   const data = await fetchData();
   if (Array.isArray(data)) {
-    displayAverages(data);
+    displayData(data);
     displayMovement(data);
   } else {
     console.error("Fetched data is not an array:", data);
@@ -41,32 +41,20 @@ async function fetchData() {
   }
 }
 
-// Calculate and display averages
-function displayAverages(data) {
-  const averageTemperature = (
-    data.reduce((sum, entry) => sum + entry.temperatur, 0) / data.length
-  ).toFixed(2);
-  const averageRainSum = (
-    data.reduce((sum, entry) => sum + entry.tagesniederschlag_sum, 0) /
-    data.length
-  ).toFixed(2);
-  const averageSnowfallSum = (
-    data.reduce((sum, entry) => sum + entry.schneefall_sum, 0) / data.length
-  ).toFixed(2);
-  const averageWindSpeed = (
-    data.reduce((sum, entry) => sum + entry.windgeschwindigkeit_max, 0) /
-    data.length
-  ).toFixed(2);
-
-  const averagesContainer = document.createElement("div");
-  averagesContainer.innerHTML = `
-    <h3>Average Weather Data</h3>
-    <p>Average Temperature: ${averageTemperature} °C</p>
-    <p>Average Rain Sum: ${averageRainSum} mm</p>
-    <p>Average Snowfall Sum: ${averageSnowfallSum} cm</p>
-    <p>Average Wind Speed: ${averageWindSpeed} km/h</p>
-  `;
-  document.body.appendChild(averagesContainer);
+// Calculate and display latest weather data
+function displayData(data) {
+console.log(data);
+console.log(data.othertable[0].temperatur);
+  const datenContainer = document.createElement("div");
+  // averagesContainer.innerHTML = `
+  //   <h3>Das heutige Wetter:</h3>
+  //   <p>Höchsttemperatur: ${data.othertable[0].temperatur} °C</p>
+  //   <p>Regenfallmenge: ${averageRainSum} mm</p>
+  //   <p>Schneemenge: ${averageSnowfallSum} cm</p>
+  //   <p>Maximale Windstärke: ${averageWindSpeed} km/h</p>
+  // `;
+  datenContainer.innerHTML = `<h1>Test</h1>`;
+  document.body.appendChild(datenContainer);
 }
 
 // Display movement chart
