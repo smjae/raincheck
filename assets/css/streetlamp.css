@@ -103,7 +103,7 @@ body:before {
 	background: #3a392f;
 	bottom: 32%;
 	left: 35%;
-	clip-path: polygon(17% 0, 60% 0, 95% 99%, 0% 99%);
+	clip-path: polygon(4% 36%, 98% 36%, 100% 100%, 0 100%);
 	z-index: 2;
 }
 
