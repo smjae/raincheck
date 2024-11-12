@@ -76,7 +76,7 @@ let i = 1;
 if (i == 1) {
   kontrollLED.id = "led-red-on";
 }
-
+}
 // Display movement chart
 function displayMovement(data) {
 console.log("yay");
