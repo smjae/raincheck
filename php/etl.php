@@ -68,8 +68,9 @@ try {
         echo "Daten sind noch nicht in der Tabelle.";
         echo "<br>";
         echo "Neue Wetter Daten: ";
-        print_r($weather_data);
-    
+        print_r($weather_data[0]);
+        echo "<br>";
+
         // SQL-Query mit Platzhaltern für das Einfügen von Daten
         $sql = "INSERT INTO Wettervorhersage (datum, temperatur, tagesniederschlag_sum, schneefall_sum, windgeschwindigkeit_max) VALUES (?, ?, ?, ?, ?)";
 
