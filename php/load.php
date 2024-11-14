@@ -8,7 +8,7 @@ require_once __DIR__ . '/../config.php';
 # connect to db
 try{
     $pdo = new PDO($dsn, $db_user, $db_pass, $options); 
-    echo "</br> DB Verbindung ist erfolgreich";
+    echo "DB Verbindung ist erfolgreich";
 }
 catch(PDOException $e){
     error_log("DB Error: " . $e->getMessage());
