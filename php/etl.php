@@ -73,7 +73,13 @@ try {
 
         // Bereitet die SQL-Anweisung vor
         $stmt = $pdo->prepare($sql);
-
+        $stmt->execute([
+            $weather_data[0]['datum'],
+            $weather_data[0]['temperatur'],
+            $weather_data[0]['tagesniederschlag_sum'],
+            $weather_data[0]['schneefall_sum'],
+            $weather_data[0]['windgeschwindigkeit_max']
+        ]);
         // Fügt jedes Element im Array in die Datenbank ein
         // foreach ($weather_data as $item) {
         //     $stmt->execute([
