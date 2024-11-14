@@ -90,6 +90,7 @@ try {
         //         $item['windgeschwindigkeit_max']
         //     ]);
         // } 
+        print_r($weather_data);
         echo "Daten erfolgreich eingefügt.";
         
     } else {
