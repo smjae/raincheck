@@ -9,7 +9,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // First query
-    $query1 = "SELECT * FROM Wettervorhersage ORDER BY timestamp DESC LIMIT 20 WHERE datum = '$today'";
+    $query1 = "SELECT * FROM Wettervorhersage ORDER BY timestamp DESC LIMIT 20 WHERE datum = $today";
     $stmt1 = $pdo->prepare($query1);
     $stmt1->execute();
     $result1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
