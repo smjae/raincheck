@@ -11,7 +11,7 @@ try {
     $pdo = new PDO($dsn, $db_user, $db_pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $query = "SELECT * FROM Wettervorhersage ORDER BY timestamp DESC LIMIT 1";
+    $query = "SELECT * FROM Wettervorhersage ORDER BY timestamp DESC LIMIT 1 WHERE datum = '$today'";
     $stmt = $pdo->prepare($query);
     $stmt->execute();
 
