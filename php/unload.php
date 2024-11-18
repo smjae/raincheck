@@ -2,13 +2,14 @@
 require_once __DIR__ . '/../config.php';
 
 header('Content-Type: application/json');
+const today = date("Y-m-d");
 
 try {
     $pdo = new PDO($dsn, $db_user, $db_pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // First query
-    $query1 = "SELECT * FROM Wettervorhersage ORDER BY timestamp DESC LIMIT 20 WHERE datum = CURDATE()";
+    $query1 = "SELECT * FROM Wettervorhersage ORDER BY timestamp DESC LIMIT 20 WHERE datum = :today";
     $stmt1 = $pdo->prepare($query1);
     $stmt1->execute();
     $result1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
