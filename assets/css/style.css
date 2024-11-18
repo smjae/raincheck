@@ -3,14 +3,14 @@
 
 body {
   margin: 0;
-  font-family: Kirang Haerang, sans-serif;
-  background-color: #1c2945;
+  font-family: helvetica-neue, sans-serif;
+  background-color: #1a2165;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-button {
+/* button {
   display: inline-block;
   padding: 0.5rem 1rem;
   border: 2px solid #fff;
@@ -23,7 +23,7 @@ button {
   background: none;
   color: white;
   width: 200px;
-}
+} */
 
 h1,
 h2,
@@ -31,12 +31,12 @@ h3,
 p,
 a {
   color: white;
-  text-align: center;
+  text-align: left;
 }
 
 h1 {
   font-size: 3rem;
-  font-family: Barriecito, cursive;
+  /* font-family: Barriecito, cursive; */
 }
 
 header {
@@ -45,9 +45,12 @@ header {
   justify-content: space-between;
   position: fixed;
   top: 0;
-  width: 80%;
-  margin: 20px auto;
-  z-index: 100;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  z-index: 1;
+  background-color: rgb(28, 28, 28);
+  color: white;
 }
 
 /*LEDs*/
