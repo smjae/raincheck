@@ -5,7 +5,6 @@ header('Content-Type: application/json');
 
 //create new variable with today's date
 $today = date("Y-m-d");
-echo $today;
 
 try {
     $pdo = new PDO($dsn, $db_user, $db_pass);

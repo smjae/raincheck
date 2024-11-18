@@ -2,7 +2,7 @@
 require_once __DIR__ . '/../config.php';
 
 header('Content-Type: application/json');
-const today = date("Y-m-d");
+$today = date("Y-m-d");
 
 try {
     $pdo = new PDO($dsn, $db_user, $db_pass);
