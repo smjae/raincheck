@@ -7,17 +7,7 @@
 	--ground-dark: #6d5f45;
 }
 
-body {
-	margin: 0;
-	padding: 0;
-	width: 100vw;
-	height: 100vh;
-	overflow: hidden;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: linear-gradient(180deg, #17175f, #ffd844);
-}
+
 
 body:before {
 	content: "";
