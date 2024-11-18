@@ -3,15 +3,17 @@ require_once __DIR__ . '/../config.php';
 
 header('Content-Type: application/json');
 
-//create new variable with today's date
+// Create new variable with today's date
 $today = date("Y-m-d");
 
 try {
     $pdo = new PDO($dsn, $db_user, $db_pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $query = "SELECT * FROM Wettervorhersage ORDER BY timestamp DESC LIMIT 1 WHERE datum = $today";
+    // Corrected query
+    $query = "SELECT * FROM Wettervorhersage WHERE datum = :today ORDER BY timestamp DESC LIMIT 1";
     $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':today', $today);
     $stmt->execute();
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
