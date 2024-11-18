@@ -3,6 +3,10 @@ require_once __DIR__ . '/../config.php';
 
 header('Content-Type: application/json');
 
+//create new variable with today's date
+$today = date("Y-m-d");
+echo $today;
+
 try {
     $pdo = new PDO($dsn, $db_user, $db_pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -13,7 +17,7 @@ try {
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($result) {
+    if ($result && $result['datum'] === $today) {
         echo json_encode(['data' => $result], JSON_THROW_ON_ERROR);
     } else {
         echo json_encode(['data' => null], JSON_THROW_ON_ERROR);
