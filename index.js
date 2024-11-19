@@ -62,7 +62,7 @@ let wind = data[0].windgeschwindigkeit_max;
 //get the LED elements
 let kontrollLED = document.getElementById("led-red-off");
 let regenLED = document.getElementById("led-blue-off");
-let schneeLED = document.getElementById("led-white-off");
+let schneeLED = document.getElementById("led-orange-off");
 let tempLED = document.getElementById("led-yellow-off");
 let windLED = document.getElementById("led-purple-off");
 let regenschutzLED = document.getElementById("led-green-off");
@@ -81,7 +81,7 @@ if (rain > 1) {
 
 //check schneefallmenge and turn on schneeLED
 if (snow > 0) {
-  schneeLED.id = "led-white-on";
+  schneeLED.id = "led-orange-on";
 }
 
 //check temperature and turn on tempLED
