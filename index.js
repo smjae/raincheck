@@ -18,8 +18,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (Array.isArray(data)) {
     displayData(data);
     displayLEDs(data);
+    return;
   } else {
-    // if data is not an array, empty or an error, blink all LEDs
+    // if data is not an array
     regenschutzLED.id = "led-green-blink";
     windLED.id = "led-purple-blink";
     tempLED.id = "led-yellow-blink";
