@@ -2,14 +2,16 @@ const heading = document.createElement("h1");
 heading.innerHTML = "Raincheck";
 const subheading = document.createElement("h2");
 subheading.innerHTML = "Wie wird das Wetter heute in Chur?";
+const datenContainer = document.querySelector(".infoBox");
+const infos = document.createElement("div");
 
-  //get the LED elements
-  let kontrollLED = document.getElementById("led-red-off");
-  let regenLED = document.getElementById("led-blue-off");
-  let schneeLED = document.getElementById("led-orange-off");
-  let tempLED = document.getElementById("led-yellow-off");
-  let windLED = document.getElementById("led-purple-off");
-  let regenschutzLED = document.getElementById("led-green-off");
+//get the LED elements
+let kontrollLED = document.getElementById("led-red-off");
+let regenLED = document.getElementById("led-blue-off");
+let schneeLED = document.getElementById("led-orange-off");
+let tempLED = document.getElementById("led-yellow-off");
+let windLED = document.getElementById("led-purple-off");
+let regenschutzLED = document.getElementById("led-green-off");
 
 document.addEventListener("DOMContentLoaded", async () => {
   const data = await fetchData();
@@ -17,7 +19,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     displayData(data);
     displayLEDs(data);
   } else {
-    console.error("Fetched data is not an array:", data);
     // if data is not an array, empty or an error, blink all LEDs
 
     regenschutzLED.id = "led-green-blink";
@@ -26,6 +27,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     schneeLED.id = "led-orange-blink";
     regenLED.id = "led-blue-blink";
     kontrollLED.id = "led-red-blink";
+
+    infos.innerHTML = `<p><strong>Keine aktuellen Daten verfügbar!</strong></p>`;
+    datenContainer.append(infos);
   }
 });
 
@@ -49,7 +53,7 @@ async function fetchData() {
     const response = await fetch("https://raincheck.ch/php/unload.php");
     const result = await response.json();
     console.log("Fetched data:", result);
-    return result.data.wettervorhersage; // Assuming you want to use the 'wettervorhersage' data
+    return result.data; // Return the entire data object to be used by both displayData and displayMovement
   } catch (error) {
     console.error(error);
   }
@@ -57,8 +61,6 @@ async function fetchData() {
 
 // Calculate and display latest weather data
 function displayData(data) {
-  const datenContainer = document.querySelector(".infoBox");
-  const infos = document.createElement("div");
   infos.innerHTML = `<h3>Das heutige Wetter:</h3>
     <p>Höchsttemperatur: ${data[0].temperatur} °C</p>
     <p>Regenfallmenge: ${data[0].tagesniederschlag_sum} mm</p>
@@ -73,7 +75,6 @@ function displayLEDs(data) {
   let rain = data[0].tagesniederschlag_sum;
   let snow = data[0].schneefall_sum;
   let wind = data[0].windgeschwindigkeit_max;
-
 
   //check if let i = 1, if so, turn on kontrollLED
   let i = 1;
