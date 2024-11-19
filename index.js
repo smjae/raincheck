@@ -15,12 +15,12 @@ let regenschutzLED = document.getElementById("led-green-off");
 
 document.addEventListener("DOMContentLoaded", async () => {
   const data = await fetchData();
-  if (data.wettervorhersage) {
-    displayData(data);
-    displayLEDs(data);
-    return;
+  console.log("Fetched data:", data); // Debugging: Log the fetched data
+  if (data && data.wettervorhersage) {
+    displayData(data.wettervorhersage);
+    displayLEDs(data.wettervorhersage);
   } else {
-    // if data is not an array
+    // if data is not available or not in the expected format
     regenschutzLED.id = "led-green-blink";
     windLED.id = "led-purple-blink";
     tempLED.id = "led-yellow-blink";
@@ -30,55 +30,39 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     infos.innerHTML = `<p><strong>Keine aktuellen Daten verfügbar!</strong></p>`;
     datenContainer.append(infos);
-    document.querySelector(".abfragen").style = "display: none";
-    document.querySelector(".selector").style = "display: none";
-    
+    document.querySelector(".abfragen").style.display = "none";
+    document.querySelector(".selector").style.display = "none";
   }
 });
-
-// const tables = document.querySelectorAll("table");
-
-// tables.forEach((table, index) => {
-//   const rows = Array.from(table.querySelectorAll("tr"));
-//   const data = rows.map((row) => {
-//     const cells = Array.from(row.querySelectorAll("td"));
-//     return cells.map((cell) => cell.textContent);
-//   });
-
-//   const div = document.createElement("div");
-//   div.classList.add(index);
-
-//   document.body.appendChild(div);
-// });
 
 async function fetchData() {
   try {
     const response = await fetch("https://raincheck.ch/php/unload.php");
     const result = await response.json();
-    console.log("Fetched data:", result);
-    return result.data; // Return the entire data object to be used by both displayData and displayMovement
+    console.log("Fetched data:", result); // Debugging: Log the fetched result
+    return result.data; // Return the entire data object
   } catch (error) {
-    console.error(error);
-    
+    console.error("Error fetching data:", error);
   }
 }
 
 // Calculate and display latest weather data
 function displayData(data) {
+  console.log("Display data:", data); // Debugging: Log the data being displayed
   infos.innerHTML = `<h3>Das heutige Wetter:</h3>
-    <p>Höchsttemperatur: ${data[0].temperatur} °C</p>
-    <p>Regenfallmenge: ${data[0].tagesniederschlag_sum} mm</p>
-    <p>Schneemenge: ${data[0].schneefall_sum} cm</p>
-    <p>Maximale Windstärke: ${data[0].windgeschwindigkeit_max} km/h</p>`;
+    <p>Höchsttemperatur: ${data.temperatur} °C</p>
+    <p>Regenfallmenge: ${data.tagesniederschlag_sum} mm</p>
+    <p>Schneemenge: ${data.schneefall_sum} cm</p>
+    <p>Maximale Windstärke: ${data.windgeschwindigkeit_max} km/h</p>`;
   datenContainer.append(infos);
 }
 
 function displayLEDs(data) {
   //get data and put into variables to control LEDs on the website
-  let temp = data[0].temperatur;
-  let rain = data[0].tagesniederschlag_sum;
-  let snow = data[0].schneefall_sum;
-  let wind = data[0].windgeschwindigkeit_max;
+  let temp = data.temperatur;
+  let rain = data.tagesniederschlag_sum;
+  let snow = data.schneefall_sum;
+  let wind = data.windgeschwindigkeit_max;
 
   //check if let i = 1, if so, turn on kontrollLED
   let i = 1;
