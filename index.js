@@ -107,7 +107,7 @@ function displayLEDs(data) {
 function processData(data) {
 let letzteWoche = [];
 let heute = new Date();
-letzteWoche.push(heute);
+letzteWoche.push(heute.toISOString().split('T')[0]);
 for (let i = 1; i < 7; i++) {
   let tag = new Date();
   tag.setDate(heute.getDate() - i);

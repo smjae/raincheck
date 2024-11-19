@@ -3,7 +3,7 @@ require_once __DIR__ . '/../config.php';
 
 header('Content-Type: application/json');
 $today = date("Y-m-d");
-$oneWeekAgo = date("Y-m-d h:m:s", strtotime("-1 week"));
+$oneWeekAgo = date("Y-m-d H:i:s", strtotime("-1 week"));
 
 try {
     $pdo = new PDO($dsn, $db_user, $db_pass);
@@ -21,8 +21,9 @@ try {
     }
 
     // Second query
-    $query2 = "SELECT * FROM Anfragen WHERE detection_time >= '$oneWeekAgo' ORDER BY timestamp DESC";
+    $query2 = "SELECT DATE(detection_time) as date, COUNT(*) as count FROM Anfragen WHERE detection_time >= :oneWeekAgo GROUP BY DATE(detection_time) ORDER BY date DESC";
     $stmt2 = $pdo->prepare($query2);
+    $stmt2->bindParam(':oneWeekAgo', $oneWeekAgo);
     $stmt2->execute();
     $result2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 
