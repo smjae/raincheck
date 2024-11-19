@@ -105,23 +105,22 @@ function displayLEDs(data) {
 
 // Process the retrieved data
 function processData(data) {
-let letzteWoche = [];
-let heute = new Date();
-letzteWoche.push(heute.toISOString().split('T')[0]);
-for (let i = 1; i < 7; i++) {
-  let tag = new Date();
-  tag.setDate(heute.getDate() - i);
-  letzteWoche.push(tag.toISOString().split('T')[0]); // Push the full date in YYYY-MM-DD format
-}
-console.log(letzteWoche);
-
+  let letzteWoche = [];
+  let heute = new Date();
+  letzteWoche.push(heute.toISOString().split("T")[0]);
+  for (let i = 1; i < 7; i++) {
+    let tag = new Date();
+    tag.setDate(heute.getDate() - i);
+    letzteWoche.push(tag.toISOString().split("T")[0]); // Push the full date in YYYY-MM-DD format
+  }
+  console.log(letzteWoche);
 
   const labels = letzteWoche;
-  const dataset = data.anfragen.map(item => ({
-    detection_time: item.date,
-    movement: item.count
+  const dataset = data.anfragen.map((item) => ({
+    movement: item.count,
   }));
 
+  console.log(dataset);
 
   const canvas = document.getElementById("myChart");
   const ctx = canvas.getContext("2d");
