@@ -8,9 +8,9 @@ subheading.innerHTML = "Wie wird das Wetter heute in Chur?";
 document.addEventListener("DOMContentLoaded", async () => {
   const data = await fetchData();
   if (Array.isArray(data)) {
-    // displayData(data);
-    // displayMovement(data);
-    // displayLEDs(data);
+    displayData(data);
+    displayMovement(data);
+    displayLEDs(data);
     console.log("Data:", data);
   } else {
     console.error("Fetched data is not an array:", data);
