@@ -105,10 +105,6 @@ function displayLEDs(data) {
 
 // Process the retrieved data
 function processData(data) {
-  if (!data || !Array.isArray(data)) {
-    console.error("Data is not an array:", data);
-    return;
-  }
 
   // Initialize weekArray as an array
   const weekArray = [];
