@@ -110,7 +110,7 @@ let heute = new Date();
 for (let i = 1; i < 7; i++) {
   let tag = new Date();
   tag.setDate(heute.getDate() - i);
-  letzteWoche.append(tag.getDate());
+  letzteWoche.push(tag.getDate());
 }
 console.log(letzteWoche);
 
