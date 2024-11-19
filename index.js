@@ -106,6 +106,9 @@ if (rain > 1 && wind > 30) {
 function displayMovement(data) {
   const canvas = document.querySelector("#myChart");
   const ctx = canvas.getContext("2d");
+  if (!ctx) {
+    console.error("Canvas rendering context not found!");
+  }
 
   const labels = data.map((entry) => entry.datum);
   const dataset = data.map((entry) => entry.timestamp);
