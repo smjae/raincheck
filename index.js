@@ -147,6 +147,8 @@ console.log("yay");
       },
     },
   });
+  //append the canvas to the div
+  canvas.append(ctx);
 }
 
 document.querySelector("#abfragen").addEventListener("click", async () => {
