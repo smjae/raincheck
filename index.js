@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const data = await fetchData();
   if (Array.isArray(data)) {
     displayData(data);
-    displayMovement(data);
     displayLEDs(data);
   } else {
     console.error("Fetched data is not an array:", data);
@@ -160,6 +159,8 @@ document.querySelector("#abfragen").addEventListener("click", async () => {
     document.querySelector("#abfragen").classList.add("round-button-active");
     document.querySelector(".prognose").style = "display: none";
     document.querySelector(".abfragen").style = "display: block";
+    const data = await fetchData(); // Ensure data is fetched
+    displayMovement(data); // Initialize chart when visible
   }
 });
 
