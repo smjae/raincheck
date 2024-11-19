@@ -102,12 +102,14 @@ function displayLEDs(data) {
   }
 }
 
-document.querySelector("#selector").addEventListener("click", async () => {
-  if (document.querySelector(".selector").style.display === "none") {
-    const data = await fetchData(); // Ensure data is fetched
-    processData(data);
-  }
-});
+if (document.querySelector(".selector").style.display === "none") {
+  fetchAndProcessData();
+}
+
+async function fetchAndProcessData() {
+  const data = await fetchData(); // Ensure data is fetched
+  processData(data); // Initialize chart when visible
+}
 
 // Process the retrieved data
 function processData(data) {
