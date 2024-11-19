@@ -115,10 +115,14 @@ function processData(data) {
   }
   console.log(letzteWoche);
 
-  const labels = letzteWoche;
-  const dataset = data.anfragen.map((item) => ({
-    movement: item.count,
-  }));
+  // Create a mapping of dates to counts
+  const countsByDate = {};
+  data.anfragen.forEach((item) => {
+    countsByDate[item.date] = item.count;
+  });
+
+  // Create the dataset array using the countsByDate mapping
+  const dataset = letzteWoche.map((date) => countsByDate[date] || 0);
 
   console.log(dataset);
 
@@ -128,7 +132,7 @@ function processData(data) {
   new Chart(ctx, {
     type: "line",
     data: {
-      labels: labels,
+      labels: letzteWoche,
       datasets: [
         {
           label: "Anzahl Meldungen des Bewegungssensors pro Tag",
@@ -146,14 +150,14 @@ function processData(data) {
           display: true,
           title: {
             display: true,
-            text: "Tag",
+            text: "Date",
           },
         },
         y: {
           display: true,
           title: {
             display: true,
-            text: "Abfragen",
+            text: "Count",
           },
         },
       },
