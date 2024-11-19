@@ -80,7 +80,7 @@ header {
 
 /*LEDs*/
 
-.prognose, .abfragen {
+.containerRechts {
   margin: auto;
   width: 30vw;
   position: absolute;
@@ -110,8 +110,6 @@ header {
 
 .led-box p {
   font-size: 12px;
-  text-align: center;
-  margin: 1em;
 }
 
 .led {
