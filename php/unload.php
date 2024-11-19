@@ -11,7 +11,6 @@ try {
     // First query
     $query1 = "SELECT * FROM Wettervorhersage ORDER BY timestamp DESC LIMIT 20";
     $stmt1 = $pdo->prepare($query1);
-    $stmt1->bindParam(':today', $today);
     $stmt1->execute();
     $result1 = $stmt1->fetchAll(PDO::FETCH_ASSOC);
 
@@ -24,7 +23,7 @@ try {
     // Combine results
     $result = [
         'wettervorhersage' => $result1,
-        'othertable' => $result2
+        'anfragen' => $result2
     ];
 
     echo json_encode(['data' => $result], JSON_THROW_ON_ERROR);
