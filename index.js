@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (data && data.wettervorhersage) {
     displayData(data.wettervorhersage);
     displayLEDs(data.wettervorhersage);
+    processData(data.anfragen); // Assuming you want to process 'anfragen' data
   } else {
     // if data is not available or not in the expected format
     regenschutzLED.id = "led-green-blink";
@@ -102,12 +103,11 @@ function displayLEDs(data) {
   }
 }
 
-// Display movement chart
-function displayMovement(data) {
-  const canvas = document.querySelector("#myChart");
-  const ctx = canvas.getContext("2d");
-  if (!ctx) {
-    console.error("Canvas rendering context not found!");
+// Process the retrieved data
+function processData(data) {
+  if (!Array.isArray(data)) {
+    console.error("Data is not an array:", data);
+    return;
   }
 
   // Filter data for the last week and count entries with movement: 1 for each day
@@ -131,17 +131,20 @@ function displayMovement(data) {
   console.log("Labels:", labels);
   console.log("Dataset:", dataset);
 
+  const canvas = document.getElementById("myChart");
+  const ctx = canvas.getContext("2d");
+
   new Chart(ctx, {
     type: "line",
     data: {
       labels: labels,
       datasets: [
         {
-          label: "Movement Sensor Data",
+          label: "Movement Count",
           data: dataset,
-          borderColor: "rgba(75, 192, 192, 1)",
-          backgroundColor: "rgba(75, 192, 192, 0.2)",
-          fill: true,
+          borderColor: "rgba(255, 99, 132, 1)",
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          fill: false,
         },
       ],
     },
