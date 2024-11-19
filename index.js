@@ -152,6 +152,8 @@ console.log("yay");
 document.querySelector("#abfragen").addEventListener("click", async () => {
   if (document.querySelector("#prognose").classList.contains("round-button-active")) {
     document.querySelector("#prognose").classList.remove("round-button-active");
+    document.querySelector("#prognose").classList.add("round-button");
+    document.querySelector("#abfragen").classList.remove("round-button");
     document.querySelector("#abfragen").classList.add("round-button-active");
     document.querySelector(".prognose").style = "display: none";
     document.querySelector(".abfragen").style = "display: block";
@@ -161,6 +163,8 @@ document.querySelector("#abfragen").addEventListener("click", async () => {
 document.querySelector("#prognose").addEventListener("click", async () => {
   if (document.querySelector("#abfragen").classList.contains("round-button-active")) {
     document.querySelector("#abfragen").classList.remove("round-button-active");
+    document.querySelector("#abfragen").classList.add("round-button");
+    document.querySelector("#prognose").classList.remove("round-button");
     document.querySelector("#prognose").classList.add("round-button-active");
     document.querySelector(".abfragen").style = "display: none";
     document.querySelector(".prognose").style = "display: block";
