@@ -20,7 +20,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     displayLEDs(data);
   } else {
     // if data is not an array, empty or an error, blink all LEDs
+    regenschutzLED.id = "led-green-blink";
+    windLED.id = "led-purple-blink";
+    tempLED.id = "led-yellow-blink";
+    schneeLED.id = "led-orange-blink";
+    regenLED.id = "led-blue-blink";
+    kontrollLED.id = "led-red-blink";
 
+    infos.innerHTML = `<p><strong>Keine aktuellen Daten verfügbar!</strong></p>`;
+    datenContainer.append(infos);
+    document.querySelector(".abfragen").style = "display: none";
+    document.querySelector(".selector").style = "display: none";
     
   }
 });
@@ -48,17 +58,7 @@ async function fetchData() {
     return result.data; // Return the entire data object to be used by both displayData and displayMovement
   } catch (error) {
     console.error(error);
-    regenschutzLED.id = "led-green-blink";
-    windLED.id = "led-purple-blink";
-    tempLED.id = "led-yellow-blink";
-    schneeLED.id = "led-orange-blink";
-    regenLED.id = "led-blue-blink";
-    kontrollLED.id = "led-red-blink";
-
-    infos.innerHTML = `<p><strong>Keine aktuellen Daten verfügbar!</strong></p>`;
-    datenContainer.append(infos);
-    document.querySelector(".abfragen").style = "display: none";
-    document.querySelector(".selector").style = "display: none";
+    
   }
 }
 
