@@ -68,13 +68,14 @@ header {
   height: 10px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.3);
+  border: none;
 }
 
 .round-button:hover {
   cursor: pointer;
 }
 
-.round-button:active {
+.round-button-active {
   background-color: rgba(255, 255, 255, 1);
 }
 
@@ -84,28 +85,34 @@ header {
   margin: auto;
   width: 30vw;
   position: absolute;
-  right: 0;
+  right: 10vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: start;
-  gap: 20px;
-  padding: 20px;
+  gap: 15px;
+  padding: 15px;
   background-color: lightgray;
   color: black;
+  border-radius: 8px;
 }
 
-.selector {
-  display: flex;
-  gap: 20px;
-  position: relative;
-}
 
 .led-box {
   display: flex;
   align-items: center;
+  gap: 5px;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  /* justify-items: flex-start; */
 }
 
 .led-box p {
@@ -113,7 +120,6 @@ header {
 }
 
 .led {
-  margin: 0 auto;
   width: 24px;
   height: 24px;
   border-radius: 50%;

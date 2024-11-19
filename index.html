@@ -12,55 +12,63 @@
   </head>
   <body>
     <header>
-      <h1>RAIN<br>CHECK</h1>
+      <h1>RAIN<br />CHECK</h1>
       <h2>Wie wird das Wetter heute in Chur?</h2>
-      <div class="infoBox">
-        
+      <div class="infoBox"></div>
+      <div>
+        <p>
+          Diese Seite entstand im Rahmen des Multimedia Production Studiums im
+          Modul "Physical Computing". Die angezeigten Daten stammen aus der API
+          von openmeteo und zeigen den Tagesdurchschnitt von heute in Chur. Die
+          Lämpchen rechts brennen, wenn die Legende daneben zutrifft. Dasselbe
+          passiert physisch mit einem Espressif32-Microcontroller.
+        </p>
+        <p>© 2024 Raincheck</p>
       </div>
     </header>
     <div class="containerRechts">
-    <div class="prognose">
-    <h2>Was trifft zu?</h2>
-    <div class="container">
-      <div class="led-box">
-        <div class="led" id="led-red-off"></div>
-        <p>Du bist schön!</p>
+      <div class="prognose">
+        <div class="container">
+          <div class="led-box">
+            <div class="led" id="led-red-off"></div>
+            <p>Du bist schön!</p>
+          </div>
+          <div class="led-box">
+            <div class="led" id="led-blue-off"></div>
+            <p>Achtung, Regen erwartet!</p>
+          </div>
+          <div class="led-box">
+            <div class="led" id="led-white-off"></div>
+            <p>Heute kommt Schnee</p>
+          </div>
+          <div class="led-box">
+            <div class="led" id="led-yellow-off"></div>
+            <p>Brrrr, kalt!</p>
+          </div>
+          <div class="led-box">
+            <div class="led" id="led-purple-off"></div>
+            <p>Achtung, Sturmgefahr</p>
+          </div>
+          <div class="led-box">
+            <div class="led" id="led-green-off"></div>
+            <p>Heute brauchst du einen Regenschutz. Lieber kein Schirm...</p>
+          </div>
+        </div>
       </div>
-      <div class="led-box">
-        <div class="led" id="led-blue-off"></div>
-        <p>Achtung, Regen erwartet!</p>
+      <div class="abfragen" style="display: none">
+        <!--create canvas to load chart in-->
+        <canvas
+          id="myChart"
+          width="400"
+          height="400"
+          style="background-color: aqua"
+        ></canvas>
       </div>
-      <div class="led-box">
-        <div class="led" id="led-white-off"></div>
-        <p>Heute kommt Schnee</p>
-      </div>
-      <div class="led-box">
-        <div class="led" id="led-yellow-off"></div>
-        <p>Brrrr, kalt!</p>
-      </div>
-      <div class="led-box">
-        <div class="led" id="led-purple-off"></div>
-        <p>Achtung, Sturmgefahr</p>
-      </div>
-      <div class="led-box">
-        <div class="led" id="led-green-off"></div>
-        <p>Heute brauchst du einen Regenschutz. Lieber kein Schirm...</p>
+      <div class="selector">
+        <!--create round button to select between abfragen and prognose to be shown-->
+        <button id="abfragen" class="round-button-active"></button>
+        <button id="prognose" class="round-button"></button>
       </div>
     </div>
-  </div>
-    <div class="abfragen">
-     <!--create canvas to load chart in-->
-      <canvas id="myChart" width="400" height="400" style="background-color: aqua;"></canvas>
-    </div>
-    <div class="selector">
-      <!--create round button to select between abfragen and prognose to be shown-->
-      <button id="abfragen" class="round-button"></button>
-      <button id="prognose" class="round-button"></button>
-    </div>
-  </div>
-    <footer>
-      <p>Diese Seite entstand im Rahmen des Multimedia Production Studiums im Modul "Physical Computing". Die angezeigten Daten stammen aus der API von openmeteo und zeigen den Tagesdurchschnitt von heute in Chur. Die Lämpchen rechts brennen, wenn die Legende daneben zutrifft. Dasselbe passiert physisch mit einem Espressif32-Microcontroller.</p>
-      <p>© 2024 Raincheck</p>
-    </footer>
   </body>
 </html>

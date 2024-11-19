@@ -107,45 +107,62 @@ if (rain > 1 && wind > 30) {
 // Display movement chart
 function displayMovement(data) {
 console.log("yay");
-  // const canvas = document.createElement("canvas");
-  // document.body.appendChild(canvas);
-  // const ctx = canvas.getContext("2d");
+  const canvas = document.querySelector("#myChart");
+  const ctx = canvas.getContext("2d");
 
-  // const labels = data.map((entry) => entry.datum);
-  // const dataset = data.map((entry) => entry.timestamp);
+  const labels = data.map((entry) => entry.datum);
+  const dataset = data.map((entry) => entry.timestamp);
 
-  // new Chart(ctx, {
-  //   type: "line",
-  //   data: {
-  //     labels: labels,
-  //     datasets: [
-  //       {
-  //         label: "Bewegungssensordaten",
-  //         data: dataset,
-  //         borderColor: "rgba(255, 99, 132, 1)",
-  //         backgroundColor: "rgba(255, 99, 132, 0.2)",
-  //         fill: false,
-  //       },
-  //     ],
-  //   },
-  //   options: {
-  //     responsive: true,
-  //     scales: {
-  //       x: {
-  //         display: true,
-  //         title: {
-  //           display: true,
-  //           text: "Time",
-  //         },
-  //       },
-  //       y: {
-  //         display: true,
-  //         title: {
-  //           display: true,
-  //           text: "Value",
-  //         },
-  //       },
-  //     },
-  //   },
-  // });
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "Bewegungssensordaten",
+          data: dataset,
+          borderColor: "rgba(255, 99, 132, 1)",
+          backgroundColor: "rgba(255, 99, 132, 0.2)",
+          fill: false,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: {
+          display: true,
+          title: {
+            display: true,
+            text: "Time",
+          },
+        },
+        y: {
+          display: true,
+          title: {
+            display: true,
+            text: "Value",
+          },
+        },
+      },
+    },
+  });
 }
+
+document.querySelector("#abfragen").addEventListener("click", async () => {
+  if (document.querySelector("#prognose").classList.contains("round-button-active")) {
+    document.querySelector("#prognose").classList.remove("round-button-active");
+    document.querySelector("#abfragen").classList.add("round-button-active");
+    document.querySelector(".prognose").style = "display: none";
+    document.querySelector(".abfragen").style = "display: block";
+  }
+});
+
+document.querySelector("#prognose").addEventListener("click", async () => {
+  if (document.querySelector("#abfragen").classList.contains("round-button-active")) {
+    document.querySelector("#abfragen").classList.remove("round-button-active");
+    document.querySelector("#prognose").classList.add("round-button-active");
+    document.querySelector(".abfragen").style = "display: none";
+    document.querySelector(".prognose").style = "display: block";
+  }
+});
