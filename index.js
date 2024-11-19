@@ -105,26 +105,17 @@ function displayLEDs(data) {
 
 // Process the retrieved data
 function processData(data) {
+  let weekArray = [];
+  //fill this with an entry for every day of the week with the amount of movement
+  for (let i = 0; i < 24; i++) {
+    weekArray.push(data[i].count);
+  }
+  console.log("Week Array:", weekArray);
 
-  // Initialize weekArray as an array
-  const weekArray = [];
 
-  // Filter data for the last week and count entries with movement: 1 for each day
-  data.forEach((element) => {
-    //loop through anfragen and count all entries from today
-    let date = new Date(element.detection_time).toISOString().split("T")[0];
-    weekArray.push(element);
-  });
 
-  // Count entries for each hour
-  const countsByHour = {};
-  weekArray.forEach((entry) => {
-    const hour = new Date(entry.detection_time).toISOString().split("T")[1].split(":")[0];
-    countsByHour[hour] = (countsByHour[hour] || 0) + 1;
-  });
-
-  const labels = Object.keys(countsByHour).sort();
-  const dataset = labels.map((hour) => countsByHour[hour]);
+  const labels = "gaggibölle";
+  const dataset = weekArray;
 
   console.log("Labels:", labels);
   console.log("Dataset:", dataset);
