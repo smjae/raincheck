@@ -10,6 +10,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     displayLEDs(data);
   } else {
     console.error("Fetched data is not an array:", data);
+    // if data is not an array, empty or an error, blink all LEDs
+
+    regenschutzLED.id = "led-green-blink";
+    windLED.id = "led-purple-blink";
+    tempLED.id = "led-yellow-blink";
+    schneeLED.id = "led-orange-blink";
+    regenLED.id = "led-blue-blink";
+    kontrollLED.id = "led-red-blink";
   }
 });
 
@@ -102,19 +110,6 @@ function displayLEDs(data) {
   if (rain > 1 && wind > 30) {
     regenschutzLED.id = "led-green-blink";
   }
-}
-
-// if data is not an array, empty or an error, blink all LEDs
-if (
-  data.error &&
-  data.error.includes("The newest entry's datum is not today's date.")
-) {
-  regenschutzLED.id = "led-green-blink";
-  windLED.id = "led-purple-blink";
-  tempLED.id = "led-yellow-blink";
-  schneeLED.id = "led-orange-blink";
-  regenLED.id = "led-blue-blink";
-  kontrollLED.id = "led-red-blink";
 }
 
 // Display movement chart
