@@ -18,6 +18,8 @@
         
       </div>
     </header>
+    <div class="prognose">
+    <h2>Was trifft zu?</h2>
     <div class="container">
       <div class="led-box">
         <div class="led" id="led-red-off"></div>
@@ -44,5 +46,18 @@
         <p>Heute brauchst du einen Regenschutz. Den Schirm solltest du aber lieber zuhause lassen...</p>
       </div>
     </div>
+  </div>
+    <div class="abfragen">
+     <!--create canvas to load chart in-->
+      <canvas id="myChart" width="400" height="400" style="background-color: aqua;"></canvas>
+    </div>
+    <div class="selector">
+      <!--create round button to select between abfragen and prognose to be shown-->
+      <button id="abfragen" class="round-button"></button>
+      <button id="prognose" class="round-button"></button>
+    </div>
+    <footer>
+      <p>© 2021 Raincheck</p>
+    </footer>
   </body>
 </html>

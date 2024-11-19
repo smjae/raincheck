@@ -63,25 +63,49 @@ header {
   margin-top: 50px;
 }
 
+.round-button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.round-button:hover {
+  cursor: pointer;
+}
+
+.round-button:active {
+  background-color: rgba(255, 255, 255, 1);
+}
+
 /*LEDs*/
+
+.prognose, .abfragen {
+  margin: auto;
+  width: 30vw;
+  position: absolute;
+  right: 0;
+}
 
 .container {
   display: flex;
   flex-direction: column;
   align-items: start;
-  margin: auto;
-  width: auto;
-  position: absolute;
-  right: 0;
   gap: 20px;
   padding: 20px;
   background-color: lightgray;
   color: black;
 }
 
+.selector {
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+
 .led-box {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .led-box p {
