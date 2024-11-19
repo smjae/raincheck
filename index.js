@@ -108,7 +108,7 @@ function processData(data) {
   let weekArray = [];
   //fill this with an entry for every day of the week with the amount of movement
   for (let i = 0; i < 24; i++) {
-    weekArray.push(data[i].count);
+    weekArray.push(data[i]);
   }
   console.log("Week Array:", weekArray);
 
