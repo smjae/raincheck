@@ -72,7 +72,6 @@ let i = 1;
 
 if (i == 1) {
   kontrollLED.id = "led-red-on";
-  document.querySelector(".led-box>p").style = "font-weight: bold;";
 }
 
 //check regenfallmenge and turn on regenLED

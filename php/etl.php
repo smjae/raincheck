@@ -40,6 +40,8 @@ $weather_data[] = [
 echo "Extraktion erfolgreich.";
 echo "<br>";
 
+$today = date("Y-m-d");
+
 // Load data into database
 try {
     // Erstellt eine neue PDO-Instanz mit der Konfiguration aus config.php
@@ -64,7 +66,7 @@ try {
         $last_weather_data['schneefall_sum'] != $weather_data[0]['schneefall_sum'] ||
         $last_weather_data['windgeschwindigkeit_max'] != $weather_data[0]['windgeschwindigkeit_max'];
 
-    if ($is_data_new) {
+    if ($is_data_new && $weather_data[0]['datum'] == $today) {
         echo "Daten sind noch nicht in der Tabelle.";
         echo "<br>";
         echo "Neue Wetter Daten: ";
@@ -95,6 +97,8 @@ try {
         // } 
         echo "Daten erfolgreich eingefügt.";
         
+    } else if ($weather_data[0]['datum'] != $today) {
+        echo "Daten sind nicht von heute.";
     } else {
         echo "Daten sind bereits in der Tabelle.";
     }
