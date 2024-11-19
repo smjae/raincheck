@@ -102,11 +102,12 @@ function displayLEDs(data) {
   }
 }
 
-if (document.querySelector(".selector").style.display === "none") {
+if (document.querySelector(".selector").style.display == "none") {
   fetchAndProcessData();
 }
 
 async function fetchAndProcessData() {
+  console.log("Fetching and processing data...");
   const data = await fetchData(); // Ensure data is fetched
   processData(data); // Initialize chart when visible
 }

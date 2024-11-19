@@ -277,17 +277,26 @@ header {
   .containerRechts {
     margin: 20px auto;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: auto;
+    right: 0;
+
   }
 
   .prognose, .abfragen {
-    display: block;
+    display: block !important;
   }
 
   .selector {
     display: none;
+  }
+
+  body {
+    margin: 0;
+    font-family: helvetica-neue, sans-serif;
+    background-color: #1a2165;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
 
