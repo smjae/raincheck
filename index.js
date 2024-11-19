@@ -72,11 +72,17 @@ let i = 1;
 
 if (i == 1) {
   kontrollLED.id = "led-red-on";
+  document.querySelector(".led-box>p").style = "font-weight: bold;";
 }
 
 //check regenfallmenge and turn on regenLED
 if (rain > 1) {
   regenLED.id = "led-blue-on";
+}
+
+// check ob regenfallmenge > 15mm, dann blinken
+if (rain > 15) {
+  regenLED.id = "led-blue-blink";
 }
 
 //check schneefallmenge and turn on schneeLED
@@ -96,9 +102,20 @@ if (wind > 20) {
 
 //check if regenschutz is needed and turn on regenschutzLED
 if (rain > 1 && wind > 30) {
-  regenschutzLED.id = "led-green-on";
+  regenschutzLED.id = "led-green-blink";
 }
 }
+
+// if data is not an array, empty or an error, blink all LEDs
+if (!Array.isArray(data) || data.length === 0 || data === undefined) {
+  regenschutzLED.id = "led-green-blink";
+  windLED.id = "led-purple-blink";
+  tempLED.id = "led-yellow-blink";
+  schneeLED.id = "led-orange-blink";
+  regenLED.id = "led-blue-blink";
+  kontrollLED.id = "led-red-blink";
+}
+
 
 // Display movement chart
 function displayMovement(data) {
