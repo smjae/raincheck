@@ -171,8 +171,8 @@ document.querySelector("#abfragen").addEventListener("click", async () => {
     document.querySelector("#abfragen").classList.add("round-button-active");
     document.querySelector(".prognose").style = "display: none";
     document.querySelector(".abfragen").style = "display: block";
-    const data = await fetchData(); // Ensure data is fetched
-    processData(data); // Initialize chart when visible
+    // const data = await fetchData(); // Ensure data is fetched
+    // processData(data); // Initialize chart when visible
   }
 });
 
