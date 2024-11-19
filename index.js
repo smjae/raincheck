@@ -1,5 +1,4 @@
-// URL is the URL of the server
-// THIS FILE IS ONLY FOR DEVELOPMENT AND TESTING PURPOSES
+
 const heading = document.createElement("h1");
 heading.innerHTML = "Raincheck";
 const subheading = document.createElement("h2");
@@ -109,8 +108,20 @@ function displayMovement(data) {
     console.error("Canvas rendering context not found!");
   }
 
-  const labels = data.map((entry) => entry.datum);
-  const dataset = data.map((entry) => entry.timestamp);
+  // Filter data for the last week and count entries with movement: 1 for each day
+  const oneWeekAgo = new Date();
+  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+
+  const filteredData = data.filter(entry => new Date(entry.detection_time) >= oneWeekAgo && entry.movement === 1);
+
+  const countsByDay = {};
+  filteredData.forEach(entry => {
+    const date = new Date(entry.detection_time).toISOString().split('T')[0];
+    countsByDay[date] = (countsByDay[date] || 0) + 1;
+  });
+
+  const labels = Object.keys(countsByDay);
+  const dataset = Object.values(countsByDay);
 
   console.log("Labels:", labels);
   console.log("Dataset:", dataset);
@@ -121,11 +132,11 @@ function displayMovement(data) {
       labels: labels,
       datasets: [
         {
-          label: "Bewegungssensordaten",
+          label: "Movement Sensor Data",
           data: dataset,
-          borderColor: "rgba(255, 99, 132, 1)",
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          fill: false,
+          borderColor: "rgba(75, 192, 192, 1)",
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          fill: true,
         },
       ],
     },
@@ -136,14 +147,14 @@ function displayMovement(data) {
           display: true,
           title: {
             display: true,
-            text: "Time",
+            text: "Date",
           },
         },
         y: {
           display: true,
           title: {
             display: true,
-            text: "Value",
+            text: "Count",
           },
         },
       },
