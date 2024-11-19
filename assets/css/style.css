@@ -283,13 +283,6 @@ header {
 
   }
 
-  .prognose, .abfragen {
-    display: block !important;
-  }
-
-  .selector {
-    display: none;
-  }
 
   body {
     margin: 0;

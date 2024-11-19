@@ -102,15 +102,15 @@ function displayLEDs(data) {
   }
 }
 
-  if (window.innerWidth <= 768) {
-    fetchAndProcessData();
-  }
+  // if (window.innerWidth <= 768) {
+  //   fetchAndProcessData();
+  // }
 
-async function fetchAndProcessData() {
-  console.log("Fetching and processing data...");
-  const data = await fetchData(); // Ensure data is fetched
-  processData(data); // Initialize chart when visible
-}
+// async function fetchAndProcessData() {
+//   console.log("Fetching and processing data...");
+//   const data = await fetchData(); // Ensure data is fetched
+//   processData(data); // Initialize chart when visible
+// }
 
 // Process the retrieved data
 function processData(data) {
