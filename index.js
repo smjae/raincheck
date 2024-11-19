@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (data && data.wettervorhersage) {
     displayData(data.wettervorhersage);
     displayLEDs(data.wettervorhersage);
-    processData(data.anfragen); // Assuming you want to process 'anfragen' data
+  
   } else {
     // if data is not available or not in the expected format
     regenschutzLED.id = "led-green-blink";
@@ -183,7 +183,7 @@ document.querySelector("#abfragen").addEventListener("click", async () => {
     document.querySelector(".prognose").style = "display: none";
     document.querySelector(".abfragen").style = "display: block";
     const data = await fetchData(); // Ensure data is fetched
-    displayMovement(data); // Initialize chart when visible
+    processData(data); // Initialize chart when visible
   }
 });
 
