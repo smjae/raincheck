@@ -102,6 +102,11 @@ function displayLEDs(data) {
   }
 }
 
+if (document.querySelector(".selector").style.display === "none") {
+  const data = await fetchData(); // Ensure data is fetched
+  processData(data);
+}
+
 // Process the retrieved data
 function processData(data) {
   // Filter data for the last week and count entries with movement: 1 for each day

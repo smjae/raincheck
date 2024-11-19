@@ -270,6 +270,25 @@ header {
   header {
     width: 100%;
     height: 100%;
+    box-sizing: border-box;
     flex-direction: column;
   }
+
+  .containerRechts {
+    margin: 20px auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .prognose, .abfragen {
+    display: block;
+  }
+
+  .selector {
+    display: none;
+  }
+
+
 }
