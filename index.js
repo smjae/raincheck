@@ -105,20 +105,22 @@ function displayLEDs(data) {
 
 // Process the retrieved data
 function processData(data) {
-  let weekArray = [];
-  //fill this with an entry for every day of the week with the amount of movement
-  for (let i = 0; i < 24; i++) {
-    weekArray.push(data[i]);
-  }
-  console.log("Week Array:", weekArray);
+let letzteWoche = [];
+let heute = new Date();
+for (let i = 1; i < 7; i++) {
+  let tag = new Date();
+  tag.setDate(heute.getDate() - i);
+  letzteWoche.append(tag.getDate());
+}
+console.log(letzteWoche);
 
 
+  const labels = letzteWoche;
+  const dataset = data.anfragen.map(item => ({
+    detection_time: item.detection_time,
+    movement: item.movement
+  }));
 
-  const labels = "gaggibölle";
-  const dataset = data.anfragen;
-
-  console.log("Labels:", labels);
-  console.log("Dataset:", dataset);
 
   const canvas = document.getElementById("myChart");
   const ctx = canvas.getContext("2d");
@@ -129,7 +131,7 @@ function processData(data) {
       labels: labels,
       datasets: [
         {
-          label: "Movement Count",
+          label: "Anzahl Meldungen des Bewegungssensors pro Tag",
           data: dataset,
           borderColor: "rgba(255, 99, 132, 1)",
           backgroundColor: "rgba(255, 99, 132, 0.2)",
@@ -144,14 +146,14 @@ function processData(data) {
           display: true,
           title: {
             display: true,
-            text: "Hour",
+            text: "Tag",
           },
         },
         y: {
           display: true,
           title: {
             display: true,
-            text: "Count",
+            text: "Abfragen",
           },
         },
       },
