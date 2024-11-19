@@ -130,7 +130,7 @@ header {
 }
 
 #led-red-off {
-  background-color: rgb(127, 0, 0);
+  background-color: rgb(104, 0, 0);
   box-shadow: none;
   /* animation: blinkRed 0.5s infinite; */
 }
@@ -147,7 +147,7 @@ header {
 } */
 
 #led-yellow-off {
-  background-color: rgb(176, 176, 0);
+  background-color: rgb(90, 90, 6);
   box-shadow: none;
 }
 
@@ -172,7 +172,7 @@ header {
 }
 
 #led-green-off {
-  background-color: rgb(0, 127, 0);
+  background-color: rgb(0, 42, 0);
   box-shadow: none;
 }
 
@@ -183,7 +183,7 @@ header {
 }
 
 #led-blue-off {
-  background-color: rgb(0, 0, 127);
+  background-color: rgb(0, 0, 68);
   box-shadow: none;
 }
 
@@ -194,7 +194,7 @@ header {
 }
 
 #led-purple-off {
-  background-color: rgb(66, 0, 127);
+  background-color: rgb(39, 0, 75);
   box-shadow: none;
 }
 
@@ -205,7 +205,7 @@ header {
 }
 
 #led-white-off {
-  background-color: rgb(146, 146, 146);
+  background-color: rgb(86, 86, 86);
   box-shadow: none;
 }
 
