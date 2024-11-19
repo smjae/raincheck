@@ -4,7 +4,6 @@ require_once __DIR__ . '/../config.php';
 header('Content-Type: application/json');
 $today = date("Y-m-d");
 $oneWeekAgo = date("Y-m-d h:m:s", strtotime("-1 week"));
-echo $oneWeekAgo;
 
 try {
     $pdo = new PDO($dsn, $db_user, $db_pass);
@@ -22,7 +21,7 @@ try {
     }
 
     // Second query
-    $query2 = "SELECT * FROM Anfragen ORDER BY timestamp WHERE detection_time >= $oneWeekAgo DESC";
+    $query2 = "SELECT * FROM Anfragen WHERE detection_time >= '$oneWeekAgo' ORDER BY timestamp DESC";
     $stmt2 = $pdo->prepare($query2);
     $stmt2->execute();
     $result2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);

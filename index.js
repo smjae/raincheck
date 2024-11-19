@@ -105,15 +105,11 @@ function displayLEDs(data) {
 // Process the retrieved data
 function processData(data) {
   // Filter data for the last week and count entries with movement: 1 for each day
-  const oneWeekAgo = new Date();
-  oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
   const weekArray = [];
   data.anfragen.forEach((element) => {
     //loop through anfragen and count all entries from today
     let date = new Date(element.detection_time).toISOString().split("T")[0];
-    if (date >= oneWeekAgo) {
-      weekArray.push(element);
-    }
+    weekArray.push(element);
   });
   console.log(weekArray);
 
