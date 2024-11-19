@@ -194,5 +194,10 @@ document.querySelector("#prognose").addEventListener("click", async () => {
     document.querySelector("#prognose").classList.add("round-button-active");
     document.querySelector(".abfragen").style = "display: none";
     document.querySelector(".prognose").style = "display: block";
+    //destroy chart
+    let canvas = document.getElementById("myChart");
+    let ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
   }
 });

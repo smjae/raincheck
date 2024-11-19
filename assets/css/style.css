@@ -265,6 +265,10 @@ header {
   animation: blink 1s infinite;
 }
 
+.aside {
+  font-style: italic;
+  font-weight: 100;
+}
 /*media queries*/
 @media (max-width: 768px) {
   header {
@@ -294,5 +298,16 @@ header {
     overflow: visible;
   }
 
+  h2 {
+    font-size: 1em;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  .infoBox {
+    margin-top: 0;
+  }
 
 }
