@@ -105,7 +105,7 @@ function displayLEDs(data) {
 // Process the retrieved data
 function processData(data) {
   // Filter data for the last week and count entries with movement: 1 for each day
-  const weekArray = [];
+  const weekArray = {};
   data.anfragen.forEach((element) => {
     //loop through anfragen and count all entries from today
     let date = new Date(element.detection_time).toISOString().split("T")[0];
@@ -113,14 +113,8 @@ function processData(data) {
   });
   console.log(weekArray);
 
-  // const countsByDay = {};
-  // filteredData.forEach((entry) => {
-  //   const date = new Date(entry.detection_time).toISOString().split("T")[0];
-  //   countsByDay[date] = (countsByDay[date] || 0) + 1;
-  // });
-
-  const labels = Object.keys(countsByDay);
-  const dataset = Object.values(countsByDay);
+  const labels = Object.keys(weekArray);
+  const dataset = Object.values(weekArray);
 
   console.log("Labels:", labels);
   console.log("Dataset:", dataset);
