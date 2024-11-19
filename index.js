@@ -1,4 +1,3 @@
-
 const heading = document.createElement("h1");
 heading.innerHTML = "Raincheck";
 const subheading = document.createElement("h2");
@@ -53,60 +52,63 @@ function displayData(data) {
 }
 
 function displayLEDs(data) {
-//get data and put into variables to control LEDs on the website
-let temp = data[0].temperatur;
-let rain = data[0].tagesniederschlag_sum;
-let snow = data[0].schneefall_sum;
-let wind = data[0].windgeschwindigkeit_max;
+  //get data and put into variables to control LEDs on the website
+  let temp = data[0].temperatur;
+  let rain = data[0].tagesniederschlag_sum;
+  let snow = data[0].schneefall_sum;
+  let wind = data[0].windgeschwindigkeit_max;
 
-//get the LED elements
-let kontrollLED = document.getElementById("led-red-off");
-let regenLED = document.getElementById("led-blue-off");
-let schneeLED = document.getElementById("led-orange-off");
-let tempLED = document.getElementById("led-yellow-off");
-let windLED = document.getElementById("led-purple-off");
-let regenschutzLED = document.getElementById("led-green-off");
+  //get the LED elements
+  let kontrollLED = document.getElementById("led-red-off");
+  let regenLED = document.getElementById("led-blue-off");
+  let schneeLED = document.getElementById("led-orange-off");
+  let tempLED = document.getElementById("led-yellow-off");
+  let windLED = document.getElementById("led-purple-off");
+  let regenschutzLED = document.getElementById("led-green-off");
 
-//check if let i = 1, if so, turn on kontrollLED
-let i = 1;
+  //check if let i = 1, if so, turn on kontrollLED
+  let i = 1;
 
-if (i == 1) {
-  kontrollLED.id = "led-red-on";
-}
+  if (i == 1) {
+    kontrollLED.id = "led-red-on";
+  }
 
-//check regenfallmenge and turn on regenLED
-if (rain > 1) {
-  regenLED.id = "led-blue-on";
-}
+  //check regenfallmenge and turn on regenLED
+  if (rain > 1) {
+    regenLED.id = "led-blue-on";
+  }
 
-// check ob regenfallmenge > 15mm, dann blinken
-if (rain > 15) {
-  regenLED.id = "led-blue-blink";
-}
+  // check ob regenfallmenge > 15mm, dann blinken
+  if (rain > 15) {
+    regenLED.id = "led-blue-blink";
+  }
 
-//check schneefallmenge and turn on schneeLED
-if (snow > 0) {
-  schneeLED.id = "led-orange-on";
-}
+  //check schneefallmenge and turn on schneeLED
+  if (snow > 0) {
+    schneeLED.id = "led-orange-on";
+  }
 
-//check temperature and turn on tempLED
-if (temp < 12) {
-  tempLED.id = "led-yellow-on";
-}
+  //check temperature and turn on tempLED
+  if (temp < 12) {
+    tempLED.id = "led-yellow-on";
+  }
 
-//check windgeschwindigkeit and turn on windLED
-if (wind > 20) {
-  windLED.id = "led-purple-on";
-}
+  //check windgeschwindigkeit and turn on windLED
+  if (wind > 20) {
+    windLED.id = "led-purple-on";
+  }
 
-//check if regenschutz is needed and turn on regenschutzLED
-if (rain > 1 && wind > 30) {
-  regenschutzLED.id = "led-green-blink";
-}
+  //check if regenschutz is needed and turn on regenschutzLED
+  if (rain > 1 && wind > 30) {
+    regenschutzLED.id = "led-green-blink";
+  }
 }
 
 // if data is not an array, empty or an error, blink all LEDs
-if (!Array.isArray(data) || data.length === 0 || data === undefined) {
+if (
+  data.error &&
+  data.error.includes("The newest entry's datum is not today's date.")
+) {
   regenschutzLED.id = "led-green-blink";
   windLED.id = "led-purple-blink";
   tempLED.id = "led-yellow-blink";
@@ -114,7 +116,6 @@ if (!Array.isArray(data) || data.length === 0 || data === undefined) {
   regenLED.id = "led-blue-blink";
   kontrollLED.id = "led-red-blink";
 }
-
 
 // Display movement chart
 function displayMovement(data) {
@@ -128,12 +129,14 @@ function displayMovement(data) {
   const oneWeekAgo = new Date();
   oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
-  const filteredData = data.filter(entry => new Date(entry.detection_time) >= oneWeekAgo);
+  const filteredData = data.filter(
+    (entry) => new Date(entry.detection_time) >= oneWeekAgo
+  );
   console.log(filteredData);
 
   const countsByDay = {};
-  filteredData.forEach(entry => {
-    const date = new Date(entry.detection_time).toISOString().split('T')[0];
+  filteredData.forEach((entry) => {
+    const date = new Date(entry.detection_time).toISOString().split("T")[0];
     countsByDay[date] = (countsByDay[date] || 0) + 1;
   });
 
@@ -180,7 +183,11 @@ function displayMovement(data) {
 }
 
 document.querySelector("#abfragen").addEventListener("click", async () => {
-  if (document.querySelector("#prognose").classList.contains("round-button-active")) {
+  if (
+    document
+      .querySelector("#prognose")
+      .classList.contains("round-button-active")
+  ) {
     document.querySelector("#prognose").classList.remove("round-button-active");
     document.querySelector("#prognose").classList.add("round-button");
     document.querySelector("#abfragen").classList.remove("round-button");
@@ -193,7 +200,11 @@ document.querySelector("#abfragen").addEventListener("click", async () => {
 });
 
 document.querySelector("#prognose").addEventListener("click", async () => {
-  if (document.querySelector("#abfragen").classList.contains("round-button-active")) {
+  if (
+    document
+      .querySelector("#abfragen")
+      .classList.contains("round-button-active")
+  ) {
     document.querySelector("#abfragen").classList.remove("round-button-active");
     document.querySelector("#abfragen").classList.add("round-button");
     document.querySelector("#prognose").classList.remove("round-button");
