@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (data && data.wettervorhersage) {
     displayData(data.wettervorhersage);
     displayLEDs(data.wettervorhersage);
+    processData(data.anfragen); // Assuming you want to process 'anfragen' data
   } else {
     // if data is not available or not in the expected format
     regenschutzLED.id = "led-green-blink";
@@ -102,29 +103,32 @@ function displayLEDs(data) {
   }
 }
 
-  // if (window.innerWidth <= 768) {
-  //   fetchAndProcessData();
-  // }
-
-// async function fetchAndProcessData() {
-//   console.log("Fetching and processing data...");
-//   const data = await fetchData(); // Ensure data is fetched
-//   processData(data); // Initialize chart when visible
-// }
-
 // Process the retrieved data
 function processData(data) {
+  if (!data || !Array.isArray(data)) {
+    console.error("Data is not an array:", data);
+    return;
+  }
+
+  // Initialize weekArray as an array
+  const weekArray = [];
+
   // Filter data for the last week and count entries with movement: 1 for each day
-  const weekArray = {};
-  data.anfragen.forEach((element) => {
+  data.forEach((element) => {
     //loop through anfragen and count all entries from today
     let date = new Date(element.detection_time).toISOString().split("T")[0];
     weekArray.push(element);
   });
-  console.log(weekArray);
 
-  const labels = Object.keys(weekArray);
-  const dataset = Object.values(weekArray);
+  // Count entries for each hour
+  const countsByHour = {};
+  weekArray.forEach((entry) => {
+    const hour = new Date(entry.detection_time).toISOString().split("T")[1].split(":")[0];
+    countsByHour[hour] = (countsByHour[hour] || 0) + 1;
+  });
+
+  const labels = Object.keys(countsByHour).sort();
+  const dataset = labels.map((hour) => countsByHour[hour]);
 
   console.log("Labels:", labels);
   console.log("Dataset:", dataset);
@@ -153,7 +157,7 @@ function processData(data) {
           display: true,
           title: {
             display: true,
-            text: "Date",
+            text: "Hour",
           },
         },
         y: {
