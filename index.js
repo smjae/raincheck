@@ -113,7 +113,7 @@ function displayMovement(data) {
   oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
   const filteredData = data.filter(entry => new Date(entry.detection_time) >= oneWeekAgo);
-  console.log(Date(entry.detection_time), filteredData);
+  console.log(filteredData);
 
   const countsByDay = {};
   filteredData.forEach(entry => {
