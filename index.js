@@ -118,8 +118,8 @@ console.log(letzteWoche);
 
   const labels = letzteWoche;
   const dataset = data.anfragen.map(item => ({
-    detection_time: item.detection_time,
-    movement: item.movement
+    detection_time: item.date,
+    movement: item.count
   }));
 
 
