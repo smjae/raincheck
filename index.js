@@ -19,7 +19,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (data && data.wettervorhersage) {
     displayData(data.wettervorhersage);
     displayLEDs(data.wettervorhersage);
-  
   } else {
     // if data is not available or not in the expected format
     regenschutzLED.id = "led-green-blink";
@@ -105,25 +104,24 @@ function displayLEDs(data) {
 
 // Process the retrieved data
 function processData(data) {
-  if (!Array.isArray(data)) {
-    console.error("Data is not an array:", data);
-    return;
-  }
-
   // Filter data for the last week and count entries with movement: 1 for each day
   const oneWeekAgo = new Date();
   oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-
-  const filteredData = data.filter(
-    (entry) => new Date(entry.detection_time) >= oneWeekAgo
-  );
-  console.log(filteredData);
-
-  const countsByDay = {};
-  filteredData.forEach((entry) => {
-    const date = new Date(entry.detection_time).toISOString().split("T")[0];
-    countsByDay[date] = (countsByDay[date] || 0) + 1;
+  const weekArray = [];
+  data.anfragen.forEach((element) => {
+    //loop through anfragen and count all entries from today
+    let date = new Date(element.detection_time).toISOString().split("T")[0];
+    if (date >= oneWeekAgo) {
+      weekArray.push(element);
+    }
   });
+  console.log(weekArray);
+
+  // const countsByDay = {};
+  // filteredData.forEach((entry) => {
+  //   const date = new Date(entry.detection_time).toISOString().split("T")[0];
+  //   countsByDay[date] = (countsByDay[date] || 0) + 1;
+  // });
 
   const labels = Object.keys(countsByDay);
   const dataset = Object.values(countsByDay);
