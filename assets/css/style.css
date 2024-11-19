@@ -272,6 +272,7 @@ header {
     height: 100%;
     box-sizing: border-box;
     flex-direction: column;
+    position: relative;
   }
 
   .containerRechts {

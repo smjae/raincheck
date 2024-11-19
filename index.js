@@ -102,9 +102,9 @@ function displayLEDs(data) {
   }
 }
 
-if (document.querySelector(".selector").style.display == "none") {
-  fetchAndProcessData();
-}
+  if (window.innerWidth <= 768) {
+    fetchAndProcessData();
+  }
 
 async function fetchAndProcessData() {
   console.log("Fetching and processing data...");
