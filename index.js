@@ -3,6 +3,14 @@ heading.innerHTML = "Raincheck";
 const subheading = document.createElement("h2");
 subheading.innerHTML = "Wie wird das Wetter heute in Chur?";
 
+  //get the LED elements
+  let kontrollLED = document.getElementById("led-red-off");
+  let regenLED = document.getElementById("led-blue-off");
+  let schneeLED = document.getElementById("led-orange-off");
+  let tempLED = document.getElementById("led-yellow-off");
+  let windLED = document.getElementById("led-purple-off");
+  let regenschutzLED = document.getElementById("led-green-off");
+
 document.addEventListener("DOMContentLoaded", async () => {
   const data = await fetchData();
   if (Array.isArray(data)) {
@@ -21,20 +29,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-const tables = document.querySelectorAll("table");
+// const tables = document.querySelectorAll("table");
 
-tables.forEach((table, index) => {
-  const rows = Array.from(table.querySelectorAll("tr"));
-  const data = rows.map((row) => {
-    const cells = Array.from(row.querySelectorAll("td"));
-    return cells.map((cell) => cell.textContent);
-  });
+// tables.forEach((table, index) => {
+//   const rows = Array.from(table.querySelectorAll("tr"));
+//   const data = rows.map((row) => {
+//     const cells = Array.from(row.querySelectorAll("td"));
+//     return cells.map((cell) => cell.textContent);
+//   });
 
-  const div = document.createElement("div");
-  div.classList.add(index);
+//   const div = document.createElement("div");
+//   div.classList.add(index);
 
-  document.body.appendChild(div);
-});
+//   document.body.appendChild(div);
+// });
 
 async function fetchData() {
   try {
@@ -66,13 +74,6 @@ function displayLEDs(data) {
   let snow = data[0].schneefall_sum;
   let wind = data[0].windgeschwindigkeit_max;
 
-  //get the LED elements
-  let kontrollLED = document.getElementById("led-red-off");
-  let regenLED = document.getElementById("led-blue-off");
-  let schneeLED = document.getElementById("led-orange-off");
-  let tempLED = document.getElementById("led-yellow-off");
-  let windLED = document.getElementById("led-purple-off");
-  let regenschutzLED = document.getElementById("led-green-off");
 
   //check if let i = 1, if so, turn on kontrollLED
   let i = 1;
