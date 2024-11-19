@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     displayData(data);
     displayMovement(data);
     displayLEDs(data);
-    console.log("Data:", data);
   } else {
     console.error("Fetched data is not an array:", data);
   }
@@ -56,7 +55,6 @@ function displayData(data) {
 }
 
 function displayLEDs(data) {
-console.log(data);
 //get data and put into variables to control LEDs on the website
 let temp = data[0].temperatur;
 let rain = data[0].tagesniederschlag_sum;
@@ -106,12 +104,14 @@ if (rain > 1 && wind > 30) {
 
 // Display movement chart
 function displayMovement(data) {
-console.log("yay");
   const canvas = document.querySelector("#myChart");
   const ctx = canvas.getContext("2d");
 
   const labels = data.map((entry) => entry.datum);
   const dataset = data.map((entry) => entry.timestamp);
+
+  console.log("Labels:", labels);
+  console.log("Dataset:", dataset);
 
   new Chart(ctx, {
     type: "line",
@@ -147,8 +147,6 @@ console.log("yay");
       },
     },
   });
-  //append the canvas to the div
-  canvas.append(ctx);
 }
 
 document.querySelector("#abfragen").addEventListener("click", async () => {
