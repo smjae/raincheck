@@ -15,7 +15,7 @@ let regenschutzLED = document.getElementById("led-green-off");
 
 document.addEventListener("DOMContentLoaded", async () => {
   const data = await fetchData();
-  if (Array.isArray(data)) {
+  if (data.wettervorhersage) {
     displayData(data);
     displayLEDs(data);
     return;
