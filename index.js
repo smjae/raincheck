@@ -115,7 +115,7 @@ function processData(data) {
 
 
   const labels = "gaggibölle";
-  const dataset = weekArray;
+  const dataset = data.anfragen;
 
   console.log("Labels:", labels);
   console.log("Dataset:", dataset);
