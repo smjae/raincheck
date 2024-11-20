@@ -12,6 +12,19 @@ Kurze Beschreibung des Projekts.
 - Lernerfolg
 - Aufgabenaufteilung
 
+neue Inputs von Jan Fiess via Email... wovon ich noch aussortiere, was wirklich benötigt wird.
+Die Doku sollte so sein, dass ein unabhängiger Amateur mit deiner Doku  dein Projekt nachbauen kann, ohne dass es dazu dich braucht.
+Dazu gehören z. B.
+
+Verbindungs-Schema (mit Hardware, Software, Kommunikationswegen). Beispiel in den Slides.
+Zusammenhang der verwendeten Dateien erläutern (egal ob als Test oder Grafik)
+Steckschema der elektronischen Komponenten (Fritzing, Tinkercad, Wokwi helfen dir bei der Visualisierung des Steckschemas).
+Ich hab noch eine alte Fritzing Version, als Fritzing noch gratis war. Damit hab ich die Grafiken für die Slides gemacht. Teile ich gerne.
+Umsetzungsprozess (welche Hilfsmittel, Fehlschläge, verworfene Lösungsansätze)
+-> was war geplant, was hat dicht daran gehindert, es so zu machen wie geplant, womit hast du dich aufgehalten (Hürden), womit hast du dir beholfen (Lösungsansatz), wie sind die Entwicklungsschritte, …
+Toll wäre noch ein EINFACHES Video, das die Applikation in action zeigt. Einfache Smartphone-Aufnahme auf Youtube, verlinkt in der Readme.md reicht
+Known Bugs
+
 ## Inhaltsverzeichnis
 
 - [Idee](#idee)
