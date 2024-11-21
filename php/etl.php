@@ -1,8 +1,8 @@
 <?php
-//Header wird gesetzt, um CORS zu ermöglichen
+// Header wird gesetzt, um CORS zu ermöglichen
 header("Access-Control-Allow-Origin: https://raincheck.ch");
 
-//config.php wird eingebunden
+// config.php wird eingebunden
 require_once __DIR__ . '/../config.php';
 
 // API-URL
@@ -51,7 +51,6 @@ try {
     $stmt->execute();
     $last_weather_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // // Debugging information
     // echo "Last weather data: ";
     // print_r($last_weather_data);
     // echo "<br>";
@@ -64,7 +63,7 @@ try {
         $last_weather_data['schneefall_sum'] != $weather_data[0]['schneefall_sum'] ||
         $last_weather_data['windgeschwindigkeit_max'] != $weather_data[0]['windgeschwindigkeit_max'];
 
-        //falls die Daten neu sind und das Datum von heute ist, werden die Daten in die Datenbank eingefügt
+        // falls die Daten neu sind und das Datum von heute ist, werden die Daten in die Datenbank eingefügt
     if ($is_data_new && $weather_data[0]['datum'] == $today) {
         // echo "Daten sind noch nicht in der Tabelle.";
         // echo "<br>";
@@ -84,12 +83,12 @@ try {
         ]);
         echo "Daten erfolgreich eingefügt.";
         
-    } else if ($weather_data[0]['datum'] != $today) { //falls das Datum nicht von heute ist, wird eine Fehlermeldung ausgegeben
+    } else if ($weather_data[0]['datum'] != $today) { // falls das Datum nicht von heute ist, wird eine Fehlermeldung ausgegeben
         echo "Daten sind nicht von heute.";
-    } else { //falls die Daten bereits in der Tabelle sind, wird eine Fehlermeldung ausgegeben
+    } else { // falls die Daten bereits in der Tabelle sind, wird eine Fehlermeldung ausgegeben
         echo "Daten sind bereits in der Tabelle.";
     }
-    
+
     // Fehlerbehandlung
 } catch (PDOException $e) {
     die("Verbindung zur Datenbank konnte nicht hergestellt werden: " . $e->getMessage());

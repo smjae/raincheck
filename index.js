@@ -6,7 +6,7 @@
 const datenContainer = document.querySelector(".infoBox");
 const infos = document.createElement("div");
 
-//LEDs auswählen, sind per default ausgeschaltet
+// LEDs auswählen, sind per default ausgeschaltet
 let kontrollLED = document.getElementById("led-red-off");
 let regenLED = document.getElementById("led-blue-off");
 let schneeLED = document.getElementById("led-orange-off");
@@ -29,10 +29,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     schneeLED.id = "led-orange-blink";
     regenLED.id = "led-blue-blink";
     kontrollLED.id = "led-red-blink";
-    //die Anzeige links unten wird angepasst
+    // die Anzeige links unten wird angepasst
     infos.innerHTML = `<p><strong>Keine aktuellen Daten verfügbar!</strong></p>`;
     datenContainer.append(infos);
-    //die Grafik mit den Abfragen & die Buttons dazu werden ausgeblendet, da ja keine Daten vorhanden sind
+    // die Grafik mit den Abfragen & die Buttons dazu werden ausgeblendet, da ja keine Daten vorhanden sind
     document.querySelector(".abfragen").style.display = "none";
     document.querySelector(".selector").style.display = "none";
   }
@@ -59,51 +59,51 @@ function displayData(data) {
 }
 
 function displayLEDs(data) {
-  //Daten aus Datenbank in Variablen speichern
+  // Daten aus Datenbank in Variablen speichern
   let temp = data.temperatur;
   let rain = data.tagesniederschlag_sum;
   let snow = data.schneefall_sum;
   let wind = data.windgeschwindigkeit_max;
 
-  //Kontrollleuchte leuchtet immer, wenn Daten vorhanden sind
+  // Kontrollleuchte leuchtet immer, wenn Daten vorhanden sind
   let i = 1;
 
   if (i == 1) {
     kontrollLED.id = "led-red-on";
   }
 
-  //Wenn mehr als 1mm Regen fällt, leuchtet die Regen-LED
+  // Wenn mehr als 1mm Regen fällt, leuchtet die Regen-LED
   if (rain > 1) {
     regenLED.id = "led-blue-on";
   }
 
-  //Wenn mehr als 15mm Regen fällt, blinkt die Regen-LED
+  // Wenn mehr als 15mm Regen fällt, blinkt die Regen-LED
   if (rain > 15) {
     regenLED.id = "led-blue-blink";
   }
 
-  //Wenn mehr als 0cm Schnee fällt, leuchtet die Schnee-LED
+  // Wenn mehr als 0cm Schnee fällt, leuchtet die Schnee-LED
   if (snow > 0) {
     schneeLED.id = "led-orange-on";
   }
 
-  //Wenn die Temperatur den ganzen Tag nie über 12°C steigt, leuchtet die Temperatur-LED
+  // Wenn die Temperatur den ganzen Tag nie über 12°C steigt, leuchtet die Temperatur-LED
   if (temp < 12) {
     tempLED.id = "led-yellow-on";
   }
 
-  //Wenn es über 20km/h windet, leuchtet die Wind-LED
+  // Wenn es über 20km/h windet, leuchtet die Wind-LED
   if (wind > 20) {
     windLED.id = "led-purple-on";
   }
 
-  //Wenn es über 30km/h windet und mehr als 1mm Regen fällt, blinkt die Regenschutz-LED
+  // Wenn es über 30km/h windet und mehr als 1mm Regen fällt, blinkt die Regenschutz-LED
   if (rain > 1 && wind > 30) {
     regenschutzLED.id = "led-green-blink";
   }
 }
 
-//Daten umformen für Visualisierung der Abfragen des Bewegungssensors
+// Daten umformen für Visualisierung der Abfragen des Bewegungssensors
 function processData(data) {
   // die letzten 7 Tage ermitteln und in einen Array namens "letzteWoche" speichern
   let letzteWoche = [];
@@ -184,7 +184,7 @@ document.querySelector("#abfragen").addEventListener("click", async () => {
   }
 });
 
-//dasselbe umgekehrt
+// dasselbe umgekehrt
 document.querySelector("#prognose").addEventListener("click", async () => {
   if (document.querySelector("#abfragen").classList.contains("round-button-active")) {
     document.querySelector("#abfragen").classList.remove("round-button-active");
@@ -193,7 +193,7 @@ document.querySelector("#prognose").addEventListener("click", async () => {
     document.querySelector("#prognose").classList.add("round-button-active");
     document.querySelector(".abfragen").style = "display: none";
     document.querySelector(".prognose").style = "display: block";
-    //Chart wird gelöscht, damit er wieder neu erstellt werden kann
+    // Chart wird gelöscht, damit er wieder neu erstellt werden kann
     let canvas = document.getElementById("myChart");
     let ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);

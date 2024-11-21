@@ -1,12 +1,12 @@
 <?php
 
-//Header wird gesetzt, um CORS zu ermöglichen
+// Header wird gesetzt, um CORS zu ermöglichen
 header("Access-Control-Allow-Origin: https://raincheck.ch");
 
-//config.php wird eingebunden
+// config.php wird eingebunden
 require_once __DIR__ . '/../config.php';
 
-//Datenbankverbindung wird hergestellt
+// Datenbankverbindung wird hergestellt
 try{
     $pdo = new PDO($dsn, $db_user, $db_pass, $options); 
     echo "DB Verbindung ist erfolgreich";
