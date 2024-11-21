@@ -51,10 +51,6 @@ try {
     $stmt->execute();
     $last_weather_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // echo "Last weather data: ";
-    // print_r($last_weather_data);
-    // echo "<br>";
-
     // Abgleich der Daten
     $is_data_new = !$last_weather_data ||
         $last_weather_data['datum'] != $weather_data[0]['datum'] ||
@@ -65,11 +61,6 @@ try {
 
         // falls die Daten neu sind und das Datum von heute ist, werden die Daten in die Datenbank eingefügt
     if ($is_data_new && $weather_data[0]['datum'] == $today) {
-        // echo "Daten sind noch nicht in der Tabelle.";
-        // echo "<br>";
-        // echo "Neue Wetter Daten: ";
-        // print_r($weather_data[0]);
-        // echo "<br>";
 
         $sql = "INSERT INTO Wettervorhersage (datum, temperatur, tagesniederschlag_sum, schneefall_sum, windgeschwindigkeit_max) VALUES (?, ?, ?, ?, ?)";
 

@@ -1,8 +1,4 @@
 // Erstellen von Elementen für die Anzeige der Wetterdaten
-// const heading = document.createElement("h1");
-// heading.innerHTML = "Raincheck";
-// const subheading = document.createElement("h2");
-// subheading.innerHTML = "Wie wird das Wetter heute in Chur?";
 const datenContainer = document.querySelector(".infoBox");
 const infos = document.createElement("div");
 
@@ -114,7 +110,6 @@ function processData(data) {
     tag.setDate(heute.getDate() - i);
     letzteWoche.push(tag.toISOString().split("T")[0]); // Push the full date in YYYY-MM-DD format
   }
-  console.log(letzteWoche);
 
   // Anfragen des Bewegungssensors pro Tag in einem Objekt namens "countsByDate" speichern
   const countsByDate = {};
