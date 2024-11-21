@@ -20,4 +20,4 @@ LED 6: Regenschirmverbot
 
 alle LEDs blinken:
 	•	Bei einem Fehler im System blinken alle LEDs gleichzeitig.
-	•	oder wenn die Wetterdaten älter als vom aktuellen Tag sind.
+	•	oder wenn die Wetterdaten nicht vom aktuellen Tag sind.

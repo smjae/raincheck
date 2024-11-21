@@ -8,7 +8,7 @@
 // # Version     : 1.0
 
 // # Description:
-// # The sketch for using the PIR Motion sensor with Arduino/Raspberry Pi controller to achieve the human detection feature. Based on weatherdata from an API the LEDs will indicate valuable informatio for clothing choices bevore leaving the house.
+// # The sketch for using the PIR Motion sensor with Arduino/Raspberry Pi controller to achieve the human detection feature. Based on weatherdata from an API the LEDs will indicate valuable information for clothing choices bevore leaving the house.
 
 #include <WiFi.h>
 #include <HTTPClient.h>
@@ -102,7 +102,7 @@ void setup()
       delay(2000);
       time_t now;
       String formattedTime = holeDatumUndZeitMitSekunden(); // Speichern Sie den Rückgabewert in formattedTime
-      // fetchWeatherData(); // zum Start wird einemal alles durchgespielt.
+      // fetchWeatherData(); // zum Start wird einmal alles durchgespielt.
     } else {
       Serial.println("\nWLAN-Verbindung fehlgeschlagen! Versuche erneut in 5 Sekunden...");
       blinkAllLeds();

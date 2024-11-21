@@ -1,4 +1,7 @@
--- Drop the Wettervorhersage table if it exists and create it
+-- Dieses Dokument haben wir zu Beginn verwendet, um die Tabellen in der Datenbank zu erstellen.
+
+
+-- Tabelle "Wettervorhersage" löschen, falls sie existiert; dann erstellen
 DROP TABLE IF EXISTS `Wettervorhersage`;
 CREATE TABLE IF NOT EXISTS `Wettervorhersage` (
     `datum` DATE NOT NULL,
@@ -9,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `Wettervorhersage` (
     `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- Drop the Anfragen table if it exists and create it
+-- Tabelle "Anfragen" löschen, falls sie existiert; dann erstellen
 DROP TABLE IF EXISTS `Anfragen`;
 CREATE TABLE IF NOT EXISTS `Anfragen` (
     `timestamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP

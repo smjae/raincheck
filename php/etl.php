@@ -1,28 +1,26 @@
 <?php
-
+//Header wird gesetzt, um CORS zu ermöglichen
 header("Access-Control-Allow-Origin: https://raincheck.ch");
 
-// require once config.php!
+//config.php wird eingebunden
 require_once __DIR__ . '/../config.php';
 
-// Extract and transform data
+// API-URL
 $url = "https://api.open-meteo.com/v1/forecast?latitude=46.8499&longitude=9.5329&daily=temperature_2m_max,precipitation_sum,snowfall_sum,wind_speed_10m_max&timezone=Europe%2FBerlin&forecast_days=1";
 
-// curl
+// cURL-Verbindung wird aufgebaut
 $ch = curl_init($url);
-
-// curl options
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 $output = curl_exec($ch);
 
 // Speichere alle Daten in Variablen
-$data = json_decode($output, true); // decode the JSON feed
+$data = json_decode($output, true);
 
-// make new array with needed information
+// Neuer Array für die Wetterdaten
 $weather_data = [];
 
-// Process data
+// Umformatierung der Daten
 $dailyTime = isset($data['daily']['time'][0]) ? (new DateTime($data['daily']['time'][0]))->format('Y-m-d') : NULL;
 $dailyTemperature = isset($data['daily']['temperature_2m_max'][0]) ? $data['daily']['temperature_2m_max'][0] : NULL;
 $daily_precipitation_sum = isset($data['daily']['precipitation_sum'][0]) ? $data['daily']['precipitation_sum'][0] : NULL;
@@ -40,25 +38,25 @@ $weather_data[] = [
 echo "Extraktion erfolgreich.";
 echo "<br>";
 
+// das heutige Datum wird ermittelt und in eine Variable gespeichert
 $today = date("Y-m-d");
 
-// Load data into database
+// Speichern der Daten in die Datenbank via PDO-Verbindung
 try {
-    // Erstellt eine neue PDO-Instanz mit der Konfiguration aus config.php
     $pdo = new PDO($dsn, $db_user, $db_pass, $options);
 
-    // Get the latest entry from the table
+    // Abfrage des neusten Eintrags der Wettervorhersage in der Datenbank
     $sql = "SELECT * FROM Wettervorhersage ORDER BY timestamp DESC LIMIT 1";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $last_weather_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Debugging information
-    echo "Last weather data: ";
-    print_r($last_weather_data);
-    echo "<br>";
+    // // Debugging information
+    // echo "Last weather data: ";
+    // print_r($last_weather_data);
+    // echo "<br>";
 
-    // Check if the data is different or if the date is not present
+    // Abgleich der Daten
     $is_data_new = !$last_weather_data ||
         $last_weather_data['datum'] != $weather_data[0]['datum'] ||
         $last_weather_data['temperatur'] != $weather_data[0]['temperatur'] ||
@@ -66,17 +64,16 @@ try {
         $last_weather_data['schneefall_sum'] != $weather_data[0]['schneefall_sum'] ||
         $last_weather_data['windgeschwindigkeit_max'] != $weather_data[0]['windgeschwindigkeit_max'];
 
+        //falls die Daten neu sind und das Datum von heute ist, werden die Daten in die Datenbank eingefügt
     if ($is_data_new && $weather_data[0]['datum'] == $today) {
-        echo "Daten sind noch nicht in der Tabelle.";
-        echo "<br>";
-        echo "Neue Wetter Daten: ";
-        print_r($weather_data[0]);
-        echo "<br>";
+        // echo "Daten sind noch nicht in der Tabelle.";
+        // echo "<br>";
+        // echo "Neue Wetter Daten: ";
+        // print_r($weather_data[0]);
+        // echo "<br>";
 
-        // SQL-Query mit Platzhaltern für das Einfügen von Daten
         $sql = "INSERT INTO Wettervorhersage (datum, temperatur, tagesniederschlag_sum, schneefall_sum, windgeschwindigkeit_max) VALUES (?, ?, ?, ?, ?)";
 
-        // Bereitet die SQL-Anweisung vor
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
             $weather_data[0]['datum'],
@@ -85,23 +82,15 @@ try {
             $weather_data[0]['schneefall_sum'],
             $weather_data[0]['windgeschwindigkeit_max']
         ]);
-        // Fügt jedes Element im Array in die Datenbank ein
-        // foreach ($weather_data as $item) {
-        //     $stmt->execute([
-        //         $item['datum'],
-        //         $item['temperatur'],
-        //         $item['tagesniederschlag_sum'],
-        //         $item['schneefall_sum'],
-        //         $item['windgeschwindigkeit_max']
-        //     ]);
-        // } 
         echo "Daten erfolgreich eingefügt.";
         
-    } else if ($weather_data[0]['datum'] != $today) {
+    } else if ($weather_data[0]['datum'] != $today) { //falls das Datum nicht von heute ist, wird eine Fehlermeldung ausgegeben
         echo "Daten sind nicht von heute.";
-    } else {
+    } else { //falls die Daten bereits in der Tabelle sind, wird eine Fehlermeldung ausgegeben
         echo "Daten sind bereits in der Tabelle.";
     }
+    
+    // Fehlerbehandlung
 } catch (PDOException $e) {
     die("Verbindung zur Datenbank konnte nicht hergestellt werden: " . $e->getMessage());
 }
