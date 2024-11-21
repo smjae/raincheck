@@ -13,20 +13,25 @@
     <header>
       <h1>RAIN<br />CHECK</h1>
       <h2>Wie wird das Wetter heute in Chur?</h2>
-      <div class="infoBox"></div>
+      <div class="infoBox">
+        <!--diese Infobox zu den aktuellen Wetterdaten wird dynamisch abgefüllt-->
+      </div>
       <div class="aside">
         <p>
           Diese Seite entstand im Rahmen des Multimedia Production Studiums im
           Modul "Physical Computing". Die angezeigten Daten stammen aus der API
-          von openmeteo und zeigen den Tagesdurchschnitt von heute in Chur. Die
-          Lämpchen rechts brennen, wenn die Legende daneben zutrifft. Dasselbe
-          passiert physisch mit einem Espressif32-Microcontroller.
+          von <a href="https://open-meteo.com/">open-meteo</a> und zeigen den
+          Tagesdurchschnitt von heute in Chur. Die Lämpchen rechts brennen, wenn
+          die Legende daneben zutrifft. Dasselbe passiert physisch mit einem
+          ESP32-Microcontroller.
         </p>
         <p>© 2024 Raincheck</p>
       </div>
     </header>
+
     <div class="containerRechts">
       <div class="prognose">
+        <!-- hier drin sind die virtuellen LEDs zu sehen -->
         <div class="container">
           <div class="led-box">
             <div class="led" id="led-red-off"></div>
@@ -55,15 +60,11 @@
         </div>
       </div>
       <div class="abfragen" style="display: none">
-        <!--create canvas to load chart in-->
-        <canvas
-          id="myChart"
-          width="400"
-          height="400"
-        ></canvas>
+        <!-- hier wird eine Grafik aller Abfragen des Bewegungssensors dynamisch geladen -->
+        <canvas id="myChart" width="400" height="400"></canvas>
       </div>
       <div class="selector">
-        <!--create round button to select between abfragen and prognose to be shown-->
+        <!--das sind die Knöpfe, um zwischen der Prognose für den Tag und den Abfragen zu wechseln-->
         <button id="prognose" class="round-button-active"></button>
         <button id="abfragen" class="round-button"></button>
       </div>

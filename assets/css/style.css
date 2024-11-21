@@ -1,5 +1,7 @@
-/* Basic Page Layout */
-@import url("https://fonts.googleapis.com/css2?family=Barriecito&family=Kirang+Haerang&display=swap");
+:root {
+  --blink-bg-color: rgba(0, 42, 0, 0.2);
+  --blink-box-shadow: none;
+}
 
 body {
   margin: 0;
@@ -13,21 +15,6 @@ body {
   justify-content: center;
 }
 
-/* button {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border: 2px solid #fff;
-  text-decoration: none;
-  margin: 1rem;
-  border-radius: 15px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  background: none;
-  color: white;
-  width: 200px;
-} */
-
 h1,
 h2,
 h3,
@@ -39,7 +26,6 @@ a {
 
 h1 {
   font-size: 3rem;
-  /* font-family: Barriecito, cursive; */
 }
 
 header {
@@ -83,7 +69,12 @@ header {
   background-color: rgba(255, 255, 255, 1);
 }
 
-/*LEDs*/
+.aside {
+  font-style: italic;
+  font-weight: 100;
+}
+
+/*Prognose rechts*/
 
 .containerRechts {
   margin: auto;
@@ -116,22 +107,18 @@ header {
   padding: 10px;
   box-sizing: border-box;
   width: 100%;
-  /* justify-items: flex-start; */
 }
 
 .led-box p {
   font-size: 12px;
 }
 
+/*LEDs*/
+
 .led {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-}
-
-:root {
-  --blink-bg-color: rgba(0, 42, 0, 0.2);
-  --blink-box-shadow: none;
 }
 
 @keyframes blink {
@@ -148,7 +135,6 @@ header {
 #led-red-off {
   background-color: rgba(104, 0, 0, 0.2);
   box-shadow: none;
-  /* animation: blinkRed 0.5s infinite; */
 }
 
 #led-red-on {
@@ -258,19 +244,16 @@ header {
 
 #led-orange-blink {
   --blink-bg-color: rgba(151, 61, 10, 0.2);
-  --blink-box-shadow: none;
+  --blink-box-shadow: 0;
   --blink-bg-color-on: #ff8c00;
   --blink-box-shadow-on: rgba(0, 0, 0, 0.4) 0 -1px 10px 2px, inset #a34b00 0 -1px 12px,
     rgba(255, 140, 0, 0.9) 0 4px 15px;
   animation: blink 1s infinite;
 }
 
-.aside {
-  font-style: italic;
-  font-weight: 100;
-}
-/*media queries*/
-@media (max-width: 768px) {
+
+/*Mobile Version*/
+@media only screen and (max-width: 768px) {
   header {
     width: 100%;
     height: 100%;
@@ -284,12 +267,11 @@ header {
     position: relative;
     width: auto;
     right: 0;
-
   }
-
 
   body {
     margin: 0;
+    height: auto;
     font-family: helvetica-neue, sans-serif;
     background-color: #1a2165;
     display: flex;
