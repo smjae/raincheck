@@ -1,29 +1,10 @@
 # RainCheck
 
-Kurze Beschreibung des Projekts.
+RainCheck ist ein Wetterindikator, der idealerweise bei der Haustür platziert wird. Das Gerät kombiniert ein minimalistisches Design mit praktischer Funktionalität: Sobald der integrierte Bewegungssensor eine Person erkennt, aktiviert sich die LED-Anzeige und visualisiert die aktuellen Wetterdaten in Echtzeit. Die Daten werden für unseren Studienort Chur abgerufen.
 
-### Auftrag für dieses Read.me Dokument
+Begleitend zum physischen Indikator bietet die Webseite www.raincheck.ch eine digitale Ergänzung. Hier finden Nutzer dieselbe Wettervisualisierung und können zusätzlich auf erweiterte Informationen zugreifen. Die Webseite dient zugleich als Schnittstelle zu unserer Datenbank, die in Kombination mit der API von open-meteo.com die Wetterdaten sammelt und aufbereitet.
 
-- UX: Dokumentation der kreativen Konzeption, z. B. Inspirationen, Designentscheidungen, Vorgehensweise bei der Planung, Prozess, Ablaufdiagramm
-- Technik: Dokumentation der technischen Konzeption und Umsetzung, z. B. Verbindungsschema der eingesetzten Medienkomponenten
-- Dokumentation der Kommunikation zwischen den Medienkomponenten 
-- Umsetzungsprozess (welche Hilfsmittel, Fehlschläge, verworfene Lösungsansätze) 
-- Known Bugs
-- Lernerfolg
-- Aufgabenaufteilung
-
-neue Inputs von Jan Fiess via Email... wovon ich noch aussortiere, was wirklich benötigt wird.
-Die Doku sollte so sein, dass ein unabhängiger Amateur mit deiner Doku  dein Projekt nachbauen kann, ohne dass es dazu dich braucht.
-Dazu gehören z. B.
-
-Verbindungs-Schema (mit Hardware, Software, Kommunikationswegen). Beispiel in den Slides.
-Zusammenhang der verwendeten Dateien erläutern (egal ob als Test oder Grafik)
-Steckschema der elektronischen Komponenten (Fritzing, Tinkercad, Wokwi helfen dir bei der Visualisierung des Steckschemas).
-Ich hab noch eine alte Fritzing Version, als Fritzing noch gratis war. Damit hab ich die Grafiken für die Slides gemacht. Teile ich gerne.
-Umsetzungsprozess (welche Hilfsmittel, Fehlschläge, verworfene Lösungsansätze)
--> was war geplant, was hat dicht daran gehindert, es so zu machen wie geplant, womit hast du dich aufgehalten (Hürden), womit hast du dir beholfen (Lösungsansatz), wie sind die Entwicklungsschritte, …
-Toll wäre noch ein EINFACHES Video, das die Applikation in action zeigt. Einfache Smartphone-Aufnahme auf Youtube, verlinkt in der Readme.md reicht
-Known Bugs
+RainCheck – für einen schnellen, klaren Wetterüberblick direkt vor der Tür oder online.
 
 ## Inhaltsverzeichnis
 
@@ -38,17 +19,13 @@ Known Bugs
 Wie kommt man auf die Idee, Wetterdaten aus einer API abzulesen und diese bei bestimmten Bedingungen auf einem LED-Board anzuzeigen? Keine Ahnung. Vermutlich, weil wir beide schon viel zu oft das Haus ohne Schirm oder Regenjacke verlassen haben, nur um dann völlig verschüttet zu werden. Ärgerlich... Daraus ist raincheck.ch entstanden: je nach Tagesprognose in Chur leuchten andere LEDs auf dem Board. Sei es besonders kalt, regnerisch, windig oder gäbe es Schnee: ab sofort wissen wir beim Verlassen der Wohnung, was uns erwartet. Mit Hilfe der Daten aus der API von open-meteo haben wir eine laufende Prognose.
 
 ## Vorgehen
-Die Idee hatten wir schon relativ früh. Nach den ersten Tagen in Physical Computing, bei denen wir uns mit dem ESP32 und dem Steckbrett vertraut gemacht haben, bestellten wir auch relativ schnell den Bewegungssensor für unser Projekt. Dann giing es ans Erarbeiten des Konzepts: wann sollte welches LED leuchten? Wie bauen wir die Datenstruktur auf? Was muss in die Datenbank geschrieben werden? Wie sieht unsere Webseite aus? Nachdem wir jedoch mal die Grundstruktur gebaut hatten und erste php-Abfragen funktionierten, waren wir schon gut unterwegs. In der zweiten Blockwoche erarbeiteten wir noch unsere genaue Datenarchitektur, die uns nochmals erheblich half. Beim ESP32 war es viel Trial & Error und wir merkten, dass wir noch viel zu wenig darüber wussten. Viele Stunden später haben wir es jedoch geschafft, und man kann wirklich sagen, dass wir etwas Tolles auf die Beine gestellt haben!
+Die Idee hatten wir schon relativ früh. Nach den ersten Tagen in Physical Computing (Teil des Moduls «Interaktive Medien V» der FHGR), bei denen wir uns mit dem ESP32 und dem Steckbrett vertraut gemacht haben, bestellten wir zeitnah den Bewegungssensor für unser Projekt. Dann ging es ans Erarbeiten des Konzepts: wann sollte welches LED leuchten? Wie bauen wir die Datenstruktur auf? Was muss in die Datenbank geschrieben werden? Wie sieht unsere Webseite aus? Ergänzen wir mit Extras, wie z.B. nebst Digital zu Physisch auch von Physisch zu Digital?
+Nachdem wir die Grundstruktur gebaut hatten und erste php-Abfragen zum Funktionieren brachten, waren wir schon gut unterwegs. In der zweiten Blockwoche erarbeiteten wir unsere genaue Datenarchitektur, die uns erheblich weiterbrachte. Beim ESP32 war es viel Trial & Error und wir merkten, dass wir noch viel zu wenig darüber wussten. Viele Stunden später haben wir es jedoch geschafft, und man kann wirklich sagen, dass wir etwas Tolles auf die Beine gestellt haben!
 
 ## Challenges und Lernerfolge
-- [] Challenges Raphi
-  - [] Korrekte Uhrzeit auf dem board
-  - [] Schlaufen werden nacheinander ausgeführt… mühsam zum abschalten nach gewisser zeit → timer hab ich nun bei blink eingebaut.
-  - [] Kommunikation, dass alles mktgesendet wird, war noch interessant
-  - [] Reihenfokge, dass alle LED‘s Zeitgleich blinken.
-
-Challenges hatten wir definitiv genug. Da wir relativ früh ins Projekt gestartet sind und noch kaum Erfahrung mit Hardware wie dem ESP32 hatten, gerieten wir oftmals in Sackgassen und mussten nochmals einige Schritte zurück machen. Mittlerweile würden wir das ganze Projekt wohl in der Hälfte der Zeit schaffen, aber genau dort liegt ja der Lernerfolg. Eine weitere Challenge war die Arbeitsteilung. Aufgrund der physischen Komponente des Microcontrollers war es schwierig, dass wir beide gleichzeitig daran arbeiten konnten. So teilten wir uns dann auf, was jedoch dazu führte, dass wir uns oft absprechen mussten bezüglich Kommunikationswegen der Programme und bezüglich der Logik. Dies verlangsamte den Prozess, und ausserdem müssen wir jetzt trotzdem noch Zeit aufwenden, damit beide von uns das Projekt ganz verstehen und auch den jeweils anderen Teil selbst umsetzen könnten.
-Bei der Software war eine Challenge, dass php & co. doch schon einige Monate zurückliegt, weshalb ein erstaunlich grosser Teil der Zeit fürs Wiedererarbeiten der Syntax draufging. Auch Debugging war viel nötig, da ich oft einfach falsche Variablennamen oder Funktionen einbaute.
+Challenges hatten wir definitiv genug. Da wir relativ früh ins Projekt gestartet sind und noch kaum Erfahrung mit Hardware wie dem ESP32 hatten, gerieten wir oftmals in Sackgassen und mussten nochmals einige Schritte zurück machen. Mittlerweile würden wir das ganze Projekt wohl in der Hälfte der Zeit abschliessen, aber genau da liegt ja der Lernerfolg. Eine weitere Challenge war die Arbeitsteilung. Aufgrund der physischen Komponente des Microcontrollers war es schwierig, dass wir beide zeitgleich daran arbeiten konnten. So teilten wir uns dann auf, was jedoch dazu führte, dass wir uns oft absprechen mussten bezüglich Kommunikationswegen der Programme und bezüglich der Logik. Dies verlangsamte den Prozess, und ausserdem brauchte es etwas mehr Zeit, um uns gegenseitig das eigene Werken beizubringen.
+Bei der Software war eine Challenge, dass php & co. doch schon einige Monate nicht mehr genutzt wurde, weshalb ein erstaunlich grosser Teil der Zeit fürs Wiedererarbeiten der Syntax draufging. Auch Debugging war viel nötig, da teilweise falsche Variablennamen oder Funktionen eingebaut wurden.
+Beim ESP32 und der Arduino Software gab es auch so einige Hürden. So war es eine Challenge, bis der Code zum Abrufen des aktuellen Datums und Uhrzeit am passenden Ort in den Schlaufen platziert war. A pro pos Schlaufen. Der Microcontroller arbeitet Schlaufen jeweils nacheinander ab. Somit mussten gewisse Prozesse, die einen Moment dauern sollten so umgeschrieben werden, dass alles aufgeht, auch wenn sich was blockiert etc. z.B. beim Blinken der individuellen LEDs. Doch es war machbar und der Code ist nun auch verständlich kommentiert. :)
 
 ## Technik
 Dieses Projekt wurde mit folgenden Technologien umgesetzt:
@@ -79,7 +56,7 @@ Unser Steckbrett:
 Zusätzlich zu unserem LED-Board haben wir uns dazu entschieden, eine Webseite zu erstellen, auf der die aktuellen Daten angezeigt werden. Dabei haben wir uns an der physischen Komponente orientiert: auch digital sollen die Daten mit LEDs angezeigt werden, die je nach Wetterbedingungen leuchten oder blinken. Ansonsten ist die Seite sehr minimalistisch gestaltet. Wir haben uns für ein schlichtes Design entschieden, um die Aufmerksamkeit auf die Wetterdaten zu lenken. Die Seite ist responsiv und funktioniert auch auf mobilen Geräten. Das UX war etwas der letzten Dinge, die wir erledigte, da wir uns zuerst auf die Funktionalität konzentrierten.
 
 ## Known Bugs
-haben wir das? könnte da evtl. rein, dass der Sensor teilweise 2sek braucht, bis er reagiert?
+- ESP32 kann nur bespielt werden, wenn der PIR Sensor nicht angeschlossen ist.
 
 ## Funfacts
 ??
