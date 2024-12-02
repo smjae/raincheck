@@ -30,7 +30,7 @@ Beim ESP32 und der Arduino Software gab es auch so einige Hürden. So war es ein
 ## Technik
 Dieses Projekt wurde mit folgenden Technologien umgesetzt:
 physisch:
-- ESP32
+- ESP32 Dev Modul
 - Bewegungssensor
 - LED-Board
 digital:
@@ -39,6 +39,7 @@ digital:
 - HTML
 - CSS
 - JavaScript
+- Webserver????????
 
 Unsere Datenstruktur:
 
@@ -46,6 +47,7 @@ Unsere Datenstruktur:
 
 Unser Steckbrett:
 
+![Steckbrett](assets/img/steckbrett.png)
 
 ### Kommunikation zwischen den Medienkomponenten
 - Dokumentation der Kommunikation zwischen den Medienkomponenten 
