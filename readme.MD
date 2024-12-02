@@ -29,12 +29,10 @@ Beim ESP32 und der Arduino Software gab es auch so einige Hürden. So war es ein
 
 ## Technik
 Dieses Projekt wurde mit folgenden Technologien umgesetzt:
-
 physisch:
 - ESP32 Dev Modul
 - Bewegungssensor
 - LED-Board
-
 digital:
 - PHP
 - MySQL
