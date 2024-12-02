@@ -1,5 +1,4 @@
 # RainCheck
-
 RainCheck ist ein Wetterindikator, der idealerweise bei der Haustür platziert wird. Das Gerät kombiniert ein minimalistisches Design mit praktischer Funktionalität: Sobald der integrierte Bewegungssensor eine Person erkennt, aktiviert sich die LED-Anzeige und visualisiert die aktuellen Wetterdaten in Echtzeit. Die Daten werden für unseren Studienort Chur abgerufen.
 
 Begleitend zum physischen Indikator bietet die Webseite www.raincheck.ch eine digitale Ergänzung. Hier finden Nutzer dieselbe Wettervisualisierung und können zusätzlich auf erweiterte Informationen zugreifen. Die Webseite dient zugleich als Schnittstelle zu unserer Datenbank, die in Kombination mit der API von open-meteo.com die Wetterdaten sammelt und aufbereitet.
@@ -10,9 +9,11 @@ RainCheck – für einen schnellen, klaren Wetterüberblick direkt vor der Tür 
 
 - [Idee](#idee)
 - [Vorgehen](#vorgehen)
-- [Challenges und Lernerfolge](#challengesundLernerfolge)
+- [Challenges und Lernerfolge](#challenges-und-lernerfolge)
 - [Technik](#technik)
-- [Funfacts](#funfacts)
+- [UX](#ux)
+- [Known Bugs](#known-bugs)
+- [Fun Facts](#fun-facts)
 - [Lizenz](#lizenz)
 
 ## Idee
@@ -29,10 +30,12 @@ Beim ESP32 und der Arduino Software gab es auch so einige Hürden. So war es ein
 
 ## Technik
 Dieses Projekt wurde mit folgenden Technologien umgesetzt:
+
 physisch:
 - ESP32 Dev Modul
 - Bewegungssensor
 - LED-Board
+
 digital:
 - PHP
 - MySQL
@@ -49,28 +52,26 @@ Unser Steckbrett:
 
 ![Steckbrett](assets/img/steckbrett.png)
 
-### Kommunikation zwischen den Medienkomponenten
-- Dokumentation der Kommunikation zwischen den Medienkomponenten 
-??
-
-## UX Bla Bla
-- Dokumentation der kreativen Konzeption, z. B. Inspirationen, Designentscheidungen, Vorgehensweise bei der Planung, Prozess, Ablaufdiagramm
-Zusätzlich zu unserem LED-Board haben wir uns dazu entschieden, eine Webseite zu erstellen, auf der die aktuellen Daten angezeigt werden. Dabei haben wir uns an der physischen Komponente orientiert: auch digital sollen die Daten mit LEDs angezeigt werden, die je nach Wetterbedingungen leuchten oder blinken. Ansonsten ist die Seite sehr minimalistisch gestaltet. Wir haben uns für ein schlichtes Design entschieden, um die Aufmerksamkeit auf die Wetterdaten zu lenken. Die Seite ist responsiv und funktioniert auch auf mobilen Geräten. Das UX war etwas der letzten Dinge, die wir erledigte, da wir uns zuerst auf die Funktionalität konzentrierten.
+## UX
+Zusätzlich zu unserem LED-Board haben wir uns dazu entschieden, eine Webseite zu erstellen, auf der die aktuellen Daten angezeigt werden. Dabei haben wir uns an der physischen Komponente orientiert: auch digital sollen die Daten mit LEDs angezeigt werden, die je nach Wetterbedingungen leuchten oder blinken. Ansonsten ist die Seite sehr minimalistisch gestaltet. Wir haben uns für ein schlichtes Design entschieden, um die Aufmerksamkeit auf die Wetterdaten zu lenken. Die Seite ist responsiv und funktioniert auch auf mobilen Geräten. Das UX war etwas der letzten Dinge, die wir erledigten, da wir uns zuerst auf die Funktionalität konzentrierten. Als Goodie visualisieren wir auf der Webseite registrierte Bewegungen des Wetterindikators.
 
 ## Known Bugs
-- ESP32 kann nur bespielt werden, wenn der PIR Sensor nicht angeschlossen ist.
+Die Microcontroller - oder zumindest, die von uns verwendeten ESP32 - können teilweise nur mit neuem Code bespielt werden, wenn gewisse Sensorfen, wie unser PIR Sensorf nicht angeschlossen sind. Das hat uns mindestens 2 Tage Frustration beschert, bis wir das herausgefunden haben.
 
 ## Funfacts
-??
+Im Code haben wir ein Easter Egg versteckt – hast du es schon entdeckt?
+
+RainCheck ist für uns viel mehr als nur ein Projekt – es ist der krönende Abschluss unseres gemeinsamen Weges im MMP-Studium. Wir blicken auf zahlreiche gemeinsame Gruppenarbeiten zurück, in denen die Zusammenarbeit immer inspirierend und bereichernd war. Diese Erfahrungen haben uns als Team  zusammengeschweisst.
+
+Mit RainCheck haben wir uns entschieden, im Rahmen des Studiums ein letztes gemeinsames Projekt zu realisieren – und was für eines! Neben all den rein digitalen Werken konnten wir nun auch etwas Greifbares schaffen: ein physisches Werk, das unsere Leidenschaft für kreative und technische Herausforderungen widerspiegelt.
 
 ## Aufgabenaufteilung
-- [] gemeinsam: Datenbank aufsetzen, Kommunikation mit API, Datenstruktur
-- [] Raphi: Hardware, Bewegungssensor, LED-Board, Kommunikation mit Datenbank
-- [] Simea: Datenbank, Kommunikation mit Datenbank, Frontend, UX/UI
+gemeinsam: Datenbank aufsetzen, Kommunikation mit API, Datenstruktur, etc.
+Raphi: Hardware, Bewegungssensor, LED-Board, Kommunikation mit Datenbank
+Simea: Datenbank, Kommunikation mit Datenbank, Frontend, UX/UI, Design und 3D Druck des Gehäuse
 
 ## Lizenz
 Dieses Projekt ist unter der MIT-Lizenz lizenziert. Weitere Informationen finden Sie in der [LICENSE](LICENSE.txt) Datei.
 
-## Mögliche Ergänzungen / To-Do's
-- [] Video von live funktionen
-- [] Codeabschnitte erläutern
+## RainCheck in Action
+- [ ] Video von live funktionen
