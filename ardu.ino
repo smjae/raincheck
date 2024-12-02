@@ -1,14 +1,11 @@
-// #
-// # Editor     : Raphael Schnell, Simea Minder
-// # Date       : 15.11.2024
-// # E-Mail     : 
+// # Autoren       : Simea Minder, Raphael Schnell
+// # Datum         : 02.12.2024
 
-// # Product name: PIR (Motion) Sensor
-// # Product SKU : SEN0171
-// # Version     : 1.0
+// # Produktname : RainCheck - Visueller Indikator zum aktuellen Wetter
+// # Version      : 1.0
 
-// # Description:
-// # The sketch for using the PIR Motion sensor with Arduino/Raspberry Pi controller to achieve the human detection feature. Based on weatherdata from an API the LEDs will indicate valuable information for clothing choices bevore leaving the house.
+// # Beschreibung:
+// # Dieses Programm ist für das ESP32 Dev Kit entwickelt und nutzt einen PIR-Motion-Sensor zur Bewegungserkennung. Bei registrierter Bewegung werden die LED-Indikatoren aktiviert und visualisieren die aktuellen Wetterbedingungen. Hierbei wird ein “RainCheck” durchgeführt, um spezifische Wetterparameter wie Regen- bzw. Schneewahrscheinlichkeit, Sturm oder Temperatur anzuzeigen.
 
 #include <WiFi.h>
 #include <HTTPClient.h>
@@ -17,7 +14,7 @@
 #include <time.h>
 
 int sensorPin = 21;
-int indicator = 5;
+// int indicator = 5; // Die Indikator LED zeigt an, wenn Bewegung registriert wurde. Den Bewegungsindikator haben wir aktuell deaktiviert, da in der finalen Version dazu keine LED verbaut wurde.
 int Kontrollleuchte = 12;
 int Regenwahrscheinlichkeit = 27;
 int Schneewahrscheinlichkeit = 25;
@@ -39,8 +36,8 @@ const char* serverURLLoad = "https://raincheck.ch/php/load.php"; // load.php
 WiFiServer server(80);
 
 unsigned long lastFetchTime = 0;  // Speichert den Zeitpunkt der letzten Abfrage
-// INTERVAL Zwischen Visuellen Darstelleungen einstellen - 60000 = 1min - 300000 = 5min
-const unsigned long fetchDelay = 60000;  // 5 Minuten in Millisekunden (5 * 60 * 1000) = 300000 
+// INTERVAL Zwischen Visuellen Darstelleungen einstellen // 60000 = 1min // 300000 = 5min // 5 Minuten in Millisekunden (5 * 60 * 1000)
+const unsigned long fetchDelay = 60000;
 
 // Strukturdefinition für Wetterdaten
 struct WeatherData {
@@ -54,14 +51,14 @@ struct WeatherData {
 };
 
 // Globale Variable für den LED-Blinkzustand
-bool blinkState = false;
-unsigned long lastBlinkTime = 0;
+bool blinkState = false; // Blinkzustand aus
+unsigned long lastBlinkTime = 0; // Zeit seit letztem Blinken auf 0
 const unsigned long BLINK_INTERVAL = 500; // Blinkintervall in Millisekunden
 
 void setup()
 {
   pinMode(sensorPin, INPUT);
-  pinMode(indicator, OUTPUT);
+  // pinMode(indicator, OUTPUT); // Den Bewegungsindikator haben wir aktuell deaktiviert, da in der finalen Version dazu keine LED verbaut wurde.
   pinMode(Kontrollleuchte, OUTPUT);
   pinMode(Regenwahrscheinlichkeit, OUTPUT);
   pinMode(Schneewahrscheinlichkeit, OUTPUT);
@@ -74,10 +71,10 @@ void setup()
   esp_task_wdt_config_t wdtConfig = {
     .timeout_ms = 30000,              // 30 Sekunden
     .idle_core_mask = (1 << 0),       // CPU 0
-    .trigger_panic = true
+    .trigger_panic = true             // wenn true, dann wir der ESP automatisch neugestartet
   };
   esp_task_wdt_init(&wdtConfig);
-  esp_task_wdt_add(NULL); // Fügen Sie den aktuellen Task (Haupt-Task) hinzu
+  esp_task_wdt_add(NULL); // Erwartet von loop ab und zu ein Lebenszeichen, wie z.B. esp_task_edt_reset()
 
   // WLAN Verbindung herstellen
   WiFi.begin(ssid, pass);
@@ -87,6 +84,7 @@ void setup()
   bool connected = false;
   
   while (!connected) {
+    // Versuche eine Verbindung herzustellen
     while (WiFi.status() != WL_CONNECTED && wifiTimeout < 20) {
       delay(500);
       Serial.print(".");
@@ -97,22 +95,92 @@ void setup()
     if (WiFi.status() == WL_CONNECTED) {
       Serial.println("\nWiFi verbunden!");
       connected = true;
-      // NTP Zeit synchronisieren
-      configTime(3600, 0, "pool.ntp.org", "time.nist.gov"); // 3600 Sekunden für UTC+1
-      delay(2000);
+      // NTP Zeit synchronisieren -> funktioniert leider nicht immer sauber, weshalb es 2x durchgeführt wird.
+      for (int i = 0; i < 2; i++) { // Zwei Versuche
+            configTime(3600, 0, "pool.ntp.org", "time.nist.gov"); // UTC+1
+            delay(2000);
+      }
       time_t now;
-      String formattedTime = holeDatumUndZeitMitSekunden(); // Speichern Sie den Rückgabewert in formattedTime
-      // fetchWeatherData(); // zum Start wird einmal alles durchgespielt.
+      // Datum und Uhrzeit abrufen + speichern des Rückgabewerts in formattedTime. FormattedTime verwenden wir später zum prüfen, ob die Daten der API aktuell sind.
+      String formattedTime = holeDatumUndZeitMitSekunden();
     } else {
       Serial.println("\nWLAN-Verbindung fehlgeschlagen! Versuche erneut in 5 Sekunden...");
       blinkAllLeds();
-      delay(5000);  // 5 Sekunden warten
-      WiFi.begin(ssid, pass);  // Verbindung neu starten
-      wifiTimeout = 0;  // Timeout zurücksetzen
+      // 5 Sekunden warten
+      delay(5000);
+      // Verbindung neu starten
+      WiFi.begin(ssid, pass);
+      // Timeout zurücksetzen
+      wifiTimeout = 0;
       esp_task_wdt_reset();
     }
   }
 
+}
+
+void loop()
+{
+  // Watchdog zurücksetzen
+  esp_task_wdt_reset();
+  
+  // Aufruf der Funktion und Speichern des Rückgabewerts
+  int state = checkSensorState();
+  
+  // Serial.println(state);
+  updateIndicators(state);
+  // Wenn Bewegung erkannt wird (state = 1) und 5 Minuten seit der letzten Abfrage vergangen sind
+  if (state == 1 && (millis() - lastFetchTime >= fetchDelay)) {
+    Serial.println("Bewegung erkannt und seit der letzten Loopausführung ist es mehr als 5 Minute her!");
+    Serial.println();
+    lastFetchTime = millis();  // Aktualisiere den Zeitpunkt der letzten Abfrage
+    activateLedAnzeige();
+    LoadDataToDb(); // Daten in die Datenbank laden, dass jetzt eine Bewegung festgestellt wurde
+    fetchWeatherData();  // Führe Datenbankabfrage durch
+  }
+
+  updateIndicators(state);
+  printStateMessage(state);
+
+  // delay im Loop
+  delay(500);
+}
+
+int checkSensorState() {
+    int state = digitalRead(sensorPin); // Sensorstatus lesen
+    Serial.println(state); // Den Zustand ausgeben
+    return state; // Den Zustand zurückgeben
+}
+
+// Setzt die LEDIndikatoren auf den Gewünschten Status (an oder aus)
+void updateIndicators(int state)
+{
+  // Schlaufe für die Bewegungsindikator LED ein bzw. auszuschalten. Den Bewegungsindikator haben wir aktuell deaktiviert, da in der finalen Version dazu keine LED verbaut wurde.
+  // if (state == 1) {
+  // digitalWrite(indicator, state);
+  // } else {
+  // digitalWrite(indicator, state);
+  // }
+  if (ledAnzeigeAktiviert == false) { // Alle LEDs ausschalten
+  digitalWrite(Kontrollleuchte, 0);
+  digitalWrite(Regenwahrscheinlichkeit, 0);
+  blinkRegenwahrscheinlichkeit = false;
+  digitalWrite(Schneewahrscheinlichkeit, 0);
+  digitalWrite(Temperaturanzeige, 0);
+  digitalWrite(Sturm, 0);
+  digitalWrite(Regenschirmverbot, 0);
+  blinkRegenschirmverbot = false;
+  }
+}
+
+void activateLedAnzeige() {
+    ledAnzeigeAktiviert = true; // Aktivieren Sie die LED-Anzeige
+    startTimeLedAnzeigeAktiviert = millis(); // Speichern Sie die aktuelle Zeit
+}
+
+void printStateMessage(int state)
+{
+  if(state == 1) Serial.println("Somebody is in this area!");
+  else if(state == 0) Serial.println("No one!");
 }
 
 // Funktion zum Abrufen der Wetterdaten
@@ -140,23 +208,23 @@ void fetchWeatherData() {
     }
     else if (httpResponseCode == 404) {
       Serial.println("API-Endpunkt nicht gefunden");
-      WeatherData weather = {0, 0, 0, 0, true, true, ""}; // Fehlerzustand
+      WeatherData weather = {0, 0, 0, 0, false, true, ""}; // Fehlerzustand true
       visualRaincheck(weather);
     }
     else if (httpResponseCode == 500) {
       Serial.println("Server-Fehler");
-      WeatherData weather = {0, 0, 0, 0, true, true, ""}; // Fehlerzustand
+      WeatherData weather = {0, 0, 0, 0, false, true, ""}; // Fehlerzustand true
       visualRaincheck(weather);
     }
     else if (httpResponseCode == -1) {
       Serial.println("Timeout bei HTTP-Anfrage");
-      WeatherData weather = {0, 0, 0, 0, true, true, ""}; // Fehlerzustand
+      WeatherData weather = {0, 0, 0, 0, false, true, ""}; // Fehlerzustand true
       visualRaincheck(weather);
     }
     else {
       Serial.print("Unbekannter Fehler: ");
       Serial.println(httpResponseCode);
-      WeatherData weather = {0, 0, 0, 0, true, true, ""}; // Fehlerzustand
+      WeatherData weather = {0, 0, 0, 0, false, true, ""}; // Fehlerzustand true
       visualRaincheck(weather);
     }
     
@@ -164,74 +232,12 @@ void fetchWeatherData() {
   }
   else {
     Serial.println("WiFi nicht verbunden");
-    WeatherData weather = {0, 0, 0, 0, true, true, ""}; // Fehlerzustand
+    WeatherData weather = {0, 0, 0, 0, false, true, ""}; // Fehlerzustand true
     visualRaincheck(weather);
   }
 }
 
-void activateLedAnzeige() {
-    ledAnzeigeAktiviert = true; // Aktivieren Sie die LED-Anzeige
-    startTimeLedAnzeigeAktiviert = millis(); // Speichern Sie die aktuelle Zeit
-}
-
-void loop()
-{
-  // Watchdog zurücksetzen
-  esp_task_wdt_reset();
-  
-  int state = checkSensorState(); // Aufruf der Funktion und Speichern des Rückgabewerts
-  // int state = digitalRead(sensorPin);
-  // Serial.println(state);
-  updateIndicators(state);
-  // Wenn Bewegung erkannt wird (state = 1) und 5 Minuten seit der letzten Abfrage vergangen sind
-  if (state == 1 && (millis() - lastFetchTime >= fetchDelay)) {
-    Serial.println("Bewegung erkannt und seit der letzten Loopausführung ist es mehr als 5 Minute her!");
-    Serial.println();
-    lastFetchTime = millis();  // Aktualisiere den Zeitpunkt der letzten Abfrage
-    activateLedAnzeige();
-    LoadDataToDb(); // Daten in die Datenbank laden, dass jetzt eine Bewegung festgestellt wurde
-    fetchWeatherData();  // Führe Datenbankabfrage durch
-  }
-
-  updateIndicators(state);
-  printStateMessage(state);
-
-  // delay im Loop
-  delay(500);
-}
-
-int checkSensorState() {
-    int state = digitalRead(sensorPin); // Sensorstatus lesen
-    Serial.println(state); // Den Zustand ausgeben
-    return state; // Den Zustand zurückgeben
-}
-
-void updateIndicators(int state)
-{
-  if (state == 1) {
-  digitalWrite(indicator, state);
-  } else {
-  digitalWrite(indicator, state);
-  }
-  if (ledAnzeigeAktiviert == false) {
-  digitalWrite(Kontrollleuchte, 0);
-  digitalWrite(Regenwahrscheinlichkeit, 0);
-  blinkRegenwahrscheinlichkeit = false;
-  digitalWrite(Schneewahrscheinlichkeit, 0);
-  digitalWrite(Temperaturanzeige, 0);
-  digitalWrite(Sturm, 0);
-  digitalWrite(Regenschirmverbot, 0);
-  blinkRegenschirmverbot = false;
-  }
-}
-
-void printStateMessage(int state)
-{
-  if(state == 1) Serial.println("Somebody is in this area!");
-  else if(state == 0) Serial.println("No one!");
-}
-
-// Hilfsfunktion zum Blinken der LEDs basierend auf den Bedingungen
+// Hilfsfunktion zum Blinken einzelner LEDs basierend auf den Bedingungen
 void blinkConditionalLeds()
 {
   Serial.println("blinkConditionalLeds is active!");
@@ -319,11 +325,12 @@ void visualRaincheck(WeatherData weather) {
     blinkAllLeds();
     return;
   }
+  
   // Steuert die einzelnen LEDs basierend auf den Wetterdaten:
-
-  // LED 1: Kontrollleuchte (wird bereits in updateIndicators() gesteuert)
+  // LED 1: Kontrollleuchte
   Serial.print("\nDu bist schön!");
   digitalWrite(Kontrollleuchte, HIGH);
+  
   // LED 2: Regenwahrscheinlichkeit
   if (weather.rain > 15) {
     blinkRegenwahrscheinlichkeit = true;
@@ -342,10 +349,12 @@ void visualRaincheck(WeatherData weather) {
   // LED 4: Temperaturanzeige
   digitalWrite(Temperaturanzeige, weather.temperature < 12 ? HIGH : LOW);
   Serial.print("\nTemperaturanzeige");
+  
   // LED 5: Sturm
   digitalWrite(Sturm, weather.windSpeed > 20 ? HIGH : LOW);
   Serial.print("\nSturm");
   Serial.println();
+  
   // LED 6: Regenschirmverbot
   digitalWrite(Regenschirmverbot, (weather.rain > 1 && weather.windSpeed > 30) ? HIGH : LOW);
   
@@ -354,6 +363,7 @@ void visualRaincheck(WeatherData weather) {
     // blinkLed(Regenschirmverbot);
     Serial.print("\nRegenschirmverbot");
   }
+  // Funktion zum Blinken einzelner LEDs aufrufen
   blinkConditionalLeds();
 }
 
@@ -426,17 +436,18 @@ String holeDatumUndZeitMitSekunden() {
   return String(formattedTime);
 }
 
+// Bewegung erkannt an die Datenbank melden
 void LoadDataToDb() {
     
   // JSON-Dokument erstellen
   StaticJsonDocument<200> dataObject;
   String jsonString;
 
-  // Daten setzen
-  bool movement = true; // Beispielwert, anpassen je nach Logik
+  // Daten setzen; Bewegung erkannt
+  bool movement = true;
   
   // Hole aktuelles Datum und Zeit mit Sekunden
-  String formattedTime = holeDatumUndZeitMitSekunden(); // Speichern Sie den Rückgabewert in formattedTime
+  String formattedTime = holeDatumUndZeitMitSekunden();
   
   Serial.println("Werte definiert");
   Serial.println();
@@ -444,8 +455,8 @@ void LoadDataToDb() {
   dataObject["movement"] = movement;
   dataObject["detectionTime"] = formattedTime;
 
-  // Serialize the JSON document to a String
-  if (serializeJson(dataObject, jsonString) == 0) { // Check if serialization was successful
+  // Serialisieren des JSON Dokuments in einen String
+  if (serializeJson(dataObject, jsonString) == 0) { // Überprüfen ob das Serialisieren erfolgreich war
     Serial.println("Fehler bei der Serialisierung des JSON");
   } else {
   Serial.println("JSON String erstellt");
@@ -469,7 +480,6 @@ void LoadDataToDb() {
       Serial.printf("Error on sending POST: %d\n", httpResponseCode);
     }
     
-
     http.end();
   } else {
     Serial.println("WiFi Disconnected");
