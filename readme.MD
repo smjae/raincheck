@@ -58,7 +58,7 @@ Zusätzlich zu unserem LED-Board haben wir uns dazu entschieden, eine Webseite z
 ## Known Bugs
 Die Microcontroller - oder zumindest, die von uns verwendeten ESP32 - können teilweise nur mit neuem Code bespielt werden, wenn gewisse Sensorfen, wie unser PIR Sensorf nicht angeschlossen sind. Das hat uns mindestens 2 Tage Frustration beschert, bis wir das herausgefunden haben.
 
-## Funfacts
+## Fun Facts
 Im Code haben wir ein Easter Egg versteckt – hast du es schon entdeckt?
 
 RainCheck ist für uns viel mehr als nur ein Projekt – es ist der krönende Abschluss unseres gemeinsamen Weges im MMP-Studium. Wir blicken auf zahlreiche gemeinsame Gruppenarbeiten zurück, in denen die Zusammenarbeit immer inspirierend und bereichernd war. Diese Erfahrungen haben uns als Team  zusammengeschweisst.
