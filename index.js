@@ -222,7 +222,6 @@ document.querySelector("#prognose").addEventListener("click", async () => {
     document.querySelector(".prognose").style = "display: block";
     // Chart wird gelöscht, damit er wieder neu erstellt werden kann
     let canvas = document.getElementById("myChart");
-    let ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 });
