@@ -123,7 +123,13 @@ function processData(data) {
   console.log("countsByDate:", countsByDate); // Debugging: Log the countsByDate object
 
   // Daten für die Visualisierung vorbereiten
-  const dataset = letzteWoche.map((date) => countsByDate[date] || 0);
+  const dataset = letzteWoche.map((date) => {
+    if (date === "heute") {
+      const todayFormatted = formatDate(heute);
+      return countsByDate[todayFormatted] || 0;
+    }
+    return countsByDate[date] || 0;
+  });
 
   console.log("dataset:", dataset); // Debugging: Log the dataset array
 
@@ -160,6 +166,7 @@ function processData(data) {
           title: {
             display: true,
             text: "Count",
+            min: 0,
           },
         },
       },
