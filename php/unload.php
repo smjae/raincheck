@@ -25,7 +25,7 @@ try {
     }
 
     // Zweite Abfrage, um die Anzahl der Anfragen der letzten Woche zu erhalten
-    $query2 = "SELECT DATE(detection_time) as date, COUNT(*) as count FROM Anfragen WHERE detection_time >= :oneWeekAgo GROUP BY DATE(detection_time) ORDER BY date DESC";
+    $query2 = "SELECT DATE(detection_time) as date, COUNT(*) as count FROM Anfragen WHERE detection_time >= :oneWeekAgo GROUP BY DATE(detection_time) ORDER BY date ASC";
     $stmt2 = $pdo->prepare($query2);
     $stmt2->bindParam(':oneWeekAgo', $oneWeekAgo);
     $stmt2->execute();
