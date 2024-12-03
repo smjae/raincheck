@@ -17,9 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (data && data.wettervorhersage) {
     displayData(data.wettervorhersage);
     displayLEDs(data.wettervorhersage);
-    processData(data.anfragen); // Assuming you want to process 'anfragen' data
   } else {
-    console.log("No data or unexpected format:", data);
     // falls keine Daten vorhanden sind oder das Format nicht stimmt, blinken alle LEDs
     regenschutzLED.id = "led-green-blink";
     windLED.id = "led-purple-blink";
@@ -70,16 +68,15 @@ function displayLEDs(data) {
     kontrollLED.id = "led-red-on";
   }
 
+  // Wenn mehr als 1mm Regen fällt, leuchtet die Regen-LED
+  if (rain > 1) {
+    regenLED.id = "led-blue-on";
+  }
 
   // Wenn mehr als 15mm Regen fällt, blinkt die Regen-LED
   if (rain > 15) {
     regenLED.id = "led-blue-blink";
   }
-  // Wenn mehr als 1mm Regen fällt, leuchtet die Regen-LED
-  else if (rain > 1) {
-    regenLED.id = "led-blue-on";
-  }
-
 
   // Wenn mehr als 0cm Schnee fällt, leuchtet die Schnee-LED
   if (snow > 0) {
@@ -107,27 +104,21 @@ function processData(data) {
   // die letzten 7 Tage ermitteln und in einen Array namens "letzteWoche" speichern
   let letzteWoche = [];
   let heute = new Date();
-  letzteWoche.unshift("heute");
+  letzteWoche.push(heute.toISOString().split("T")[0]);
   for (let i = 1; i < 7; i++) {
     let tag = new Date();
     tag.setDate(heute.getDate() - i);
-    letzteWoche.unshift(formatDate(tag)); // Unshift the formatted date
+    letzteWoche.push(tag.toISOString().split("T")[0]); // Push the full date in YYYY-MM-DD format
   }
-
-  console.log("letzteWoche:", letzteWoche); // Debugging: Log the letzteWoche array
 
   // Anfragen des Bewegungssensors pro Tag in einem Objekt namens "countsByDate" speichern
   const countsByDate = {};
-  data.forEach((item) => {
+  data.anfragen.forEach((item) => {
     countsByDate[item.date] = item.count;
   });
 
-  console.log("countsByDate:", countsByDate); // Debugging: Log the countsByDate object
-
   // Daten für die Visualisierung vorbereiten
   const dataset = letzteWoche.map((date) => countsByDate[date] || 0);
-
-  console.log("dataset:", dataset); // Debugging: Log the dataset array
 
   // per DOM auf das Canvas zugreifen und mit Chart.js eine Linien-Grafik erstellen
   const canvas = document.getElementById("myChart");
@@ -167,12 +158,6 @@ function processData(data) {
       },
     },
   });
-}
-
-// Helper function to format dates
-function formatDate(date) {
-  const options = { day: '2-digit', month: 'long', year: 'numeric' };
-  return new Intl.DateTimeFormat('de-DE', options).format(date);
 }
 
 // Event-Listener für die Buttons, die zwischen Prognose und Abfragen wechseln
