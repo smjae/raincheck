@@ -104,11 +104,11 @@ function processData(data) {
   // die letzten 7 Tage ermitteln und in einen Array namens "letzteWoche" speichern
   let letzteWoche = [];
   let heute = new Date();
-  letzteWoche.push(heute.toISOString().split("T")[0]);
+  letzteWoche.unshift(heute.toISOString().split("T")[0]);
   for (let i = 1; i < 7; i++) {
     let tag = new Date();
     tag.setDate(heute.getDate() - i);
-    letzteWoche.push(tag.toISOString().split("T")[0]); // Push the full date in YYYY-MM-DD format
+    letzteWoche.unshift(tag.toISOString().split("T")[0]); // Unshift the full date in YYYY-MM-DD format
   }
 
   // Anfragen des Bewegungssensors pro Tag in einem Objekt namens "countsByDate" speichern
