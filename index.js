@@ -104,11 +104,11 @@ function processData(data) {
   // die letzten 7 Tage ermitteln und in einen Array namens "letzteWoche" speichern
   let letzteWoche = [];
   let heute = new Date();
-  letzteWoche.push("heute");
+  letzteWoche.unshift("heute");
   for (let i = 1; i < 7; i++) {
     let tag = new Date();
     tag.setDate(heute.getDate() - i);
-    letzteWoche.push(formatDate(tag)); // Push the formatted date
+    letzteWoche.unshift(formatDate(tag)); // Unshift the formatted date
   }
 
   console.log("letzteWoche:", letzteWoche); // Debugging: Log the letzteWoche array
@@ -131,9 +131,6 @@ function processData(data) {
     return countsByDate[date] || 0;
   });
 
-  //create a new variable claled datasetReversed and reverse the dataset array
-  const datasetReversed = dataset.reverse();
-
   console.log("dataset:", dataset); // Debugging: Log the dataset array
 
   // per DOM auf das Canvas zugreifen und mit Chart.js eine Linien-Grafik erstellen
@@ -147,7 +144,7 @@ function processData(data) {
       datasets: [
         {
           label: "Anzahl Meldungen des Bewegungssensors pro Tag",
-          data: datasetReversed,
+          data: dataset,
           borderColor: "rgba(255, 99, 132, 1)",
           backgroundColor: "rgba(255, 99, 132, 0.2)",
           fill: false,
