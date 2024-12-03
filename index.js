@@ -143,6 +143,7 @@ function processData(data) {
       labels: letzteWoche,
       datasets: [
         {
+          label: "Abfragen pro Tag",
           data: dataset,
           borderColor: "rgba(255, 99, 132, 1)",
           backgroundColor: "rgba(255, 99, 132, 0.2)",
