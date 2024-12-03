@@ -1,8 +1,8 @@
-// # Autoren       : Simea Minder, Raphael Schnell
-// # Datum         : 02.12.2024
+// # Autoren   : Simea Minder, Raphael Schnell
+// # Datum     : 02.12.2024
 
 // # Produktname : RainCheck - Visueller Indikator zum aktuellen Wetter
-// # Version      : 1.0
+// # Version     : 1.0
 
 // # Beschreibung:
 // # Dieses Programm ist für das ESP32 Dev Kit entwickelt und nutzt einen PIR-Motion-Sensor zur Bewegungserkennung. Bei registrierter Bewegung werden die LED-Indikatoren aktiviert und visualisieren die aktuellen Wetterbedingungen. Hierbei wird ein “RainCheck” durchgeführt, um spezifische Wetterparameter wie Regen- bzw. Schneewahrscheinlichkeit, Sturm oder Temperatur anzuzeigen.
@@ -15,11 +15,11 @@
 
 int sensorPin = 21;
 // int indicator = 5; // Die Indikator LED zeigt an, wenn Bewegung registriert wurde. Den Bewegungsindikator haben wir aktuell deaktiviert, da in der finalen Version dazu keine LED verbaut wurde.
-int Kontrollleuchte = 12;
-int Regenwahrscheinlichkeit = 27;
-int Schneewahrscheinlichkeit = 25;
-int Temperaturanzeige = 32;
-int Sturm = 26;
+int Kontrollleuchte = 13;
+int Regenwahrscheinlichkeit = 12;
+int Schneewahrscheinlichkeit = 27;
+int Temperaturanzeige = 26;
+int Sturm = 25;
 int Regenschirmverbot = 33;
 
 bool blinkRegenwahrscheinlichkeit = false;
@@ -28,8 +28,8 @@ unsigned long startTimeLedAnzeigeAktiviert; // Variable zur Speicherung der Star
 bool ledAnzeigeAktiviert = false;
 
 // WLAN Konfiguration
-const char* ssid = "WLAN";
-const char* pass = "PASSWORT";
+const char* ssid = "blabla";
+const char* pass = "sagichnicht";
 const char* serverUrl = "https://raincheck.ch/php/endpoint.php"; // endpoint.php
 const char* serverURLLoad = "https://raincheck.ch/php/load.php"; // load.php
 
@@ -115,7 +115,6 @@ void setup()
       esp_task_wdt_reset();
     }
   }
-
 }
 
 void loop()
@@ -227,7 +226,6 @@ void fetchWeatherData() {
       WeatherData weather = {0, 0, 0, 0, false, true, ""}; // Fehlerzustand true
       visualRaincheck(weather);
     }
-    
     http.end();
   }
   else {
@@ -242,46 +240,48 @@ void blinkConditionalLeds()
 {
   Serial.println("blinkConditionalLeds is active!");
   while (ledAnzeigeAktiviert) {      
-    // Überprüfen, ob 20 Sekunden vergangen sind, um die Schleife zu beenden
-    if (millis() - startTimeLedAnzeigeAktiviert >= 60000) {  // 60000 Millisekunden = 20 Sekunden
+    // Überprüfen, ob 50 Sekunden vergangen sind, um die Schleife zu beenden
+    if (millis() - startTimeLedAnzeigeAktiviert >= 50000) {  // 50000 Millisekunden = 60 Sekunden
         ledAnzeigeAktiviert = false; // Setzen Sie ledAnzeigeAktiviert auf false
-        Serial.println("LED-Anzeige deaktiviert nach 20 Sekunden.");
+        Serial.println("LED-Anzeige deaktiviert nach 50 Sekunden.");
         break;  // Schleife beenden
     }
-
+    // Blinken der LEDs
+    if (blinkRegenwahrscheinlichkeit) {
+      // Wenn eine der Bedingungen erfüllt ist, blinken
+      if (millis() % 500 < 250) { // Blinkintervall von 500 ms
+          if (blinkRegenwahrscheinlichkeit) {
+              digitalWrite(Regenwahrscheinlichkeit, HIGH);
+              Serial.println("viele regen");
+          }
+          // if (blinkRegenwahrscheinlichkeit) {
+          //     digitalWrite(Regenwahrscheinlichkeit, HIGH);
+          // }
+      } else {
+          digitalWrite(Regenwahrscheinlichkeit, LOW);
+          // digitalWrite(Regenwahrscheinlichkeit, LOW);
+      }
+    }
     // Blinken der LEDs
     if (blinkRegenschirmverbot) {
-        digitalWrite(Regenschirmverbot, HIGH); // LED für Regenschirmverbot einschalten
-    } else {
-        digitalWrite(Regenschirmverbot, LOW); // LED für Regenschirmverbot ausschalten
-    }
-
-    if (blinkRegenwahrscheinlichkeit) {
-        digitalWrite(Regenwahrscheinlichkeit, HIGH); // LED für Regenwahrscheinlichkeit einschalten
-    } else {
-        digitalWrite(Regenwahrscheinlichkeit, LOW); // LED für Regenwahrscheinlichkeit ausschalten
-    }
-
-    // Blinken der LEDs
-    if (blinkRegenschirmverbot || blinkRegenwahrscheinlichkeit) {
         // Wenn eine der Bedingungen erfüllt ist, blinken
         if (millis() % 500 < 250) { // Blinkintervall von 500 ms
             if (blinkRegenschirmverbot) {
                 digitalWrite(Regenschirmverbot, HIGH);
             }
-            if (blinkRegenwahrscheinlichkeit) {
-                digitalWrite(Regenwahrscheinlichkeit, HIGH);
-            }
+            // if (blinkRegenwahrscheinlichkeit) {
+            //     digitalWrite(Regenwahrscheinlichkeit, HIGH);
+            // }
         } else {
             digitalWrite(Regenschirmverbot, LOW);
-            digitalWrite(Regenwahrscheinlichkeit, LOW);
+            // digitalWrite(Regenwahrscheinlichkeit, LOW);
         }
     }
     esp_task_wdt_reset();  // Watchdog zurücksetzen während der Schleife
     }
     // LEDs am Ende ausschalten
     digitalWrite(Regenschirmverbot, LOW);
-    digitalWrite(Regenwahrscheinlichkeit, LOW);
+    // digitalWrite(Regenwahrscheinlichkeit, LOW);
     Serial.println("blinkConditionalLeds has endet!");
     
     // Sensor nochmals auslesen, um die nächste Funktion (updateIndicators) aufrufen zu können
@@ -307,7 +307,6 @@ void blinkAllLeds() {
     }
     esp_task_wdt_reset();  // Watchdog zurücksetzen während der Schleife
   }
-  
   // Alle LEDs am Ende ausschalten
   digitalWrite(Kontrollleuchte, LOW);
   digitalWrite(Regenwahrscheinlichkeit, LOW);
@@ -336,10 +335,8 @@ void visualRaincheck(WeatherData weather) {
     blinkRegenwahrscheinlichkeit = true;
     // blinkLed(Regenwahrscheinlichkeit);
     Serial.print("\nRegenwahrscheinlichkeit");
-  } else if (weather.rain > 1) {
-    digitalWrite(Regenwahrscheinlichkeit, HIGH);
   } else {
-    digitalWrite(Regenwahrscheinlichkeit, LOW);
+    digitalWrite(Regenwahrscheinlichkeit, weather.rain > 1 ? HIGH: LOW);
   }
 
   // LED 3: Schneewahrscheinlichkeit
@@ -479,7 +476,6 @@ void LoadDataToDb() {
     } else {
       Serial.printf("Error on sending POST: %d\n", httpResponseCode);
     }
-    
     http.end();
   } else {
     Serial.println("WiFi Disconnected");
