@@ -53,6 +53,7 @@ Unser Steckbrett:
 ![Steckbrett](assets/img/steckbrett.png)
 
 Unser Steckbrett kann virtuell betrachtet und bearbeitet werden. Direktlink zu Wokwi:
+
 **[RainCheck Steckbrett – Wokwi Simulation](https://wokwi.com/projects/415264541148403713)**
 
 ## UX
