@@ -80,13 +80,13 @@ Dieses Projekt ist unter der MIT-Lizenz lizenziert. Weitere Informationen finden
 
 ## RainCheck in Action
 ### Achtung, Regen erwartet
-<iframe width="1920" height="1080" src="https://youtu.be/tcWjL8cPkmE" frameborder="0" allowfullscreen></iframe>
+[![Video ansehen](assets/img/RainCheck_Thumbnail_Regen.png)](https://youtu.be/tcWjL8cPkmE)
 
 ### Heute kommt Schnee & Brrr, kalt!
-<iframe width="1920" height="1080" src="https://youtu.be/tcWjL8cPkmE" frameborder="0" allowfullscreen></iframe>
+[![Video ansehen](assets/img/RainCheck_Thumbnail_Schnee-Kalt.png)](https://youtu.be/tcWjL8cPkmE)
 
 ### Achtung, Sturmgefahr
-<iframe width="1920" height="1080" src="https://youtu.be/tcWjL8cPkmE" frameborder="0" allowfullscreen></iframe>
+[![Video ansehen](assets/img/RainCheck_Thumbnail_Sturmgefahr.png)](https://youtu.be/tcWjL8cPkmE)
 
 ### Heute brauchst du einen Regenschutz. Lieber kein Schirm...
-<iframe width="1920" height="1080" src="https://youtu.be/tcWjL8cPkmE" frameborder="0" allowfullscreen></iframe>
+[![Video ansehen](assets/img/RainCheck_Thumbnail_Regenschutz-Regenschirm.png)](https://youtu.be/tcWjL8cPkmE)
