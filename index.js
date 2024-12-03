@@ -131,6 +131,9 @@ function processData(data) {
     return countsByDate[date] || 0;
   });
 
+  //create a new variable claled datasetReversed and reverse the dataset array
+  const datasetReversed = dataset.reverse();
+
   console.log("dataset:", dataset); // Debugging: Log the dataset array
 
   // per DOM auf das Canvas zugreifen und mit Chart.js eine Linien-Grafik erstellen
@@ -144,7 +147,7 @@ function processData(data) {
       datasets: [
         {
           label: "Anzahl Meldungen des Bewegungssensors pro Tag",
-          data: dataset,
+          data: datasetReversed,
           borderColor: "rgba(255, 99, 132, 1)",
           backgroundColor: "rgba(255, 99, 132, 0.2)",
           fill: false,
@@ -167,7 +170,6 @@ function processData(data) {
             display: true,
             text: "Count",
             min: 0,
-            reverse: true, // This will flip the y-axis scale
           },
         },
       },
