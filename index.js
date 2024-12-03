@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (data && data.wettervorhersage) {
     displayData(data.wettervorhersage);
     displayLEDs(data.wettervorhersage);
+    processData(data.anfragen); // Assuming you want to process 'anfragen' data
   } else {
     // falls keine Daten vorhanden sind oder das Format nicht stimmt, blinken alle LEDs
     regenschutzLED.id = "led-green-blink";
@@ -111,14 +112,20 @@ function processData(data) {
     letzteWoche.unshift(formatDate(tag)); // Unshift the formatted date
   }
 
+  console.log("letzteWoche:", letzteWoche); // Debugging: Log the letzteWoche array
+
   // Anfragen des Bewegungssensors pro Tag in einem Objekt namens "countsByDate" speichern
   const countsByDate = {};
-  data.anfragen.forEach((item) => {
+  data.forEach((item) => {
     countsByDate[item.date] = item.count;
   });
 
+  console.log("countsByDate:", countsByDate); // Debugging: Log the countsByDate object
+
   // Daten für die Visualisierung vorbereiten
   const dataset = letzteWoche.map((date) => countsByDate[date] || 0);
+
+  console.log("dataset:", dataset); // Debugging: Log the dataset array
 
   // per DOM auf das Canvas zugreifen und mit Chart.js eine Linien-Grafik erstellen
   const canvas = document.getElementById("myChart");
