@@ -243,7 +243,7 @@ void blinkConditionalLeds()
   Serial.println("blinkConditionalLeds is active!");
   while (ledAnzeigeAktiviert) {      
     // Überprüfen, ob 20 Sekunden vergangen sind, um die Schleife zu beenden
-    if (millis() - startTimeLedAnzeigeAktiviert >= 20000) {  // 20000 Millisekunden = 20 Sekunden
+    if (millis() - startTimeLedAnzeigeAktiviert >= 60000) {  // 60000 Millisekunden = 20 Sekunden
         ledAnzeigeAktiviert = false; // Setzen Sie ledAnzeigeAktiviert auf false
         Serial.println("LED-Anzeige deaktiviert nach 20 Sekunden.");
         break;  // Schleife beenden

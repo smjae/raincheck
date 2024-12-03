@@ -70,15 +70,16 @@ function displayLEDs(data) {
     kontrollLED.id = "led-red-on";
   }
 
-  // Wenn mehr als 1mm Regen fällt, leuchtet die Regen-LED
-  if (rain > 1) {
-    regenLED.id = "led-blue-on";
-  }
 
   // Wenn mehr als 15mm Regen fällt, blinkt die Regen-LED
   if (rain > 15) {
     regenLED.id = "led-blue-blink";
   }
+  // Wenn mehr als 1mm Regen fällt, leuchtet die Regen-LED
+  else if (rain > 1) {
+    regenLED.id = "led-blue-on";
+  }
+
 
   // Wenn mehr als 0cm Schnee fällt, leuchtet die Schnee-LED
   if (snow > 0) {
