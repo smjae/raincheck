@@ -61,7 +61,7 @@ Unser Steckbrett kann bei Wokwi virtuell betrachtet und direkt bearbeitet werden
 Zusätzlich zu unserem LED-Board haben wir uns dazu entschieden, eine Webseite zu erstellen, auf der die aktuellen Daten angezeigt werden. Dabei haben wir uns an der physischen Komponente orientiert: auch digital sollen die Daten mit LEDs angezeigt werden, die je nach Wetterbedingungen leuchten oder blinken. Ansonsten ist die Seite sehr minimalistisch gestaltet. Wir haben uns für ein schlichtes Design entschieden, um die Aufmerksamkeit auf die Wetterdaten zu lenken. Die Seite ist responsiv und funktioniert auch auf mobilen Geräten. Das UX war etwas der letzten Dinge, die wir erledigten, da wir uns zuerst auf die Funktionalität konzentrierten. Als Goodie visualisieren wir auf der Webseite registrierte Bewegungen des Wetterindikators.
 
 ## Known Bugs
-Die Microcontroller - oder zumindest, die von uns verwendeten ESP32 - können teilweise nur mit neuem Code bespielt werden, wenn gewisse Sensorfen, wie unser PIR Sensorf nicht angeschlossen sind. Das hat uns mindestens 2 Tage Frustration beschert, bis wir das herausgefunden haben.
+Die Microcontroller - oder zumindest, die von uns verwendeten ESP32 - können teilweise nur mit neuem Code bespielt werden, wenn gewisse Sensoren, wie unser PIR Sensor nicht angeschlossen sind. Das hat uns mindestens 2 Tage Frustration beschert, bis wir das herausgefunden haben.
 
 ## Fun Facts
 Die LED mit dem Label «Du bist schön!» leuchtet immer auf – ein kleines, aber wichtiges Detail, das uns am Herzen liegt. Wir möchten Menschen daran erinnern, dass sie wertvoll und einzigartig sind.
