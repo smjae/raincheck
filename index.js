@@ -122,18 +122,17 @@ function processData(data) {
 
   console.log("countsByDate:", countsByDate); // Debugging: Log the countsByDate object
 
-  const datasetReversed = countsByDate.reverse();
   // Daten für die Visualisierung vorbereiten
   const dataset = letzteWoche.map((date) => {
     if (date === "heute") {
       const todayFormatted = formatDate(heute);
-      return datasetReversed[todayFormatted] || 0;
+      return countsByDate[todayFormatted] || 0;
     }
     return countsByDate[date] || 0;
   });
 
   //create a new variable claled datasetReversed and reverse the dataset array
-
+  const datasetReversed = dataset.reverse();
 
   console.log("dataset:", dataset); // Debugging: Log the dataset array
 
