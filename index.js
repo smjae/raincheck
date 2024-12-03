@@ -99,7 +99,8 @@ function displayLEDs(data) {
   }
 }
 
-// Daten umformen für Visualisierung der Abfragen des Bewegungssensors
+let chartInstance = null;
+
 function processData(data) {
   // die letzten 7 Tage ermitteln und in einen Array namens "letzteWoche" speichern
   let letzteWoche = [];
@@ -137,7 +138,13 @@ function processData(data) {
   const canvas = document.getElementById("myChart");
   const ctx = canvas.getContext("2d");
 
-  new Chart(ctx, {
+  // Destroy existing chart instance if it exists
+  if (chartInstance) {
+    chartInstance.destroy();
+  }
+
+  // Create new chart instance
+  chartInstance = new Chart(ctx, {
     type: "line",
     data: {
       labels: letzteWoche,
