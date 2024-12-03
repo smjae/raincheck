@@ -158,15 +158,22 @@ function processData(data) {
           display: true,
           title: {
             display: true,
-            text: "Date",
+            text: "Datum der Abfragen",
           },
         },
         y: {
           display: true,
           title: {
             display: true,
-            text: "Count",
+            text: "Anzahl Meldungen",
             min: 0,
+          },
+        },
+      },
+      plugins: {
+        legend: {
+          labels: {
+            padding: "20px",
           },
         },
       },
@@ -176,8 +183,8 @@ function processData(data) {
 
 // Helper function to format dates
 function formatDate(date) {
-  const options = { day: '2-digit', month: 'long', year: 'numeric' };
-  return new Intl.DateTimeFormat('de-DE', options).format(date);
+  const options = { day: "2-digit", month: "long", year: "numeric" };
+  return new Intl.DateTimeFormat("de-DE", options).format(date);
 }
 
 // Event-Listener für die Buttons, die zwischen Prognose und Abfragen wechseln
@@ -201,7 +208,11 @@ document.querySelector("#abfragen").addEventListener("click", async () => {
 
 // dasselbe umgekehrt
 document.querySelector("#prognose").addEventListener("click", async () => {
-  if (document.querySelector("#abfragen").classList.contains("round-button-active")) {
+  if (
+    document
+      .querySelector("#abfragen")
+      .classList.contains("round-button-active")
+  ) {
     document.querySelector("#abfragen").classList.remove("round-button-active");
     document.querySelector("#abfragen").classList.add("round-button");
     document.querySelector("#prognose").classList.remove("round-button");
