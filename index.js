@@ -40,8 +40,7 @@ async function fetchData() {
   try {
     const response = await fetch("https://raincheck.ch/php/unload.php");
     const result = await response.json();
-    console.log("Fetched data:", result); // Debugging: Log the fetched result
-    return result.data.anfragen; // Return the 'anfragen' array
+    return result.data;
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -105,11 +104,6 @@ function displayLEDs(data) {
 
 // Daten umformen für Visualisierung der Abfragen des Bewegungssensors
 function processData(data) {
-  if (!Array.isArray(data)) {
-    console.error("Data is not an array:", data);
-    return;
-  }
-
   // die letzten 7 Tage ermitteln und in einen Array namens "letzteWoche" speichern
   let letzteWoche = [];
   let heute = new Date();
