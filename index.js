@@ -138,7 +138,7 @@ function processData(data) {
   const canvas = document.getElementById("myChart");
   const ctx = canvas.getContext("2d");
 
-  // Destroy existing chart instance if it exists
+  // Falls bereits ein Chart existiert, wird dieser gelöscht
   if (chartInstance) {
     chartInstance.destroy();
   }
@@ -155,7 +155,7 @@ function processData(data) {
           borderColor: "rgba(255, 99, 132, 1)",
           backgroundColor: "rgba(255, 99, 132, 0.2)",
           fill: false,
-          cubicInterpolationMode: 'monotone',
+          cubicInterpolationMode: "monotone",
           tension: 0.4,
         },
       ],
@@ -227,8 +227,5 @@ document.querySelector("#prognose").addEventListener("click", async () => {
     document.querySelector("#prognose").classList.add("round-button-active");
     document.querySelector(".abfragen").style = "display: none";
     document.querySelector(".prognose").style = "display: block";
-    // Chart wird gelöscht, damit er wieder neu erstellt werden kann
-    let canvas = document.getElementById("myChart");
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 });
