@@ -45,11 +45,11 @@ digital:
 - JavaScript
 - Webserver????????
 
-Unsere Datenstruktur:
+### Unsere Datenstruktur:
 
 ![Datenstruktur](assets/img/datenstruktur.png)
 
-Unser Steckbrett:
+### Unser Steckbrett:
 
 ![Steckbrett](assets/img/steckbrett.png)
 
