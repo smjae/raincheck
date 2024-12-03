@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     displayLEDs(data.wettervorhersage);
     processData(data.anfragen); // Assuming you want to process 'anfragen' data
   } else {
+    console.log("No data or unexpected format:", data);
     // falls keine Daten vorhanden sind oder das Format nicht stimmt, blinken alle LEDs
     regenschutzLED.id = "led-green-blink";
     windLED.id = "led-purple-blink";
