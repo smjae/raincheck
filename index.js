@@ -115,8 +115,9 @@ function processData(data) {
 
   // Anfragen des Bewegungssensors pro Tag in einem Objekt namens "countsByDate" speichern
   const countsByDate = {};
-  data.anfragen.forEach((item) => {
-    countsByDate[formatDate(new Date(item.date))] = item.count;
+  data.forEach((item) => {
+    const formattedDate = formatDate(new Date(item.date));
+    countsByDate[formattedDate] = item.count;
   });
 
   console.log("countsByDate:", countsByDate); // Debugging: Log the countsByDate object
@@ -187,7 +188,7 @@ document.querySelector("#abfragen").addEventListener("click", async () => {
     document.querySelector(".prognose").style = "display: none";
     document.querySelector(".abfragen").style = "display: block";
     const data = await fetchData();
-    processData(data);
+    processData(data.anfragen);
   }
 });
 
