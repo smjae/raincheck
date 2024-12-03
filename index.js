@@ -148,6 +148,8 @@ function processData(data) {
           borderColor: "rgba(255, 99, 132, 1)",
           backgroundColor: "rgba(255, 99, 132, 0.2)",
           fill: false,
+          cubicInterpolationMode: 'monotone',
+          tension: 0.4,
         },
       ],
     },
@@ -167,13 +169,6 @@ function processData(data) {
             display: true,
             text: "Anzahl Meldungen",
             min: 0,
-          },
-        },
-      },
-      plugins: {
-        legend: {
-          labels: {
-            padding: "20px",
           },
         },
       },
