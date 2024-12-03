@@ -104,11 +104,11 @@ function processData(data) {
   // die letzten 7 Tage ermitteln und in einen Array namens "letzteWoche" speichern
   let letzteWoche = [];
   let heute = new Date();
-  letzteWoche.unshift(heute.toISOString().split("T")[0]);
+  letzteWoche.unshift("heute");
   for (let i = 1; i < 7; i++) {
     let tag = new Date();
     tag.setDate(heute.getDate() - i);
-    letzteWoche.unshift(tag.toISOString().split("T")[0]); // Unshift the full date in YYYY-MM-DD format
+    letzteWoche.unshift(formatDate(tag)); // Unshift the formatted date
   }
 
   // Anfragen des Bewegungssensors pro Tag in einem Objekt namens "countsByDate" speichern
@@ -158,6 +158,12 @@ function processData(data) {
       },
     },
   });
+}
+
+// Helper function to format dates
+function formatDate(date) {
+  const options = { day: '2-digit', month: 'long', year: 'numeric' };
+  return new Intl.DateTimeFormat('de-DE', options).format(date);
 }
 
 // Event-Listener für die Buttons, die zwischen Prognose und Abfragen wechseln
