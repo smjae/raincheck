@@ -167,6 +167,7 @@ function processData(data) {
             display: true,
             text: "Count",
             min: 0,
+            reverse: true, // This will flip the y-axis scale
           },
         },
       },
