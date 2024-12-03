@@ -64,7 +64,7 @@ Zusätzlich zu unserem LED-Board haben wir uns dazu entschieden, eine Webseite z
 Die Microcontroller - oder zumindest, die von uns verwendeten ESP32 - können teilweise nur mit neuem Code bespielt werden, wenn gewisse Sensorfen, wie unser PIR Sensorf nicht angeschlossen sind. Das hat uns mindestens 2 Tage Frustration beschert, bis wir das herausgefunden haben.
 
 ## Fun Facts
-Im Code haben wir ein Easter Egg versteckt – hast du es schon entdeckt?
+Die LED mit dem Label «Du bist schön!» leuchtet immer auf – ein kleines, aber wichtiges Detail, das uns am Herzen liegt. Wir möchten Menschen daran erinnern, dass sie wertvoll und einzigartig sind.
 
 RainCheck ist für uns viel mehr als nur ein Projekt – es ist der krönende Abschluss unseres gemeinsamen Weges im MMP-Studium. Wir blicken auf zahlreiche gemeinsame Gruppenarbeiten zurück, in denen die Zusammenarbeit immer inspirierend und bereichernd war. Diese Erfahrungen haben uns als Team  zusammengeschweisst.
 
@@ -79,4 +79,14 @@ Simea: Datenbank, Kommunikation mit Datenbank, Frontend, UX/UI, Design und 3D Dr
 Dieses Projekt ist unter der MIT-Lizenz lizenziert. Weitere Informationen finden Sie in der [LICENSE](LICENSE.txt) Datei.
 
 ## RainCheck in Action
-- [ ] Video von live funktionen
+### Achtung, Regen erwartet
+![Rain](assets/movie/rain.mp4)
+
+### Heute kommt Schnee & Brrr, kalt!
+![Snow](assets/movie/snow.mp4)
+
+### Achtung, Sturmgefahr
+![Storm](assets/movie/storm.mp4)
+
+### Heute brauchst du einen Regenschutz. Lieber kein Schirm...
+![NoUmbrella](assets/movie/noumbrella.mp4)
