@@ -143,7 +143,7 @@ function processData(data) {
       labels: letzteWoche,
       datasets: [
         {
-          label: "Anzahl Meldungen des Bewegungssensors pro Tag",
+          label: "Abfragen pro Tag",
           data: dataset,
           borderColor: "rgba(255, 99, 132, 1)",
           backgroundColor: "rgba(255, 99, 132, 0.2)",
@@ -170,6 +170,12 @@ function processData(data) {
             text: "Anzahl Meldungen",
             min: 0,
           },
+        },
+      },
+      plugins: {
+        title: {
+          display: true,
+          text: "Anzahl Meldungen des Bewegungssensors pro Tag",
         },
       },
     },
