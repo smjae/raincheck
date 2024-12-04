@@ -81,14 +81,7 @@ Simea: Datenbank, Kommunikation mit Datenbank, Frontend, UX/UI, Design und 3D Dr
 Dieses Projekt ist unter der MIT-Lizenz lizenziert. Weitere Informationen finden Sie in der [LICENSE](LICENSE.txt) Datei.
 
 ## RainCheck in Action
-### Achtung, Regen erwartet
-[![Video ansehen](assets/img/RainCheck_Thumbnail_Regen.png)](https://youtu.be/tcWjL8cPkmE)
+![RainCheck in Action](RainCheckInAction.gif)
 
-### Heute kommt Schnee & Brrr, kalt!
-[![Video ansehen](assets/img/RainCheck_Thumbnail_Schnee-Kalt.png)](https://youtu.be/tcWjL8cPkmE)
-
-### Achtung, Sturmgefahr
-[![Video ansehen](assets/img/RainCheck_Thumbnail_Sturmgefahr.png)](https://youtu.be/tcWjL8cPkmE)
-
-### Heute brauchst du einen Regenschutz. Lieber kein Schirm...
-[![Video ansehen](assets/img/RainCheck_Thumbnail_Regenschutz-Regenschirm.png)](https://youtu.be/tcWjL8cPkmE)
+## Kurze Projekterläuterung in Videoform
+https://youtu.be/0N-gC_uwR08
