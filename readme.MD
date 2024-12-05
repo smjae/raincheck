@@ -57,7 +57,7 @@ Dieses Projekt wurde mit folgenden Technologien umgesetzt:
 #### Finales Steckbrett
 ![Steckbrett final](assets/img/steckbrettFinal.png)
 
-Die Steckbretter können bei Wokwi virtuell betrachtet und direkt bearbeitet werden. Beim Code handelt es sich um Beispielcode, der nicht mit dem Code aus dem [ardu.ino](ardu.ino) übereinstimmt.
+Die Steckbretter können bei Wokwi virtuell betrachtet und direkt bearbeitet werden. Beim Code handelt es sich um Beispielcode, der nicht mit dem Code aus dem [ardu.ino](ardu.ino) übereinstimmt. Hier geht's zur [Legende](ledIndikatorenAufschluesselung.md) der LED-Indikatoren.
 
 **[RainCheck Steckbrett aus dem Entwicklungsprozess – Wokwi Simulation](https://wokwi.com/projects/415264541148403713)**
 
@@ -77,7 +77,7 @@ RainCheck ist für uns viel mehr als nur ein Projekt – es ist der krönende Ab
 Mit RainCheck haben wir uns entschieden, im Rahmen des Studiums ein letztes gemeinsames Projekt zu realisieren – und was für eines! Neben all den rein digitalen Werken konnten wir nun auch etwas Greifbares schaffen: ein physisches Werk, das unsere Leidenschaft für kreative und technische Herausforderungen widerspiegelt.
 
 ## Aufgabenaufteilung
-gemeinsam: Datenbank aufsetzen, Kommunikation mit API, Datenstruktur, etc.
+Gemeinsam: Datenbank aufsetzen, Kommunikation mit API, Datenstruktur, etc.
 
 Raphi: Hardware, Bewegungssensor, LED-Board, Kommunikation mit Datenbank
 
