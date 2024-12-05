@@ -18,6 +18,6 @@ LED 5: Sturm
 LED 6: Regenschirmverbot
 - Blinkt, wenn Regen erwartet wird (>1mm), aber die Windstärke über 30km/h liegt.
 
-alle LEDs blinken
+Alle LEDs blinken
 - Bei einem Fehler im System.
 - Wenn die Wetterdaten nicht vom aktuellen Tag sind.
