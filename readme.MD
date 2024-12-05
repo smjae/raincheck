@@ -52,9 +52,9 @@ Dieses Projekt wurde mit folgenden Technologien umgesetzt:
 ![Datenstruktur](assets/img/datenstruktur.png)
 
 ### Steckbrett aus dem Entwicklungsprozess und finale Version
-
+#### Steckbrett aus dem Entwicklungsprozess
 ![Steckbrett aus dem Entwicklungsprozess](assets/img/steckbrettEntwicklung.png)
-
+#### Finales Steckbrett
 ![Steckbrett final](assets/img/steckbrettFinal.png)
 
 Die Steckbretter können bei Wokwi virtuell betrachtet und direkt bearbeitet werden. Beim Code handelt es sich um Beispielcode, der nicht mit dem Code aus dem [ardu.ino](ardu.ino) übereinstimmt.
@@ -78,7 +78,9 @@ Mit RainCheck haben wir uns entschieden, im Rahmen des Studiums ein letztes geme
 
 ## Aufgabenaufteilung
 gemeinsam: Datenbank aufsetzen, Kommunikation mit API, Datenstruktur, etc.
+
 Raphi: Hardware, Bewegungssensor, LED-Board, Kommunikation mit Datenbank
+
 Simea: Datenbank, Kommunikation mit Datenbank, Frontend, UX/UI, Design und 3D Druck des Gehäuse
 
 ## RainCheck in Action
