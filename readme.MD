@@ -14,8 +14,10 @@ RainCheck – für einen schnellen, klaren Wetterüberblick direkt vor der Tür 
 - [UX](#ux)
 - [Known Bugs](#known-bugs)
 - [Fun Facts](#fun-facts)
-- [Lizenz](#lizenz)
+- [Aufgabenaufteilung](#Aufgabenaufteilung)
 - [RainCheck in Action](#raincheck-in-action)
+- [Kurze Projekterläuterung in Videoform](#Kurze-Projekterläuterung-in-Videoform)
+- [Lizenz](#lizenz)
 
 ## Idee
 Wie kommt man auf die Idee, Wetterdaten aus einer API abzulesen und diese bei bestimmten Bedingungen auf einem LED-Board anzuzeigen? Keine Ahnung. Vermutlich, weil wir beide schon viel zu oft das Haus ohne Schirm oder Regenjacke verlassen haben, nur um dann völlig verschüttet zu werden. Ärgerlich... Daraus ist raincheck.ch entstanden: je nach Tagesprognose in Chur leuchten andere LEDs auf dem Board. Sei es besonders kalt, regnerisch, windig oder gäbe es Schnee: ab sofort wissen wir beim Verlassen der Wohnung, was uns erwartet. Mit Hilfe der Daten aus der API von open-meteo haben wir eine laufende Prognose.
