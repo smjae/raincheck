@@ -45,21 +45,21 @@ digital:
 - JavaScript
 - Webserver????????
 
-### Unsere Datenstruktur
+### Datenstruktur
 
 ![Datenstruktur](assets/img/datenstruktur.png)
 
-### Unser Steckbrett aus dem Entwicklungsprozess
+### Steckbrett aus dem Entwicklungsprozess und finale Version
 
 ![Steckbrett aus dem Entwicklungsprozess](assets/img/steckbrett-entwicklung.png)
 
 ![Steckbrett final](assets/img/steckbrett-final.png)
 
-Unser Steckbrett kann bei Wokwi virtuell betrachtet und direkt bearbeitet werden. Beim Code handelt es sich um Beispielcode, der nicht mit dem Code aus dem [ardu.ino](ardu.ino) übereinstimmt.
-
-**[RainCheck Steckbrett der finalen Version – Wokwi Simulation](https://wokwi.com/projects/416259456060610561)**
+Die Steckbretter können bei Wokwi virtuell betrachtet und direkt bearbeitet werden. Beim Code handelt es sich um Beispielcode, der nicht mit dem Code aus dem [ardu.ino](ardu.ino) übereinstimmt.
 
 **[RainCheck Steckbrett aus dem Entwicklungsprozess – Wokwi Simulation](https://wokwi.com/projects/415264541148403713)**
+
+**[RainCheck Steckbrett der finalen Version – Wokwi Simulation](https://wokwi.com/projects/416259456060610561)**
 
 ## UX
 Zusätzlich zu unserem LED-Board haben wir uns dazu entschieden, eine Webseite zu erstellen, auf der die aktuellen Daten angezeigt werden. Dabei haben wir uns an der physischen Komponente orientiert: auch digital sollen die Daten mit LEDs angezeigt werden, die je nach Wetterbedingungen leuchten oder blinken. Ansonsten ist die Seite sehr minimalistisch gestaltet. Wir haben uns für ein schlichtes Design entschieden, um die Aufmerksamkeit auf die Wetterdaten zu lenken. Die Seite ist responsiv und funktioniert auch auf mobilen Geräten. Das UX war etwas der letzten Dinge, die wir erledigten, da wir uns zuerst auf die Funktionalität konzentrierten. Als Goodie visualisieren wir auf der Webseite registrierte Bewegungen des Wetterindikators.
