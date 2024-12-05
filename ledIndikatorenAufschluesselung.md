@@ -1,6 +1,6 @@
-LED 1: Kontrollleuchte
-	•	Leuchtet, sobald eine Bewegung erkannt wird.
-	•	Schild dazu: "du bist schön"
+LED 1: Kontrollleuchte:
+- Leuchtet, sobald eine Bewegung erkannt wird.
+- Schild: «Du bist schön»
 
 LED 2: Regenwahrscheinlichkeit
 	•	Leuchtet durchgehend, wenn mehr als 1mm Regen erwartet wird.
