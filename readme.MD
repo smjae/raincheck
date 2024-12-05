@@ -51,9 +51,9 @@ digital:
 
 ### Steckbrett aus dem Entwicklungsprozess und finale Version
 
-![Steckbrett aus dem Entwicklungsprozess](assets/img/steckbrett-entwicklung.png)
+![Steckbrett aus dem Entwicklungsprozess](assets/img/Steckbrett-entwicklung.png)
 
-![Steckbrett final](assets/img/steckbrett-final.png)
+![Steckbrett final](assets/img/Steckbrett-final.png)
 
 Die Steckbretter können bei Wokwi virtuell betrachtet und direkt bearbeitet werden. Beim Code handelt es sich um Beispielcode, der nicht mit dem Code aus dem [ardu.ino](ardu.ino) übereinstimmt.
 
