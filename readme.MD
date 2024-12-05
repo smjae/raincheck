@@ -45,17 +45,19 @@ digital:
 - JavaScript
 - Webserver????????
 
-### Unsere Datenstruktur:
+### Unsere Datenstruktur
 
 ![Datenstruktur](assets/img/datenstruktur.png)
 
-### Unser Steckbrett:
+### Unser Steckbrett aus dem Entwicklungsprozess
 
-![Steckbrett](assets/img/steckbrett.png)
+![Steckbrett aus dem Entwicklungsprozess](assets/img/steckbrett-entwicklung.png)
 
-Unser Steckbrett kann bei Wokwi virtuell betrachtet und direkt bearbeitet werden.
+![Steckbrett final](assets/img/steckbrett-final.png)
 
-**[RainCheck Steckbrett der finalen Version – Wokwi Simulation](https://wokwi.com/projects/415264541148403713)**
+Unser Steckbrett kann bei Wokwi virtuell betrachtet und direkt bearbeitet werden. Beim Code handelt es sich um Beispielcode, der nicht mit dem Code aus dem [ardu.ino](ardu.ino) übereinstimmt.
+
+**[RainCheck Steckbrett der finalen Version – Wokwi Simulation](https://wokwi.com/projects/416259456060610561)**
 
 **[RainCheck Steckbrett aus dem Entwicklungsprozess – Wokwi Simulation](https://wokwi.com/projects/415264541148403713)**
 
