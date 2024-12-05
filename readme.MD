@@ -81,7 +81,7 @@ Simea: Datenbank, Kommunikation mit Datenbank, Frontend, UX/UI, Design und 3D Dr
 Dieses Projekt ist unter der MIT-Lizenz lizenziert. Weitere Informationen finden Sie in der [LICENSE](LICENSE.txt) Datei.
 
 ## RainCheck in Action
-![RainCheck in Action](RainCheckInAction.gif)
+![RainCheck in Action](assets/img/RainCheckInAction.gif)
 
 ## Kurze Projekterläuterung in Videoform
-https://youtu.be/0N-gC_uwR08
+[Auf YouTube anschauen](https://youtu.be/0N-gC_uwR08)
