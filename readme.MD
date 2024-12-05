@@ -57,7 +57,7 @@ Dieses Projekt wurde mit folgenden Technologien umgesetzt:
 #### Finales Steckbrett
 ![Steckbrett final](assets/img/steckbrettFinal.png)
 
-Die Steckbretter können bei Wokwi virtuell betrachtet und direkt bearbeitet werden. Beim Code handelt es sich um Beispielcode, der nicht mit dem Code aus dem [ardu.ino](ardu.ino) übereinstimmt.
+Die Steckbretter können bei Wokwi virtuell betrachtet und direkt bearbeitet werden. Beim Code handelt es sich um Beispielcode, der nicht mit dem Code aus dem [ardu.ino](ardu.ino) übereinstimmt. Hier geht's zur [Legende](ledIndikatorenAufschluesselung.md) der LED-Indikatoren.
 
 **[RainCheck Steckbrett aus dem Entwicklungsprozess – Wokwi Simulation](https://wokwi.com/projects/415264541148403713)**
 
