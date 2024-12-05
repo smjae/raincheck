@@ -32,18 +32,18 @@ Beim ESP32 und der Arduino Software gab es auch so einige Hürden. So war es ein
 ## Technik
 Dieses Projekt wurde mit folgenden Technologien umgesetzt:
 
-physisch:
+### physisch
 - ESP32 Dev Modul
 - Bewegungssensor
-- LED-Board
+- LED-Board mit Zubehör
 
-digital:
+### digital
 - PHP
 - MySQL
 - HTML
 - CSS
 - JavaScript
-- Webserver????????
+- Webserver
 
 ### Datenstruktur
 
@@ -51,9 +51,9 @@ digital:
 
 ### Steckbrett aus dem Entwicklungsprozess und finale Version
 
-![Steckbrett aus dem Entwicklungsprozess](assets/img/Steckbrett-entwicklung.png)
+![Steckbrett aus dem Entwicklungsprozess](assets/img/steckbrettEntwicklung.png)
 
-![Steckbrett final](assets/img/Steckbrett-final.png)
+![Steckbrett final](assets/img/steckbrettFinal.png)
 
 Die Steckbretter können bei Wokwi virtuell betrachtet und direkt bearbeitet werden. Beim Code handelt es sich um Beispielcode, der nicht mit dem Code aus dem [ardu.ino](ardu.ino) übereinstimmt.
 
@@ -79,11 +79,11 @@ gemeinsam: Datenbank aufsetzen, Kommunikation mit API, Datenstruktur, etc.
 Raphi: Hardware, Bewegungssensor, LED-Board, Kommunikation mit Datenbank
 Simea: Datenbank, Kommunikation mit Datenbank, Frontend, UX/UI, Design und 3D Druck des Gehäuse
 
-## Lizenz
-Dieses Projekt ist unter der MIT-Lizenz lizenziert. Weitere Informationen finden Sie in der [LICENSE](LICENSE.txt) Datei.
-
 ## RainCheck in Action
-![RainCheck in Action](assets/img/RainCheckInAction.gif)
+![RainCheck in Action](assets/img/rainCheckInAction.gif)
 
 ## Kurze Projekterläuterung in Videoform
 [Auf YouTube anschauen](https://youtu.be/0N-gC_uwR08)
+
+## Lizenz
+Dieses Projekt ist unter der MIT-Lizenz lizenziert. Weitere Informationen finden Sie in der [LICENSE](LICENSE.txt) Datei.
