@@ -77,7 +77,7 @@ RainCheck ist für uns viel mehr als nur ein Projekt – es ist der krönende Ab
 Mit RainCheck haben wir uns entschieden, im Rahmen des Studiums ein letztes gemeinsames Projekt zu realisieren – und was für eines! Neben all den rein digitalen Werken konnten wir nun auch etwas Greifbares schaffen: ein physisches Werk, das unsere Leidenschaft für kreative und technische Herausforderungen widerspiegelt.
 
 ## Aufgabenaufteilung
-Gemeinsam: Datenbank aufsetzen, Kommunikation mit API, Datenstruktur, etc.
+gemeinsam: Datenbank aufsetzen, Kommunikation mit API, Datenstruktur, etc.
 
 Raphi: Hardware, Bewegungssensor, LED-Board, Kommunikation mit Datenbank
 
